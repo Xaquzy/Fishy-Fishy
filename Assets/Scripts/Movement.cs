@@ -11,7 +11,7 @@ public class Movement : MonoBehaviour
     float turnSmoothVelocity;
 
     //Animation
-    public Animator PlayerAnimator;
+    //public Animator PlayerAnimator;
 
     //Movement
     Vector2 movement;
@@ -26,11 +26,6 @@ public class Movement : MonoBehaviour
     Vector3 velocity;
     public int JumpAmount = 1;
     private int counter;
-
-
-    public GameObject Turtle;
-    public GameObject Snake;
-    public GameObject Horse;
 
     IEnumerator FinishCut()
     {
@@ -51,12 +46,17 @@ public class Movement : MonoBehaviour
         trueSpeed = walkSpeed;
         controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = true;
+        Cursor.visible = false;
+
+        
+    }
 
 
     // Update is called once per frame
     void Update()
     {
+
+        
         StartCoroutine(FinishCut());
 
         //Grounding
@@ -82,6 +82,16 @@ public class Movement : MonoBehaviour
             controller.Move(moveDirection.normalized * trueSpeed * Time.deltaTime);
         }
 
+        //Sprinting
+        if ((Input.GetKeyDown(KeyCode.LeftShift)))
+        {
+            trueSpeed = sprintSpeed;
+        }
+        if ((Input.GetKeyUp(KeyCode.LeftShift)))
+        {
+            trueSpeed = walkSpeed;
+        }
+
         //Jumping (max doublejump)
         if (isGrounded)
         {
@@ -99,23 +109,25 @@ public class Movement : MonoBehaviour
         {
             velocity.y += (gravity * 30) * Time.deltaTime;
         }
+        
         controller.Move(velocity * Time.deltaTime);
 
-//        //Animation
-//        if (direction.magnitude <= 0)
-//        {
-//            PlayerAnimator.SetBool("Moving", false);
-//        }
-//        else
-//        {
-//            PlayerAnimator.SetBool("Moving", true);
-//        }
+        //        //Animation
+        //        if (direction.magnitude <= 0)
+        //        {
+        //            PlayerAnimator.SetBool("Moving", false);
+        //        }
+        //        else
+        //        {
+        //            PlayerAnimator.SetBool("Moving", true);
+        //        }
 
-//    }
-//    private void OnApplicationQuit()
-//    {
-//        Debug.Log("SLET");
-//        PlayerPrefs.DeleteAll();
-     }
+        //    }
+        //    private void OnApplicationQuit()
+        //    {
+        //        Debug.Log("SLET");
+        //        PlayerPrefs.DeleteAll();
+        //    }
+
+    }
 }
-
