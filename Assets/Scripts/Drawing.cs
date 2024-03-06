@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 
 public class Drawing : MonoBehaviour
@@ -36,6 +37,9 @@ public class Drawing : MonoBehaviour
         {
             FinishLine();
         }
+
+        Vector3 averageVector = CalculateAverage(allLines);
+        Debug.Log("Average Vector: " + averageVector);
     }
 
     void StartNewLine()
@@ -58,5 +62,27 @@ public class Drawing : MonoBehaviour
     {
         currentLine = null; //Stopper den nuværende linje
         currentLinePoints.Clear(); //Listen med den nuværende linje tømmes
+    }
+
+    Vector3 CalculateAverage(List<LineRenderer> listWithLinePoints)
+    {
+        // hvis der ikke er nogle vektorer i listen er den gennemsnitlige vektor 0
+        if (listWithLinePoints.Count == 0)
+        {
+            return Vector3.zero;
+        }
+
+        Vector3 sum = Vector3.zero; //summen sættes til 0
+        foreach (LineRenderer line in listWithLinePoints) //Der itereres over hvert element i listen med punkterne
+        {
+            Vector3[] points = new Vector3[line.positionCount]; //Laver en array (en liste i praksis) ved navn point der har samme størrelse som mængden af punkter i en given linje
+            line.GetPositions(points); //for hvert punkt finder den posistionen
+            foreach (Vector3 position in points)
+            {
+                sum = sum + position; //De summes op
+            }
+        }
+
+        return sum / listWithLinePoints.Count; //Summen divideres med antallet af punkter for at få gennemsnit
     }
 }
