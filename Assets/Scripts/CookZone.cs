@@ -10,7 +10,7 @@ public class CookZone : MonoBehaviour
     public Transform CookPos;
     public Transform Player;
     public GameObject Text;
-
+    public GameObject Line;
     private bool playerInTrigger = false;
 
 
@@ -36,9 +36,16 @@ public class CookZone : MonoBehaviour
         if (playerInTrigger && Input.GetKeyDown(KeyCode.E))
         {
             Text.SetActive(false);
-            CookCam.SetActive(false);
+            CookCam.SetActive(true);
             MainCam.enabled = false;
-            Player.position = new Vector3(-0.531924486f, -0.178946912f, 2.714468f);
+            Player.position = CookPos.position;
+        }
+
+        if (playerInTrigger == false)
+        {
+            Text.SetActive(false);
+            CookCam.SetActive(false);
+            MainCam.enabled = true;
         }
     }
 
@@ -48,6 +55,7 @@ public class CookZone : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player left the trigger!");
+            playerInTrigger = false;
         }
     }
 }

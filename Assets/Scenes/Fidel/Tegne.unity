@@ -440,7 +440,7 @@ Transform:
   m_GameObject: {fileID: 91169593}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.53, y: 0, z: 0}
+  m_LocalPosition: {x: 3.47, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -543,12 +543,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 193042369}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6204807, y: -0.071638346, z: 0.092740655, w: 0.7754166}
-  m_LocalPosition: {x: -0.5, y: 3.3, z: 21.3}
+  m_LocalRotation: {x: 0.0016773362, y: 0.6892016, z: -0.72453386, w: 0.007010117}
+  m_LocalPosition: {x: -2.8455575, y: 3.6176584, z: -27.109993}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 537529183}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 77.304, y: 1.04, z: 14.472}
 --- !u!81 &193042371
 AudioListener:
@@ -732,6 +732,7 @@ MonoBehaviour:
   CookPos: {fileID: 1386966552}
   Player: {fileID: 2003806811}
   Text: {fileID: 1896498278}
+  Line: {fileID: 822386668}
 --- !u!1 &474782747
 GameObject:
   m_ObjectHideFlags: 3
@@ -1020,7 +1021,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 854134006}
-  - {fileID: 193042370}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &594690889
@@ -1048,7 +1048,7 @@ Transform:
   m_GameObject: {fileID: 594690889}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.24, y: 0.120000005, z: -20.51}
+  m_LocalPosition: {x: -1.24, y: 1, z: -20.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1419,17 +1419,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 822386669}
-  mainCamera: {fileID: 537529182}
-  LineParent: {fileID: 822386670}
+  CookCam: {fileID: 537529182}
   lineWidth: 0.1
   AfstandTilKam: 10
-  FishyTarget:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 594690890}
+  FishyTargetParent: {fileID: 594690890}
 --- !u!1 &833697692
 GameObject:
   m_ObjectHideFlags: 3
@@ -3381,6 +3374,7 @@ MeshFilter:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 193042370}
   - {fileID: 537529183}
   - {fileID: 1528964538}
   - {fileID: 660148385}
