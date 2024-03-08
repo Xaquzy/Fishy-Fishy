@@ -15,6 +15,8 @@ public class Drawing : MonoBehaviour
     private List<Vector3> currentLinePoints = new List<Vector3>(); //Liste med alle punkterne som linjen er lavet ud af
     private List<LineRenderer> allLines = new List<LineRenderer>(); //Liste med alle linjer
 
+    public List<Transform> FishyTarget; //Liste med de punkter som man skal tegne efter
+
     void Update()
     {
         //Når man trykker starter en ny linje
@@ -38,8 +40,12 @@ public class Drawing : MonoBehaviour
             FinishLine();
         }
 
-        Vector3 averageVector = CalculateAverage(allLines);
-        Debug.Log("Average Vector: " + averageVector);
+        Vector3 averageLinePos = CalculateLinePos(allLines);
+        Debug.Log("Average Vector: " + averageLinePos);
+
+        Vector3 AverageFish = CalculateFishTargetAvg(FishyTarget);
+        Debug.Log("Average Fish: " + AverageFish);
+
     }
 
     void StartNewLine()
@@ -64,7 +70,7 @@ public class Drawing : MonoBehaviour
         currentLinePoints.Clear(); //Listen med den nuværende linje tømmes
     }
 
-    Vector3 CalculateAverage(List<LineRenderer> listWithLinePoints)
+    Vector3 CalculateLinePos(List<LineRenderer> listWithLinePoints)
     {
         // hvis der ikke er nogle vektorer i listen er den gennemsnitlige vektor 0
         if (listWithLinePoints.Count == 0)
@@ -84,5 +90,20 @@ public class Drawing : MonoBehaviour
         }
 
         return sum / listWithLinePoints.Count; //Summen divideres med antallet af punkter for at få gennemsnit
+    }
+
+    Vector3 CalculateFishTargetAvg(List<Transform> FishTargets)
+    {
+        int antal = 0;
+        Vector3 sum = Vector3.zero; //summen sættes til 0
+
+        foreach (Transform target in FishTargets) //Der itereres over hvert element i listen med punkterne
+        {
+            sum = sum + target.position;
+            antal++;
+        }
+
+        Vector3 averageTarget = sum / antal; //Summen divideres med antallet af punkter for at få gennemsnit
+        return averageTarget;
     }
 }
