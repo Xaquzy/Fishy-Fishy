@@ -9,7 +9,7 @@ public class CookZone : MonoBehaviour
     public CinemachineFreeLook MainCam;
     public Transform CookPos;
     public Transform Player;
-    public GameObject Text;
+    public GameObject toolTip;
     public GameObject Line;
     public GameObject knife;
     private bool playerInTrigger = false;
@@ -24,23 +24,26 @@ public class CookZone : MonoBehaviour
         Drawing drawing = Line.GetComponent<Drawing>();
         if (drawing != null)
         {
-            //Tænd tegne script
+            //sluk tegne script
             drawing.enabled = false;
         }
 
-        Text.SetActive(false);
-        CookCam.SetActive(false);
-        
+        toolTip.SetActive(false); //Sluk tooltip
+        CookCam.SetActive(false); //Sluk cookcam
+
+
         //kniven skal slukkes
         knife.SetActive(false);
+
     }
     private void OnTriggerEnter(Collider other)
     {
         // Check if the object that entered the trigger has a specific tag
         if (other.CompareTag("Player"))
         {
-            Text.SetActive(true);
+            toolTip.SetActive(true);
             playerInTrigger = true;
+
 
         }
     }
@@ -51,23 +54,26 @@ public class CookZone : MonoBehaviour
         if (playerInTrigger && Input.GetKeyDown(KeyCode.E))
         {
             Cursor.visible = true;
-            Text.SetActive(false);
+            toolTip.SetActive(false);
             CookCam.SetActive(true);
             MainCam.enabled = false;
-
-            Player.position = new Vector3(-2.98000002f, 1f, -25.0400009f);
+            Player.position = CookPos.position;
 
 
             //kniven skal tændes
             knife.SetActive(true);
 
+            //Tegne scriptet tændes
             Drawing drawing = Line.GetComponent<Drawing>();
             drawing.enabled = true;
+
+
+
         }
 
         if (playerInTrigger == false)
         {
-            Text.SetActive(false);
+            toolTip.SetActive(false);
             CookCam.SetActive(false);
             MainCam.enabled = true;
         }
@@ -85,6 +91,7 @@ public class CookZone : MonoBehaviour
 
             //kniven skal slukkes
             knife.SetActive(false);
+
         }
     }
 }
