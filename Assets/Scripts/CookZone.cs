@@ -12,6 +12,7 @@ public class CookZone : MonoBehaviour
     public GameObject toolTip;
     public GameObject Line;
     public GameObject knife;
+    public GameObject countdownText;
     private bool playerInTrigger = false;
 
 
@@ -27,13 +28,16 @@ public class CookZone : MonoBehaviour
             //sluk tegne script
             drawing.enabled = false;
         }
-
+        
         toolTip.SetActive(false); //Sluk tooltip
         CookCam.SetActive(false); //Sluk cookcam
 
 
         //kniven skal slukkes
         knife.SetActive(false);
+
+        //CountdownText objektet slukkes (derved slukkes countdown scriptet på det også)
+        countdownText.SetActive(false);
 
     }
     private void OnTriggerEnter(Collider other)

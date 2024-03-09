@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
+using TMPro;
 using UnityEngine;
 
 public class Drawing : MonoBehaviour
@@ -12,6 +13,8 @@ public class Drawing : MonoBehaviour
     public float KnivDistFraKam = 1.5f;
     public GameObject FishyTargetParent;
     public Transform Knife;
+    public GameObject countdownText;
+
     private LineRenderer currentLine;
     private List<Vector3> currentLinePoints = new List<Vector3>(); //Liste med alle punkterne som linjen er lavet ud af
     private List<LineRenderer> allLines = new List<LineRenderer>(); //Liste med alle linjer
@@ -69,6 +72,9 @@ public class Drawing : MonoBehaviour
         currentLine.startWidth = lineWidth; //Læs det 
         currentLine.endWidth = lineWidth; //Læs det 
         allLines.Add(currentLine);
+
+        //CountdownText objektet tændes (derved tændes countdown scriptet på det også)
+        countdownText.SetActive(true);
     }
 
     void DrawPosition(Vector3 position)
