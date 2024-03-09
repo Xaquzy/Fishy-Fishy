@@ -18,7 +18,7 @@ public class Drawing : MonoBehaviour
 
     void Start()
     {
-
+        
     }
     
     void Update()
