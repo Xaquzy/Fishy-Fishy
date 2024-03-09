@@ -54,8 +54,10 @@ public class CookZone : MonoBehaviour
             Text.SetActive(false);
             CookCam.SetActive(true);
             MainCam.enabled = false;
-            Player.position = CookPos.position;
-            
+
+            Player.position = new Vector3(-2.98000002f, 1f, -25.0400009f);
+
+
             //kniven skal tændes
             knife.SetActive(true);
 

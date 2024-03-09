@@ -10,7 +10,7 @@ public class Drawing : MonoBehaviour
     public float lineWidth = 0.1f;
     public float AfstandTilKam = 8f;
     public float KnivDistFraKam = 1.5f;
-    public Transform FishyTargetParent;
+    public GameObject FishyTargetParent;
     public Transform Knife;
     private LineRenderer currentLine;
     private List<Vector3> currentLinePoints = new List<Vector3>(); //Liste med alle punkterne som linjen er lavet ud af
@@ -18,7 +18,9 @@ public class Drawing : MonoBehaviour
 
     void Start()
     {
-        
+        //DETTE ER KUN FOR AT DEBUGGE SLET SNAREST: Beregner avg fishtarget ved at kalde på funktionen 
+        Vector3 averageFishTarget = CalcAverageTargetPos(FishyTargetParent);
+        Debug.Log("Average TargetPos: " + averageFishTarget);
     }
     
     void Update()
@@ -50,10 +52,13 @@ public class Drawing : MonoBehaviour
         }
 
         Vector3 averageLinePos = CalculateLinePos(allLines);
-        Debug.Log("Average Vector: " + averageLinePos);
+        Debug.Log("Average LinePos: " + averageLinePos);
 
-        //Beregn distancen mellem fishyTargets og linjen...magnitude konverterer det til en længde
-        float AccuracyDist = (FishyTargetParent.position - averageLinePos).magnitude;
+        //Beregn distancen mellem avgfishyTargets og linjen...magnitude konverterer det til en længde
+        Vector3 averageFishTarget = CalcAverageTargetPos(FishyTargetParent);
+        Debug.Log("Average TargetPos: " + averageFishTarget);
+
+        float AccuracyDist = (averageFishTarget - averageLinePos).magnitude;
         Debug.Log("Accuracy Score: " + AccuracyDist);
     }
 
@@ -99,8 +104,20 @@ public class Drawing : MonoBehaviour
                 sum = sum + position; //De summes op
             }
         }
-
         return sum / numberOfPoints; //Summen divideres med antallet af punkter for at få gennemsnit
-        
+    }
+
+    Vector3 CalcAverageTargetPos(GameObject gameObject) //GameObject parameteren er fordi den skal tage et gameobject (og dens children) som et argument. Det andet gameObject er bare fordi der skal være et navn
+    {
+        Transform[] children = FishyTargetParent.GetComponentsInChildren<Transform>(); //Laver en array (en liste i praksis) med alle transforms fra objektets children
+        Vector3 sumPos = Vector3.zero; // Summen af positionen af alle børnene sættes til 0
+
+
+        foreach (Transform child in children)
+        {
+            sumPos = sumPos + child.position; //De summes op
+        }
+
+        return sumPos / children.Length; //Gennemsnittet beregnes (summen divideret med antallet af children)
     }
 }
