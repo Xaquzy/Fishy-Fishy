@@ -11,11 +11,6 @@ public class Countdown : MonoBehaviour
     //Cutscene ting
     //[SerializeField] private int NewSceneNumber = 1;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
 
