@@ -253,7 +253,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34517860}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000014901161, y: 0.000000041909516, z: -0.000000013213139, w: 1}
+  m_LocalRotation: {x: 0.000000014901161, y: -0.000000045634806, z: 0.000000014260877, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1016,8 +1016,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 537529179}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1518346, y: -0.003783309, z: 0.0005811798, w: 0.9883985}
-  m_LocalPosition: {x: 0.04332955, y: 6.16, z: -17.939842}
+  m_LocalRotation: {x: 0.1518346, y: -0.0037836712, z: 0.00058123545, w: 0.9883985}
+  m_LocalPosition: {x: 0.043332953, y: 6.16, z: -17.939842}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1179,7 +1179,7 @@ GameObject:
   - component: {fileID: 761527659}
   - component: {fileID: 761527662}
   - component: {fileID: 761527661}
-  - component: {fileID: 761527660}
+  - component: {fileID: 761527663}
   m_Layer: 5
   m_Name: Countdown
   m_TagString: Untagged
@@ -1206,20 +1206,6 @@ RectTransform:
   m_AnchoredPosition: {x: 339, y: 125}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &761527660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 761527658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03ce3855bcb9be840981bd0e7fb29fe6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  countdownText: {fileID: 761527661}
-  remainingTime: 5
 --- !u!114 &761527661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1317,6 +1303,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 761527658}
   m_CullTransparentMesh: 1
+--- !u!114 &761527663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761527658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca314cc0b5c7bd34ba3bcec244fee81e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countdownText: {fileID: 761527661}
+  remainingTime: 5
 --- !u!1 &796567967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1601,8 +1601,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 833697692}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.018189492, y: 0.00000003166497, z: -0.000000010593795, w: 0.9998346}
-  m_LocalPosition: {x: -0.000000022351085, y: 5.1359535e-11, z: 1.6322284e-10}
+  m_LocalRotation: {x: 0.018189477, y: -0.000000032596294, z: 0.000000011001249, w: 0.9998346}
+  m_LocalPosition: {x: -0.000000007450362, y: 1.7120905e-11, z: 5.441099e-11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1786,7 +1786,7 @@ Transform:
   m_GameObject: {fileID: 854134005}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00000003352663, y: -7.70393e-11, z: -2.4483426e-10}
+  m_LocalPosition: {x: 0.000000011175543, y: -2.5681358e-11, z: -8.1616484e-11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1925,7 +1925,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 910140414}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.018141463, y: 0.0000000433065, z: -0.000000012805685, w: 0.99983543}
+  m_LocalRotation: {x: -0.018141463, y: -0.00000004679896, z: 0.000000013737008, w: 0.99983543}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

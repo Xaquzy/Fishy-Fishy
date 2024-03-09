@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Drawing : MonoBehaviour
 {
@@ -13,20 +12,17 @@ public class Drawing : MonoBehaviour
     public float KnivDistFraKam = 1.5f;
     public GameObject FishyTargetParent;
     public Transform Knife;
-
-
     private LineRenderer currentLine;
     private List<Vector3> currentLinePoints = new List<Vector3>(); //Liste med alle punkterne som linjen er lavet ud af
-    private List<LineRenderer> allLines = new List<LineRenderer>(); //Liste med alle linjerne
+    private List<LineRenderer> allLines = new List<LineRenderer>(); //Liste med alle linjer
 
     void Start()
     {
         //DETTE ER KUN FOR AT DEBUGGE SLET SNAREST: Beregner avg fishtarget ved at kalde på funktionen 
         Vector3 averageFishTarget = CalcAverageTargetPos(FishyTargetParent);
         Debug.Log("Average TargetPos: " + averageFishTarget);
-
     }
-    
+
     void Update()
     {
         //Kniven følger med musen
@@ -38,33 +34,32 @@ public class Drawing : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             StartNewLine();
-
-            //Når knappen er nede tegner listen
-            if (Input.GetMouseButton(0))
-            {
-                Vector3 mousePos = Input.mousePosition; //Musens position defineres
-                mousePos.z = AfstandTilKam; // Afstanden som der tegnes fra kam, det er en selvvalgt z-koordinat da skærmen er 2 dimensionel
-                Vector3 worldPos = CookCam.ScreenToWorldPoint(mousePos); //ScreenToWorldPoint laver musens position på skærmen om til en position i "verden". Dog er positionen 2-dimensionel (x,y,?)
-                DrawPosition(worldPos); //Tegner til ved positionen i verden (som var musens position der er blevet omdannet)
-            }
-
-            //Når man giver slip stopper linjen
-            if (Input.GetMouseButtonUp(0))
-            {
-                FinishLine();
-            }
-
-
-            //Beregn distancen mellem avgfishyTargets og linjen...magnitude konverterer det til en længde
-            Vector3 averageLinePos = CalculateLinePos(allLines);
-            Debug.Log("Average LinePos: " + averageLinePos);
-
-            Vector3 averageFishTarget = CalcAverageTargetPos(FishyTargetParent);
-            Debug.Log("Average TargetPos: " + averageFishTarget);
-
-            float AccuracyDist = (averageFishTarget - averageLinePos).magnitude;
-            Debug.Log("Accuracy Score: " + AccuracyDist);
         }
+
+        //Når knappen er nede tegner listen
+        if (Input.GetMouseButton(0))
+        {
+            Vector3 mousePos = Input.mousePosition; //Musens position defineres
+            mousePos.z = AfstandTilKam; // Afstanden som der tegnes fra kam, det er en selvvalgt z-koordinat da skærmen er 2 dimensionel
+            Vector3 worldPos = CookCam.ScreenToWorldPoint(mousePos); //ScreenToWorldPoint laver musens position på skærmen om til en position i "verden". Dog er positionen 2-dimensionel (x,y,?)
+            DrawPosition(worldPos); //Tegner til ved positionen i verden (som var musens position der er blevet omdannet)
+        }
+
+        //Når man giver slip stopper linjen
+        if (Input.GetMouseButtonUp(0))
+        {
+            FinishLine();
+        }
+
+        Vector3 averageLinePos = CalculateLinePos(allLines);
+        Debug.Log("Average LinePos: " + averageLinePos);
+
+        //Beregn distancen mellem avgfishyTargets og linjen...magnitude konverterer det til en længde
+        Vector3 averageFishTarget = CalcAverageTargetPos(FishyTargetParent);
+        Debug.Log("Average TargetPos: " + averageFishTarget);
+
+        float AccuracyDist = (averageFishTarget - averageLinePos).magnitude;
+        Debug.Log("Accuracy Score: " + AccuracyDist);
     }
 
     void StartNewLine()
@@ -125,6 +120,4 @@ public class Drawing : MonoBehaviour
 
         return sumPos / children.Length; //Gennemsnittet beregnes (summen divideret med antallet af children)
     }
-
-
 }

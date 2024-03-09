@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-public class Countdown : MonoBehaviour
+
+public class CountDownTimer : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI  countdownText;
+    [SerializeField] TextMeshProUGUI countdownText;
     public float remainingTime = 5f;
 
     //Cutscene ting
@@ -24,7 +25,7 @@ public class Countdown : MonoBehaviour
         {
             remainingTime = 0; //Sætter tiden til 0 så timeren ikke kan blive negativ
             countdownText.color = Color.red; //Gør teksten rød
-            
+
             StartCoroutine(FinishCut()); //kalder på sceneskift funktionen
 
         }
