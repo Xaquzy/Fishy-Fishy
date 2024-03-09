@@ -733,6 +733,7 @@ MonoBehaviour:
   Player: {fileID: 2003806811}
   Text: {fileID: 1896498278}
   Line: {fileID: 822386668}
+  knife: {fileID: 1996574984}
 --- !u!1 &474782747
 GameObject:
   m_ObjectHideFlags: 3
@@ -1422,7 +1423,7 @@ MonoBehaviour:
   CookCam: {fileID: 193042372}
   lineWidth: 0.05
   AfstandTilKam: 2
-  KnivDist: 1.5
+  KnivDistFraKam: 1.5
   FishyTargetParent: {fileID: 594690890}
   Knife: {fileID: 1996574988}
 --- !u!1 &833697692

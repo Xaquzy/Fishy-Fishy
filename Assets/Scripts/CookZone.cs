@@ -11,6 +11,7 @@ public class CookZone : MonoBehaviour
     public Transform Player;
     public GameObject Text;
     public GameObject Line;
+    public GameObject knife;
     private bool playerInTrigger = false;
 
 
@@ -29,6 +30,9 @@ public class CookZone : MonoBehaviour
 
         Text.SetActive(false);
         CookCam.SetActive(false);
+        
+        //kniven skal slukkes
+        knife.SetActive(false);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -51,6 +55,10 @@ public class CookZone : MonoBehaviour
             CookCam.SetActive(true);
             MainCam.enabled = false;
             Player.position = CookPos.position;
+            
+            //kniven skal tændes
+            knife.SetActive(true);
+
             Drawing drawing = Line.GetComponent<Drawing>();
             drawing.enabled = true;
         }
@@ -72,6 +80,9 @@ public class CookZone : MonoBehaviour
             playerInTrigger = false;
             Drawing drawing = Line.GetComponent<Drawing>();
             drawing.enabled = false;
+
+            //kniven skal slukkes
+            knife.SetActive(false);
         }
     }
 }
