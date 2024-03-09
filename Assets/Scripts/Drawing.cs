@@ -9,8 +9,9 @@ public class Drawing : MonoBehaviour
     public Camera CookCam;
     public float lineWidth = 0.1f;
     public float AfstandTilKam = 8f;
+    public float KnivDistFraKam = 1.5f;
     public Transform FishyTargetParent;
-
+    public Transform Knife;
     private LineRenderer currentLine;
     private List<Vector3> currentLinePoints = new List<Vector3>(); //Liste med alle punkterne som linjen er lavet ud af
     private List<LineRenderer> allLines = new List<LineRenderer>(); //Liste med alle linjer
@@ -22,6 +23,11 @@ public class Drawing : MonoBehaviour
     
     void Update()
     {
+        //Kniven følger med musen
+        Vector3 MousePos = Input.mousePosition; //Musens position defineres
+        MousePos.z = KnivDistFraKam;
+        Knife.position = CookCam.ScreenToWorldPoint(MousePos); //ScreenToWorldPoint laver musens position på skærmen om til en position i "verden". Dog er positionen 2-dimensionel (x,y,?)
+
         //Når man trykker starter en ny linje
         if (Input.GetMouseButtonDown(0))
         {

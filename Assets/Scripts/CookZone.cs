@@ -16,6 +16,17 @@ public class CookZone : MonoBehaviour
 
     private void Start()
     {
+        //Sluk for musen
+        Cursor.visible = false;
+
+        // Tjek om tegnescriptet findes
+        Drawing drawing = Line.GetComponent<Drawing>();
+        if (drawing != null)
+        {
+            //Tænd tegne script
+            drawing.enabled = false;
+        }
+
         Text.SetActive(false);
         CookCam.SetActive(false);
     }
@@ -35,10 +46,13 @@ public class CookZone : MonoBehaviour
         // Check if the player is in the trigger zone and pressed the "E" key
         if (playerInTrigger && Input.GetKeyDown(KeyCode.E))
         {
+            Cursor.visible = true;
             Text.SetActive(false);
             CookCam.SetActive(true);
             MainCam.enabled = false;
             Player.position = CookPos.position;
+            Drawing drawing = Line.GetComponent<Drawing>();
+            drawing.enabled = true;
         }
 
         if (playerInTrigger == false)
@@ -56,6 +70,8 @@ public class CookZone : MonoBehaviour
         {
             Debug.Log("Player left the trigger!");
             playerInTrigger = false;
+            Drawing drawing = Line.GetComponent<Drawing>();
+            drawing.enabled = false;
         }
     }
 }
