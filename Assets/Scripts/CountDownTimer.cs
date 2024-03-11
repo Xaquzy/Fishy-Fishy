@@ -21,7 +21,12 @@ public class CountDownTimer : MonoBehaviour
             remainingTime = remainingTime - Time.deltaTime; //trækker den tid der er gået fra den tid der er tilbage
         }
 
-        else if (remainingTime < 0)
+        if (remainingTime <= 4  && remainingTime > 1)
+        {
+            countdownText.color = Color.yellow; //Gør teksten gul når der er under 4 (3) sekunder tilbage
+        }
+
+        if (remainingTime <= 1)
         {
             remainingTime = 0; //Sætter tiden til 0 så timeren ikke kan blive negativ
             countdownText.color = Color.red; //Gør teksten rød
