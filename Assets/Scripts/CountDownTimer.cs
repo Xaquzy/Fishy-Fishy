@@ -64,9 +64,10 @@ public class CountDownTimer : MonoBehaviour
     void Rating()
     {
         Drawing drawing = Line.GetComponent<Drawing>(); //få adgang til drawing script
-        float accuracy = drawing.GetAccuracyDist(); //Få adgang til accuracyDist
+        float accuracyDist = drawing.GetAccuracyDist(); //Få adgang til accuracyDist
+        //HUSK JO MINDRE ACCURACYDIST JO BEDRE
 
-        if (accuracy > 10)
+        if (accuracyDist > 10)
         {
             ratingMessage = GameObject.Find("S");
 
@@ -77,7 +78,7 @@ public class CountDownTimer : MonoBehaviour
 
             }
         }
-        if (accuracy > 7 && accuracy < 10)
+        if (accuracyDist > 7 && accuracyDist < 10)
         {
             ratingMessage = GameObject.Find("A");
 
@@ -89,7 +90,7 @@ public class CountDownTimer : MonoBehaviour
             }
         }
 
-        if (accuracy > 4 && accuracy < 7)
+        if (accuracyDist > 4 && accuracyDist < 7)
         {
             ratingMessage = GameObject.Find("B");
 
@@ -100,7 +101,7 @@ public class CountDownTimer : MonoBehaviour
 
             }
         }
-        if (accuracy > 2 && accuracy < 4)
+        if (accuracyDist > 2 && accuracyDist < 4)
         {
             ratingMessage = GameObject.Find("C");
 
@@ -111,7 +112,7 @@ public class CountDownTimer : MonoBehaviour
 
             }
         }
-        if (accuracy > 0 && accuracy < 2)
+        if (accuracyDist > 0 && accuracyDist < 2)
         {
             ratingMessage = GameObject.Find("D");
 
@@ -122,7 +123,7 @@ public class CountDownTimer : MonoBehaviour
 
             }
         }
-        if (accuracy > -2 && accuracy < 0)
+        if (accuracyDist > -2 && accuracyDist < 0)
         {
             ratingMessage = GameObject.Find("F");
 
