@@ -7,11 +7,11 @@ using UnityEngine.UIElements.Experimental;
 
 public class CountDownTimer : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI countdownText;
     public float remainingTime = 5f;
+    public float messageWaitTime = 5f;
+    [SerializeField] TextMeshProUGUI countdownText;
     public GameObject ratingMessage;
-    private int accuracy;//slettes når rating funktionen er færdig. Kig længere nede i koden.
-
+    public GameObject Line; //for at få adgang til drawing script og dermed accuracy dist
     //Cutscene ting
     //[SerializeField] private int NewSceneNumber = 1;
 
@@ -50,23 +50,26 @@ public class CountDownTimer : MonoBehaviour
     IEnumerator FinishCut()
     {
         Rating(); //kalder på rating funktionen når tiden er over, aka vurdering af ens cut
-        yield return new WaitForSeconds(remainingTime + 1);
-        Debug.Log("Go to cutscene");
-        //SceneManager.LoadScene(NewSceneNumber);
         ratingMessage.SetActive(true); //viser dig den rating du fik
-        //kode til lidt pause så man kan se beskeden
+        yield return new WaitForSeconds(messageWaitTime); //kode til lidt pause så man kan se beskeden
         ratingMessage.SetActive(false);// fjerner den igen før du går videre
-    }
 
+        Debug.Log("Go to cutscene");
+        //To muligheder til cutscene
+        //Skift scene = SceneManager.LoadScene(NewSceneNumber);
+
+        //Skift kamera og afspil animation = at kalded på nedenstående funktion (funktionen er tom lige nu)
+        CutSceneInScene();
+    }
     void Rating()
     {
-        //Basmala tænker kode hvor vi kalder på int'en fra Drawing scriptet, der beregner forskel
-        //lad os sige vi kalder forskellen 'accuracy', har bare lavet den til en privat int der ikk findes lige nu så den ikke bliver sur
-        //tallene er også random da vi endnu ikke ved hvilke tal er realistiske
+        Drawing drawing = Line.GetComponent<Drawing>(); //få adgang til drawing script
+        float accuracy = drawing.GetAccuracyDist(); //Få adgang til accuracyDist
+
         if (accuracy > 10)
         {
             ratingMessage = GameObject.Find("S");
-            
+
             if (ratingMessage == null)
             {
                 // Print a log message if the GameObject doesn't exist
@@ -130,6 +133,13 @@ public class CountDownTimer : MonoBehaviour
 
             }
         }
+    }
+    void CutSceneInScene()
+    {
+        //MainCam.enabled(false);
+        //CutSceneCam.enabled(true);
+        //Afspil animationer
+        //Skift scene = SceneManager.LoadScene(NewSceneNumber);
     }
 }
 

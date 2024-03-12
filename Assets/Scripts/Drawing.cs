@@ -14,10 +14,17 @@ public class Drawing : MonoBehaviour
     public GameObject FishyTargetParent;
     public Transform Knife;
     public GameObject countdownText;
+    private float AccuracyDist;
 
     private LineRenderer currentLine;
     private List<Vector3> currentLinePoints = new List<Vector3>(); //Liste med alle punkterne som linjen er lavet ud af
     private List<LineRenderer> allLines = new List<LineRenderer>(); //Liste med alle linjer
+
+    public float GetAccuracyDist() //funktion til at hente accuracyDist der kaldes på i CountDownscipt når tiden er 0 og man ikke kan tegner mere
+    {
+        AccuracyDist = (CalcAverageTargetPos(FishyTargetParent) - CalculateLinePos(allLines)).magnitude;
+        return AccuracyDist;
+    }
 
     void Start()
     {
@@ -63,6 +70,7 @@ public class Drawing : MonoBehaviour
 
         float AccuracyDist = (averageFishTarget - averageLinePos).magnitude;
         Debug.Log("Accuracy Score: " + AccuracyDist);
+
     }
 
     void StartNewLine()
@@ -126,4 +134,5 @@ public class Drawing : MonoBehaviour
 
         return sumPos / children.Length; //Gennemsnittet beregnes (summen divideret med antallet af children)
     }
+
 }
