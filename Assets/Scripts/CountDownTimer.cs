@@ -15,6 +15,11 @@ public class CountDownTimer : MonoBehaviour
     //Cutscene ting
     //[SerializeField] private int NewSceneNumber = 1;
 
+    private void Start()
+    {
+        
+    }
+
     void Update()
     {
 
@@ -50,9 +55,9 @@ public class CountDownTimer : MonoBehaviour
     IEnumerator FinishCut()
     {
         Rating(); //kalder på rating funktionen når tiden er over, aka vurdering af ens cut
-        //ratingMessage.SetActive(true); //viser dig den rating du fik
+        ratingMessage.SetActive(true); //viser dig den rating du fik
         yield return new WaitForSeconds(messageWaitTime); //kode til lidt pause så man kan se beskeden
-        //ratingMessage.SetActive(false);// fjerner den igen før du går videre
+        ratingMessage.SetActive(false);// fjerner den igen før du går videre
 
         Debug.Log("Go to cutscene");
         //To muligheder til cutscene
