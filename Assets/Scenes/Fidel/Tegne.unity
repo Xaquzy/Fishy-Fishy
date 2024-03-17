@@ -253,7 +253,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34517860}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.000000048195943, z: 0.000000015133992, w: 1}
+  m_LocalRotation: {x: -0, y: 0.00000004656613, z: -0.000000014726538, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -864,11 +864,13 @@ MonoBehaviour:
   CookCam: {fileID: 193042369}
   MainCam: {fileID: 854134007}
   CookPos: {fileID: 1386966552}
-  Player: {fileID: 2003806811}
+  PlayerPos: {fileID: 2003806811}
   toolTip: {fileID: 1896498278}
   Line: {fileID: 822386668}
   knife: {fileID: 1996574984}
   countdownText: {fileID: 761527658}
+  Player: {fileID: 2003806807}
+  ratingMessage: {fileID: 1547918705}
 --- !u!1 &474782747
 GameObject:
   m_ObjectHideFlags: 3
@@ -1151,8 +1153,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 537529179}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1518346, y: -0.0037847143, z: 0.00058139564, w: 0.9883985}
-  m_LocalPosition: {x: 0.043344863, y: 6.16, z: -17.939842}
+  m_LocalRotation: {x: 0.1518346, y: -0.0037848828, z: 0.0005814216, w: 0.9883985}
+  m_LocalPosition: {x: 0.04334761, y: 6.16, z: -17.939842}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1600,6 +1602,7 @@ MonoBehaviour:
   remainingTime: 10
   messageWaitTime: 5
   countdownText: {fileID: 761527661}
+  ratingMessage: {fileID: 0}
   Line: {fileID: 0}
 --- !u!1 &796567967
 GameObject:
@@ -1887,8 +1890,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 833697692}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.018189475, y: -0.000000034458935, z: 0.0000000114087015, w: 0.9998346}
-  m_LocalPosition: {x: -0.000000007450362, y: 1.7125596e-11, z: 5.44259e-11}
+  m_LocalRotation: {x: 0.018189475, y: 0.000000034226105, z: -0.000000011466909, w: 0.9998346}
+  m_LocalPosition: {x: -0.000000007450362, y: 1.7127005e-11, z: 5.4430366e-11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2072,7 +2075,7 @@ Transform:
   m_GameObject: {fileID: 854134005}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.000000011175543, y: -2.5688394e-11, z: -8.163885e-11}
+  m_LocalPosition: {x: 0.000000011175543, y: -2.5690505e-11, z: -8.164555e-11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2211,7 +2214,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 910140414}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.018141463, y: -0.00000003562309, z: 0.000000010419171, w: 0.99983543}
+  m_LocalRotation: {x: -0.018141463, y: 0.000000033760443, z: -0.00000000995351, w: 0.99983543}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4183,14 +4186,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2003806807}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca314cc0b5c7bd34ba3bcec244fee81e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  remainingTime: 5
+  remainingTime: 20
   messageWaitTime: 5
   countdownText: {fileID: 761527661}
+  ratingMessage: {fileID: 1547918705}
   Line: {fileID: 822386668}
 --- !u!1 &2044212009
 GameObject:
