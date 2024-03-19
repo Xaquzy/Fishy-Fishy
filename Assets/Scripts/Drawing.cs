@@ -70,7 +70,6 @@ public class Drawing : MonoBehaviour
 
         float AccuracyDist = (averageFishTarget - averageLinePos).magnitude;
         Debug.Log("Accuracy Score: " + AccuracyDist);
-
     }
 
     void StartNewLine()
