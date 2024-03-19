@@ -52,7 +52,6 @@ public class CountDownTimer : MonoBehaviour
     IEnumerator FinishCut()
     {
         Rating(); //kalder på rating funktionen når tiden er over, aka vurdering af ens cut
-        ratingMessage.SetActive(true); //viser dig den rating du fik
         yield return new WaitForSeconds(messageWaitTime); //kode til lidt pause så man kan se beskeden
         ratingMessage.SetActive(false);// fjerner den igen før du går videre
 
@@ -69,22 +68,26 @@ public class CountDownTimer : MonoBehaviour
         ratingMessage.SetActive(true);
         //HUSK JO MINDRE ACCURACYDIST JO BEDRE
 
+        // Deaktiver alle rating beskedeer
+        for (int i = 0; i < ratingMessage.transform.childCount; i += 1)
+        {
+            Transform t = ratingMessage.transform.GetChild(i);
+            t.gameObject.SetActive(false);
+        }
+        GameObject rating = null;
+
         if (accuracyDist > 10)
         {
-            ratingMessage = GameObject.Find("S");
+            rating = ratingMessage.transform.Find("S").gameObject;
 
-            if (ratingMessage == null)
-            {
-                // Print a log message if the GameObject doesn't exist
-                Debug.LogError("The 'S' rating does not exist.");
-
-            }
+     
+            
         }
         if (accuracyDist > 7 && accuracyDist < 10)
         {
-            ratingMessage = GameObject.Find("A");
+            rating = ratingMessage.transform.Find("A").gameObject;
 
-            if (ratingMessage == null)
+            if (rating == null)
             {
                 // Print a log message if the GameObject doesn't exist
                 Debug.LogError("The 'A' rating does not exist.");
@@ -94,7 +97,7 @@ public class CountDownTimer : MonoBehaviour
 
         if (accuracyDist > 4 && accuracyDist < 7)
         {
-            ratingMessage = GameObject.Find("B");
+            rating = ratingMessage.transform.Find("B").gameObject;
 
             if (ratingMessage == null)
             {
@@ -105,7 +108,7 @@ public class CountDownTimer : MonoBehaviour
         }
         if (accuracyDist > 2 && accuracyDist < 4)
         {
-            ratingMessage = GameObject.Find("C");
+            rating = ratingMessage.transform.Find("C").gameObject;
 
             if (ratingMessage == null)
             {
@@ -116,7 +119,7 @@ public class CountDownTimer : MonoBehaviour
         }
         if (accuracyDist > 0 && accuracyDist < 2)
         {
-            ratingMessage = GameObject.Find("D");
+            rating = ratingMessage.transform.Find("D").gameObject;
 
             if (ratingMessage == null)
             {
@@ -127,7 +130,7 @@ public class CountDownTimer : MonoBehaviour
         }
         if (accuracyDist > -2 && accuracyDist < 0)
         {
-            ratingMessage = GameObject.Find("F");
+            rating = ratingMessage.transform.Find("F").gameObject;
 
             if (ratingMessage == null)
             {
@@ -135,6 +138,14 @@ public class CountDownTimer : MonoBehaviour
                 Debug.LogError("The 'F' rating does not exist.");
             }
         }
+        if (rating == null)
+        {
+            // Print a log message if the GameObject doesn't exist
+            Debug.LogError("The rating does not exist.");
+            return;
+
+        }
+        rating.SetActive(true);
     }
     void CutSceneInScene()
     {
