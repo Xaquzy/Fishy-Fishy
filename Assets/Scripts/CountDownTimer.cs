@@ -54,7 +54,7 @@ public class CountDownTimer : MonoBehaviour
         Rating(); //kalder på rating funktionen når tiden er over, aka vurdering af ens cut
         yield return new WaitForSeconds(messageWaitTime); //kode til lidt pause så man kan se beskeden
 
-
+        RatingManager.DisplayRatings(); //Det er en test for at se om ratingen bliver gemt i listen som denne funktion printer
         Debug.Log("Go to cutscene");
         //To muligheder til cutscene
         //Skift scene = SceneManager.LoadScene(NewSceneNumber);
@@ -66,7 +66,7 @@ public class CountDownTimer : MonoBehaviour
         Drawing drawing = Line.GetComponent<Drawing>(); //få adgang til drawing script
         float accuracyDist = drawing.GetAccuracyDist(); //Få adgang til accuracyDist
         ratingMessage.SetActive(true);
-        //HUSK JO MINDRE ACCURACYDIST JO BEDRE
+
 
         // Deaktiver alle rating beskedeer
         for (int i = 0; i < ratingMessage.transform.childCount; i += 1)
@@ -79,65 +79,33 @@ public class CountDownTimer : MonoBehaviour
         if (accuracyDist > 0.4)
         {
             rating = ratingMessage.transform.Find("S").gameObject;
-
-     
-            
         }
+
         if (accuracyDist > 0.4 && accuracyDist < 0.5)
         {
             rating = ratingMessage.transform.Find("A").gameObject;
-
-            if (rating == null)
-            {
-                // Print a log message if the GameObject doesn't exist
-                Debug.LogError("The 'A' rating does not exist.");
-
-            }
         }
 
-        if (accuracyDist > 0.5 && accuracyDist < 0.6)
+        if (accuracyDist > 0.5 && accuracyDist < 0.55)
         {
             rating = ratingMessage.transform.Find("B").gameObject;
-
-            if (ratingMessage == null)
-            {
-                // Print a log message if the GameObject doesn't exist
-                Debug.LogError("The 'B' rating does not exist.");
-
-            }
         }
-        if (accuracyDist > 0.6 && accuracyDist < 0.7)
+
+        if (accuracyDist > 0.55 && accuracyDist < 0.65)
         {
             rating = ratingMessage.transform.Find("C").gameObject;
-
-            if (ratingMessage == null)
-            {
-                // Print a log message if the GameObject doesn't exist
-                Debug.LogError("The 'C' rating does not exist.");
-
-            }
         }
-        if (accuracyDist > 0.7 && accuracyDist < 0.8)
+
+        if (accuracyDist > 0.65 && accuracyDist < 0.75)
         {
             rating = ratingMessage.transform.Find("D").gameObject;
-
-            if (ratingMessage == null)
-            {
-                // Print a log message if the GameObject doesn't exist
-                Debug.LogError("The 'D' rating does not exist.");
-
-            }
         }
-        if (accuracyDist > 0.8)
+
+        if (accuracyDist > 0.75)
         {
             rating = ratingMessage.transform.Find("F").gameObject;
-
-            if (ratingMessage == null)
-            {
-                // Print a log message if the GameObject doesn't exist
-                Debug.LogError("The 'F' rating does not exist.");
-            }
         }
+
         if (rating == null)
         {
             // Print a log message if the GameObject doesn't exist
@@ -146,6 +114,8 @@ public class CountDownTimer : MonoBehaviour
 
         }
         rating.SetActive(true);
+        RatingManager.AddRating(rating.name); //Konverter rating navn til string
+
     }
     void CutSceneInScene()
     {
