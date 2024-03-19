@@ -53,7 +53,7 @@ public class CountDownTimer : MonoBehaviour
     {
         Rating(); //kalder på rating funktionen når tiden er over, aka vurdering af ens cut
         yield return new WaitForSeconds(messageWaitTime); //kode til lidt pause så man kan se beskeden
-        ratingMessage.SetActive(false);// fjerner den igen før du går videre
+
 
         Debug.Log("Go to cutscene");
         //To muligheder til cutscene
@@ -76,14 +76,14 @@ public class CountDownTimer : MonoBehaviour
         }
         GameObject rating = null;
 
-        if (accuracyDist > 10)
+        if (accuracyDist > 0.4)
         {
             rating = ratingMessage.transform.Find("S").gameObject;
 
      
             
         }
-        if (accuracyDist > 7 && accuracyDist < 10)
+        if (accuracyDist > 0.4 && accuracyDist < 0.5)
         {
             rating = ratingMessage.transform.Find("A").gameObject;
 
@@ -95,7 +95,7 @@ public class CountDownTimer : MonoBehaviour
             }
         }
 
-        if (accuracyDist > 4 && accuracyDist < 7)
+        if (accuracyDist > 0.5 && accuracyDist < 0.6)
         {
             rating = ratingMessage.transform.Find("B").gameObject;
 
@@ -106,7 +106,7 @@ public class CountDownTimer : MonoBehaviour
 
             }
         }
-        if (accuracyDist > 2 && accuracyDist < 4)
+        if (accuracyDist > 0.6 && accuracyDist < 0.7)
         {
             rating = ratingMessage.transform.Find("C").gameObject;
 
@@ -117,7 +117,7 @@ public class CountDownTimer : MonoBehaviour
 
             }
         }
-        if (accuracyDist > 0 && accuracyDist < 2)
+        if (accuracyDist > 0.7 && accuracyDist < 0.8)
         {
             rating = ratingMessage.transform.Find("D").gameObject;
 
@@ -128,7 +128,7 @@ public class CountDownTimer : MonoBehaviour
 
             }
         }
-        if (accuracyDist > -2 && accuracyDist < 0)
+        if (accuracyDist > 0.8)
         {
             rating = ratingMessage.transform.Find("F").gameObject;
 

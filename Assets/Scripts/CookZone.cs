@@ -37,10 +37,12 @@ public class CookZone : MonoBehaviour
         
         toolTip.SetActive(false); //Sluk tooltip
         CookCam.SetActive(false); //Sluk cookcam
+        ratingMessage.SetActive(false); //sluk ratings
 
 
-        //kniven skal slukkes
-        knife.SetActive(false);
+
+    //kniven skal slukkes
+    knife.SetActive(false);
 
         //CountdownText objektet slukkes (derved slukkes countdown scriptet på det også)
         countdownText.SetActive(false);
