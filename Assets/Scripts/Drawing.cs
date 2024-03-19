@@ -12,7 +12,7 @@ public class Drawing : MonoBehaviour
     public float AfstandTilKam = 8f;
     public float KnivDistFraKam = 1.5f;
     public GameObject FishyTargetParent;
-    public Transform Knife;
+    public Transform KnifeTarget;
     public GameObject countdownText;
     private float AccuracyDist;
 
@@ -38,7 +38,7 @@ public class Drawing : MonoBehaviour
         //Kniven følger med musen
         Vector3 MousePos = Input.mousePosition; //Musens position defineres
         MousePos.z = KnivDistFraKam;
-        Knife.position = CookCam.ScreenToWorldPoint(MousePos); //ScreenToWorldPoint laver musens position på skærmen om til en position i "verden". Dog er positionen 2-dimensionel (x,y,?)
+        KnifeTarget.position = CookCam.ScreenToWorldPoint(MousePos); //ScreenToWorldPoint laver musens position på skærmen om til en position i "verden". Dog er positionen 2-dimensionel (x,y,?)
 
         //Når man trykker starter en ny linje
         if (Input.GetMouseButtonDown(0))
