@@ -8,12 +8,16 @@ public class CookZone : MonoBehaviour
     public GameObject CookCam;
     public CinemachineFreeLook MainCam;
     public Transform CookPos;
-    public Transform Player;
+    public Transform PlayerPos;
     public GameObject toolTip;
     public GameObject Line;
     public GameObject knife;
     public GameObject countdownText;
+    public GameObject Player;
+    public GameObject ratingMessage;
     private bool playerInTrigger = false;
+
+    
 
 
     private void Start()
@@ -39,6 +43,10 @@ public class CookZone : MonoBehaviour
         //CountdownText objektet slukkes (derved slukkes countdown scriptet på det også)
         countdownText.SetActive(false);
 
+
+        Debug.Log("Message not hidden");
+        ratingMessage.SetActive(false);
+        Debug.Log("Message hidden");
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -47,8 +55,7 @@ public class CookZone : MonoBehaviour
         {
             toolTip.SetActive(true);
             playerInTrigger = true;
-
-
+            
         }
     }
 
@@ -61,7 +68,7 @@ public class CookZone : MonoBehaviour
             toolTip.SetActive(false);
             CookCam.SetActive(true);
             MainCam.enabled = false;
-            Player.position = CookPos.position;
+            PlayerPos.position = CookPos.position;
 
 
             //kniven skal tændes
@@ -71,7 +78,9 @@ public class CookZone : MonoBehaviour
             Drawing drawing = Line.GetComponent<Drawing>();
             drawing.enabled = true;
 
-
+            CountDownTimer countDown = Player.GetComponent<CountDownTimer>(); //hente countdowntimer scriptet fra spilleren
+            countDown.enabled = true; //slå den til mens man er i gang med at skære
+            Debug.Log("the countdown timer script is now turned on");
 
         }
 
@@ -96,6 +105,9 @@ public class CookZone : MonoBehaviour
             //kniven skal slukkes
             knife.SetActive(false);
 
+            CountDownTimer countDown = Player.GetComponent<CountDownTimer>(); //hente countdowntimer scriptet fra spilleren
+            countDown.enabled = false; //stoppe scriptet når man forlader skære mode
+            Debug.Log("the countdown timer script is now turned off");
         }
     }
 }
