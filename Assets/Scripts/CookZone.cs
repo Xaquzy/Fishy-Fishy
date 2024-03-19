@@ -23,6 +23,8 @@ public class CookZone : MonoBehaviour
     private void Start()
     {
         //Sluk for musen
+        //Sluk for musen
+        //Sluk for musen
         Cursor.visible = false;
 
         // Tjek om tegnescriptet findes
@@ -42,11 +44,6 @@ public class CookZone : MonoBehaviour
 
         //CountdownText objektet slukkes (derved slukkes countdown scriptet på det også)
         countdownText.SetActive(false);
-
-
-        Debug.Log("Message not hidden");
-        ratingMessage.SetActive(false);
-        Debug.Log("Message hidden");
     }
     private void OnTriggerEnter(Collider other)
     {

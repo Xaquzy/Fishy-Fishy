@@ -15,9 +15,9 @@ public class CountDownTimer : MonoBehaviour
     //Cutscene ting
     //[SerializeField] private int NewSceneNumber = 1;
 
-    private void Start()
+    void Start()
     {
-
+        ratingMessage.SetActive(false);
     }
 
     void Update()
@@ -59,7 +59,6 @@ public class CountDownTimer : MonoBehaviour
         Debug.Log("Go to cutscene");
         //To muligheder til cutscene
         //Skift scene = SceneManager.LoadScene(NewSceneNumber);
-
         //Skift kamera og afspil animation = at kalded på nedenstående funktion (funktionen er tom lige nu)
         CutSceneInScene();
     }
@@ -67,6 +66,7 @@ public class CountDownTimer : MonoBehaviour
     {
         Drawing drawing = Line.GetComponent<Drawing>(); //få adgang til drawing script
         float accuracyDist = drawing.GetAccuracyDist(); //Få adgang til accuracyDist
+        ratingMessage.SetActive(true);
         //HUSK JO MINDRE ACCURACYDIST JO BEDRE
 
         if (accuracyDist > 10)
