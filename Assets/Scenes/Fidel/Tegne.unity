@@ -2275,7 +2275,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 910140414}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.018141476, y: -0.000000029802322, z: 0.0000000018626451, w: 0.9998355}
+  m_LocalRotation: {x: -0.018141467, y: -0.000000029802322, z: 0.0000000037252903, w: 0.9998355}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2610,7 +2610,7 @@ GameObject:
   - component: {fileID: 1301631720}
   - component: {fileID: 1301631719}
   m_Layer: 2
-  m_Name: Cube (2)
+  m_Name: "K\xF8kken pt 2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2954,7 +2954,7 @@ GameObject:
   - component: {fileID: 1388873593}
   - component: {fileID: 1388873592}
   m_Layer: 2
-  m_Name: Cube (1)
+  m_Name: "K\xF8kken pt 1"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3200,7 +3200,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d910d41b83b697d4fad2962adda5354f, type: 2}
+  - {fileID: 2100000, guid: c8a9b4ae080c53d42862df43eb15c27a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3299,7 +3299,7 @@ GameObject:
   - component: {fileID: 1585262451}
   - component: {fileID: 1585262450}
   m_Layer: 2
-  m_Name: Cube
+  m_Name: "K\xF8kken pt 2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
