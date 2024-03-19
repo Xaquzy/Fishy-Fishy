@@ -17,7 +17,7 @@ public class CountDownTimer : MonoBehaviour
 
     private void Start()
     {
-        
+
     }
 
     void Update()
@@ -38,9 +38,6 @@ public class CountDownTimer : MonoBehaviour
         {
             remainingTime = 0; //Sætter tiden til 0 så timeren ikke kan blive negativ
             countdownText.color = Color.red; //Gør teksten rød
-
-
-
             StartCoroutine(FinishCut()); //kalder på sceneskift funktionen
 
         }
