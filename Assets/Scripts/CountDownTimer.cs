@@ -70,7 +70,7 @@ public class CountDownTimer : MonoBehaviour
 
 
         // Deaktiver alle rating beskedeer
-        for (int i = 0; i < ratingMessage.transform.childCount; i += 1)
+        for (int i = 0; i < ratingMessage.transform.childCount; i++)
         {
             Transform t = ratingMessage.transform.GetChild(i);
             t.gameObject.SetActive(false);
