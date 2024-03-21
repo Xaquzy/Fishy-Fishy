@@ -28,9 +28,7 @@ public class Drawing : MonoBehaviour
 
     void Start()
     {
-        //DETTE ER KUN FOR AT DEBUGGE SLET SNAREST: Beregner avg fishtarget ved at kalde på funktionen 
-        Vector3 averageFishTarget = CalcAverageTargetPos(FishyTargetParent);
-        Debug.Log("Average TargetPos: " + averageFishTarget);
+
     }
 
     void Update()
@@ -62,11 +60,9 @@ public class Drawing : MonoBehaviour
         }
 
         Vector3 averageLinePos = CalculateLinePos(allLines);
-        Debug.Log("Average LinePos: " + averageLinePos);
 
         //Beregn distancen mellem avgfishyTargets og linjen...magnitude konverterer det til en længde
         Vector3 averageFishTarget = CalcAverageTargetPos(FishyTargetParent);
-        Debug.Log("Average TargetPos: " + averageFishTarget);
 
         float AccuracyDist = (averageFishTarget - averageLinePos).magnitude;
         Debug.Log("Accuracy Score: " + AccuracyDist);

@@ -1215,7 +1215,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CookCam: {fileID: 193042369}
   MainCam: {fileID: 854134007}
-  CookPos: {fileID: 1386966552}
   PlayerPos: {fileID: 2003806811}
   toolTip: {fileID: 1896498278}
   Line: {fileID: 822386668}
@@ -1901,9 +1900,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   remainingTime: 6
   messageWaitTime: 3
+  CutSceneWait: 5
   countdownText: {fileID: 761527661}
   ratingMessage: {fileID: 1519112345}
   Line: {fileID: 822386668}
+  Player: {fileID: 2003806811}
+  CutScenePos: {fileID: 1386966552}
+  MainCam: {fileID: 854134007}
 --- !u!1 &796567967
 GameObject:
   m_ObjectHideFlags: 0
@@ -2849,7 +2852,7 @@ GameObject:
   - component: {fileID: 1386966554}
   - component: {fileID: 1386966553}
   m_Layer: 2
-  m_Name: MadlavningPos
+  m_Name: CutscenePos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2864,7 +2867,7 @@ Transform:
   m_GameObject: {fileID: 1386966551}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5319245, y: -0.17894691, z: 2.13}
+  m_LocalPosition: {x: -0.5319245, y: 0.32, z: 2.13}
   m_LocalScale: {x: 0.13379, y: 0.13379, z: 0.13379}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4206,7 +4209,7 @@ MonoBehaviour:
   walkSpeed: 15
   sprintSpeed: 30
   jumpHeight: 10
-  gravity: -1
+  gravity: -5
   JumpAmount: 2
 --- !u!143 &2003806813
 CharacterController:
@@ -4241,7 +4244,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2003806807}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36c614b70d006dc4cb3e68c5b0df6364, type: 3}
   m_Name: 

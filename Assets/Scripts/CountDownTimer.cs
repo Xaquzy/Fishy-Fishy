@@ -4,15 +4,22 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UIElements.Experimental;
+using Cinemachine;
 
 public class CountDownTimer : MonoBehaviour
 {
     public float remainingTime = 5f;
     public float messageWaitTime = 5f;
+    public float CutSceneWait = 5f;
     [SerializeField] TextMeshProUGUI countdownText;
     public GameObject ratingMessage;
     public GameObject Line; //for at få adgang til drawing script og dermed accuracy dist
+
     //Cutscene ting
+    public Transform Player;
+    public Transform CutScenePos;
+    public CinemachineFreeLook MainCam;
+
     //[SerializeField] private int NewSceneNumber = 1;
 
     void Start()
@@ -54,7 +61,7 @@ public class CountDownTimer : MonoBehaviour
         Rating(); //kalder på rating funktionen når tiden er over, aka vurdering af ens cut
         yield return new WaitForSeconds(messageWaitTime); //kode til lidt pause så man kan se beskeden
 
-        RatingManager.DisplayRatings(); //Det er en test for at se om ratingen bliver gemt i listen som denne funktion printer
+        //RatingManager.DisplayRatings(); //Det er en test for at se om ratingen bliver gemt i listen som denne funktion printer
         Debug.Log("Go to cutscene");
         //To muligheder til cutscene
         //Skift scene = SceneManager.LoadScene(NewSceneNumber);
@@ -119,10 +126,24 @@ public class CountDownTimer : MonoBehaviour
     }
     void CutSceneInScene()
     {
-        //MainCam.enabled(false);
+        //Slukker for movement script
+        Movement movement = Player.GetComponent<Movement>(); 
+        movement.enabled = false;
+
+        //Placer spilleren i det rigtige sted
+        Player.position = CutScenePos.position;
         //CutSceneCam.enabled(true);
+        //MainCam.enabled(false);
         //Afspil animationer
-        //Skift scene = SceneManager.LoadScene(NewSceneNumber);
+        //Afspil Lyd
+        //Vent = yield return new WaitForSeconds(CutSceneWait); //kode til lidt pause så man kan se beskeden
+        //MainCam.enabled(true);
+        //CutSceneCam.enabled(false);
+        //Skift fiske objektFunktion
+        //Reset spillerens position i køkkenet?
+
+        //Tænder for movement script
+        //movement.enabled = true;
     }
 }
 

@@ -7,7 +7,6 @@ public class CookZone : MonoBehaviour
 {
     public GameObject CookCam;
     public CinemachineFreeLook MainCam;
-    public Transform CookPos;
     public Transform PlayerPos;
     public GameObject toolTip;
     public GameObject Line;
@@ -67,7 +66,6 @@ public class CookZone : MonoBehaviour
             toolTip.SetActive(false);
             CookCam.SetActive(true);
             MainCam.enabled = false;
-            PlayerPos.position = CookPos.position;
 
 
             //kniven skal tændes
