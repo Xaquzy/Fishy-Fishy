@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
@@ -21,6 +22,7 @@ public class Drawing : MonoBehaviour
     private List<Vector3> currentLinePoints = new List<Vector3>(); //Liste med alle punkterne som linjen er lavet ud af
     private List<LineRenderer> allLines = new List<LineRenderer>(); //Liste med alle linjer
 
+    public CountDownTimer countDownTimer;
     public float GetAccuracyDist() //funktion til at hente accuracyDist der kaldes på i CountDownscipt når tiden er 0 og man ikke kan tegner mere
     {
         AccuracyDist = (CalcAverageTargetPos(FishyTargetParent) - CalculateLinePos(allLines)).magnitude;
@@ -67,6 +69,16 @@ public class Drawing : MonoBehaviour
 
         float AccuracyDist = (averageFishTarget - averageLinePos).magnitude;
         Debug.Log("Accuracy Score: " + AccuracyDist);
+
+        //Hold øje med tiden.. når den er 0 skal alle linjer slettes
+        CountDownTimer countDownTimer = countdownText.GetComponent<CountDownTimer>();
+        float remainingTime = countDownTimer.remainingTime(); 
+        
+        if (remainingTime <= 1)
+        {
+            DeleteAllLines();
+        }
+        
     }
 
     void StartNewLine()
