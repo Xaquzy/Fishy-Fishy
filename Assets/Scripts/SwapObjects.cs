@@ -23,7 +23,14 @@ public class SwapObjects : MonoBehaviour
         // Enable første object i listen og diable resten
         for (int i = 0; i < objectsToSwap.Count; i++)
         {
-            objectsToSwap[i].SetActive(i == 0);
+            if (i == 0)
+            {
+                objectsToSwap[i].SetActive(true);
+            }
+            else
+            {
+                objectsToSwap[i].SetActive(false);
+            }
         }
     }
 
