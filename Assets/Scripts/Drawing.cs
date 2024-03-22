@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
 public class Drawing : MonoBehaviour
 {
@@ -76,8 +77,13 @@ public class Drawing : MonoBehaviour
         currentLine.endWidth = lineWidth; //Læs det 
         allLines.Add(currentLine);
 
-        //CountdownText objektet tændes (derved tændes countdown scriptet på det også)
+        //CountdownText objektet tændes 
         countdownText.SetActive(true);
+
+        //countdown scriptet tændes også)
+        CountDownTimer countDownTimer = countdownText.GetComponent<CountDownTimer>(); //få adgang til countdown script
+        countDownTimer.enabled = true;
+
     }
 
     void DrawPosition(Vector3 position)
@@ -129,5 +135,8 @@ public class Drawing : MonoBehaviour
 
         return sumPos / children.Length; //Gennemsnittet beregnes (summen divideret med antallet af children)
     }
-
+    public void DeleteAllLines()
+    {
+        allLines.Clear(); //Listen med den nuværende linje tømmes
+    }
 }

@@ -8,7 +8,8 @@ using Cinemachine;
 
 public class CountDownTimer : MonoBehaviour
 {
-    public float remainingTime = 5f;
+    public float CountdownTime = 5f;
+    public float remainingTime;
     [SerializeField] TextMeshProUGUI countdownText;
     public GameObject ratingMessage;
     public GameObject Line; //for at få adgang til drawing script og dermed accuracy dist
@@ -29,6 +30,7 @@ public class CountDownTimer : MonoBehaviour
     void Start()
     {
         ratingMessage.SetActive(false);
+        remainingTime = CountdownTime;
     }
 
     void Update()
@@ -51,8 +53,6 @@ public class CountDownTimer : MonoBehaviour
             countdownText.color = Color.red; //Gør teksten rød
             Debug.Log("Go to cutscene");
             StartCoroutine(CutSceneInScene()); //kalder på sceneskift funktionen
-
-
         }
 
         int minutes = Mathf.FloorToInt(remainingTime / 60); //Omregner mængden af sekunder til minuter
@@ -134,6 +134,10 @@ public class CountDownTimer : MonoBehaviour
 
         //kniven skal slukkes
         knife.SetActive(false);
+
+        //Linjen skal slettes
+        drawing.DeleteAllLines();
+
 
         //Camera ting
         CookCam.SetActive(false);
