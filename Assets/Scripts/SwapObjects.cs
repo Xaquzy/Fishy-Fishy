@@ -8,7 +8,7 @@ public class SwapObjects : MonoBehaviour
 
    
 {
-    public CountDownTimer countDownTimer;
+    public CountDownTimer countDownTimer; 
     public List<GameObject> objectsToSwap = new List<GameObject>();
     private int currentIndex = 0;
 
@@ -37,19 +37,19 @@ public class SwapObjects : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        float remainingTime = countDownTimer.remainingTime;
-        bool SwapFish = countDownTimer.SwapFish;
+    //void Update()
+    //{
+    //    float remainingTime = countDownTimer.remainingTime;
+    //    bool SwapFish = countDownTimer.SwapFish;
 
-        if (remainingTime <=1 && SwapFish)
-        {   
-            SwapObjectsInList();
-            countDownTimer.SwapFish = false;
-        }
-    }
+    //    if (remainingTime <=1 && SwapFish)
+    //    {   
+    //        SwapObjectsInList();
+    //        countDownTimer.SwapFish = false;
+    //    }
+    //}
 
-    void SwapObjectsInList()
+    public void SwapObjectsInList()
     {
         // Disable the current object
         objectsToSwap[currentIndex].SetActive(false);
