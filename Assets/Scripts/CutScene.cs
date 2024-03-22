@@ -19,12 +19,13 @@ public class CutScene : MonoBehaviour
     //Rating ting
     public GameObject ratingMessage;
     public GameObject Line; //for at få adgang til drawing script og dermed accuracy dist
-    private bool timer_running = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        ratingMessage.SetActive(false);
+        StartTimer();
     }
 
     // Update is called once per frame
@@ -32,7 +33,7 @@ public class CutScene : MonoBehaviour
     {
         
     }
-
+    
     void Rating()
     {
         Drawing drawing = Line.GetComponent<Drawing>(); //få adgang til drawing script
@@ -141,5 +142,10 @@ public class CutScene : MonoBehaviour
         //RatingManager.DisplayRatings(); //Det er en test for at se om ratingen bliver gemt i listen som denne funktion printer
     }
 
+    public void StartTimer()
+    {
+        //timer_running = true;
+        //remainingTime = CountdownTime;
+    }
 
 }
