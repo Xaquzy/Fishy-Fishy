@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,9 +8,10 @@ public class SwapObjects : MonoBehaviour
 
    
 {
-    public bool lalala;
+    public CountDownTimer countDownTimer;
     public List<GameObject> objectsToSwap = new List<GameObject>();
     private int currentIndex = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -37,10 +39,13 @@ public class SwapObjects : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (lalala)
-        {
+        float remainingTime = countDownTimer.remainingTime;
+        bool SwapFish = countDownTimer.SwapFish;
+
+        if (remainingTime <=1 && SwapFish)
+        {   
             SwapObjectsInList();
-            lalala = false;
+            countDownTimer.SwapFish = false;
         }
     }
 
@@ -55,16 +60,4 @@ public class SwapObjects : MonoBehaviour
         // Enable the next object
         objectsToSwap[currentIndex].SetActive(true);
     }
-
-
-    //not used lmao FAIL SIMPELTHEN
-    void SwapObject(GameObject Object1, GameObject Object2)
-    {
-        
-            Object1.SetActive(false); // Disable the first object
-            Object2.SetActive(true);  // Enable the second object
-            lalala = false;
-
-    }
-
 } 
