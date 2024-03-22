@@ -72,7 +72,7 @@ public class Drawing : MonoBehaviour
 
         //Hold øje med tiden.. når den er 0 skal alle linjer slettes
         CountDownTimer countDownTimer = countdownText.GetComponent<CountDownTimer>();
-        float remainingTime = countDownTimer.remainingTime(); 
+        float remainingTime = countDownTimer.remainingTime; 
         
         if (remainingTime <= 1)
         {
