@@ -1448,6 +1448,8 @@ MonoBehaviour:
   countdownText: {fileID: 761527658}
   Player: {fileID: 2003806807}
   ratingMessage: {fileID: 1519112345}
+  CountDownTimer: {fileID: 761527663}
+  Drawing: {fileID: 0}
 --- !u!1 &474782747
 GameObject:
   m_ObjectHideFlags: 3
@@ -1988,7 +1990,7 @@ GameObject:
   - component: {fileID: 761527662}
   - component: {fileID: 761527661}
   - component: {fileID: 761527663}
-  - component: {fileID: 761527664}
+  - component: {fileID: 761527665}
   m_Layer: 5
   m_Name: Countdown
   m_TagString: Untagged
@@ -2124,20 +2126,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca314cc0b5c7bd34ba3bcec244fee81e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CountdownTime: 5
   remainingTime: 6
   countdownText: {fileID: 761527661}
-  ratingMessage: {fileID: 1519112345}
-  Line: {fileID: 822386668}
-  Player: {fileID: 2003806811}
-  CutScenePos: {fileID: 1386966552}
-  MainCam: {fileID: 854134007}
-  CutSceneCam: {fileID: 82865672}
-  CookCam: {fileID: 193042369}
-  CutSceneTestText: {fileID: 59382465}
-  CutSceneTime: 5
-  RatingReadTime: 5
-  knife: {fileID: 177929986}
---- !u!114 &761527664
+  Cutscene: {fileID: 761527665}
+  OnCountDownFinished:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2003806816}
+        m_TargetAssemblyTypeName: SwapObjects, Assembly-CSharp
+        m_MethodName: SwapObjectsInList
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 761527665}
+        m_TargetAssemblyTypeName: CutScene, Assembly-CSharp
+        m_MethodName: StartCutScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  SwapFish: 0
+--- !u!114 &761527665
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2146,13 +2167,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 761527658}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d38dc7d9914c024b888dded15535887, type: 3}
+  m_Script: {fileID: 11500000, guid: b4c57ada3702f1645ad108a648338a4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countDownTimer: {fileID: 761527663}
-  objectsToSwap:
-  - {fileID: 1547093251}
-  - {fileID: 1052689550}
+  Player: {fileID: 2003806811}
+  CutScenePos: {fileID: 2003806811}
+  MainCam: {fileID: 854134007}
+  CutSceneCam: {fileID: 82865672}
+  CookCam: {fileID: 193042369}
+  CutSceneTestText: {fileID: 59382465}
+  CutSceneTime: 5
+  RatingReadTime: 5
+  knife: {fileID: 177929986}
+  ratingMessage: {fileID: 457795954}
+  Line: {fileID: 822386668}
+  Drawing: {fileID: 0}
 --- !u!1 &796567967
 GameObject:
   m_ObjectHideFlags: 0
@@ -2415,6 +2444,7 @@ MonoBehaviour:
   FishyTargetParent: {fileID: 594690889}
   KnifeTarget: {fileID: 177929987}
   countdownText: {fileID: 761527658}
+  countDownTimer: {fileID: 761527663}
 --- !u!1 &833697692
 GameObject:
   m_ObjectHideFlags: 3
@@ -2659,7 +2689,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 910140414}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.018141467, y: -0.000000029802322, z: 0.0000000037252903, w: 0.9998355}
+  m_LocalRotation: {x: -0.018141476, y: -0.000000029802322, z: 0.0000000018626451, w: 0.9998355}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4449,6 +4479,7 @@ GameObject:
   - component: {fileID: 2003806813}
   - component: {fileID: 2003806812}
   - component: {fileID: 2003806814}
+  - component: {fileID: 2003806816}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -4607,6 +4638,22 @@ MonoBehaviour:
   pickUpLayerMask:
     serializedVersion: 2
     m_Bits: 0
+--- !u!114 &2003806816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003806807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d38dc7d9914c024b888dded15535887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countDownTimer: {fileID: 761527663}
+  objectsToSwap:
+  - {fileID: 1547093251}
+  - {fileID: 1052689550}
 --- !u!1 &2052742010
 GameObject:
   m_ObjectHideFlags: 3

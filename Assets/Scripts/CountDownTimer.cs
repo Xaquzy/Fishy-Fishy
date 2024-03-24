@@ -14,7 +14,8 @@ public class CountDownTimer : MonoBehaviour
     [SerializeField] TextMeshProUGUI countdownText;
     private bool timer_running = false;
 
-
+    //Henter cutscene scriptet
+    public CutScene Cutscene;
 
     public UnityEvent OnCountDownFinished;
 
@@ -23,7 +24,13 @@ public class CountDownTimer : MonoBehaviour
 
     //[SerializeField] private int NewSceneNumber = 1;
 
-    
+
+    void Start()
+    {
+        GameObject ratingMessage = Cutscene.ratingMessage;
+        ratingMessage.SetActive(false);
+        StartTimer();
+    }
 
     void Update()
     {
@@ -48,8 +55,8 @@ public class CountDownTimer : MonoBehaviour
             remainingTime = 0; //Sætter tiden til 0 så timeren ikke kan blive negativ
             timer_running = false;
             countdownText.color = Color.red; //Gør teksten rød
-            Debug.Log("Go to cutscene");
-            //StartCoroutine(CutSceneInScene()); //kalder på sceneskift funktionen
+            //Debug.Log("Go to cutscene");
+            //StartCoroutine(Cutscene.CutSceneInScene()); //kalder på sceneskift funktionen fra cutscene scriptet
         }
 
         int minutes = Mathf.FloorToInt(remainingTime / 60); //Omregner mængden af sekunder til minuter
@@ -58,8 +65,12 @@ public class CountDownTimer : MonoBehaviour
 
     }
 
-    
 
+    public void StartTimer()
+    {
+        timer_running = true;
+        remainingTime = CountdownTime;
+    }
 }
 
 

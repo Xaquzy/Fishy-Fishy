@@ -20,13 +20,10 @@ public class CutScene : MonoBehaviour
     public GameObject ratingMessage;
     public GameObject Line; //for at få adgang til drawing script og dermed accuracy dist
 
+    public Drawing Drawing;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        ratingMessage.SetActive(false);
-        StartTimer();
-    }
+
 
     // Update is called once per frame
     void Update()
@@ -34,7 +31,7 @@ public class CutScene : MonoBehaviour
         
     }
     
-    void Rating()
+    public void Rating()
     {
         Drawing drawing = Line.GetComponent<Drawing>(); //få adgang til drawing script
         float accuracyDist = drawing.GetAccuracyDist(); //Få adgang til accuracyDist
@@ -91,7 +88,11 @@ public class CutScene : MonoBehaviour
         RatingManager.AddRating(rating.name); //Konverter rating navn til string
 
     }
-    IEnumerator CutSceneInScene()
+    public void StartCutScene()
+    {
+        StartCoroutine(CutSceneInScene());
+    }
+    public IEnumerator CutSceneInScene()
     {
         //Slukker for movement script
         Movement movement = Player.GetComponent<Movement>();
@@ -142,10 +143,6 @@ public class CutScene : MonoBehaviour
         //RatingManager.DisplayRatings(); //Det er en test for at se om ratingen bliver gemt i listen som denne funktion printer
     }
 
-    public void StartTimer()
-    {
-        //timer_running = true;
-        //remainingTime = CountdownTime;
-    }
+    
 
 }

@@ -16,7 +16,10 @@ public class CookZone : MonoBehaviour
     public GameObject ratingMessage;
     private bool playerInTrigger = false;
 
-    
+    //kalde på countdowntimer scriptet
+    public CountDownTimer CountDownTimer;
+    //kalde på drawing script
+    public Drawing Drawing;
 
 
     private void Start()
@@ -37,6 +40,8 @@ public class CookZone : MonoBehaviour
         toolTip.SetActive(false); //Sluk tooltip
         CookCam.SetActive(false); //Sluk cookcam
         ratingMessage.SetActive(false); //sluk ratings
+
+
 
 
 
@@ -72,11 +77,10 @@ public class CookZone : MonoBehaviour
             knife.SetActive(true);
 
             //Tegne scriptet tændes
-            Drawing drawing = Line.GetComponent<Drawing>();
-            drawing.enabled = true;
+            //Drawing drawing = Line.GetComponent<Drawing>();
+            Drawing.enabled = true;
 
-            CountDownTimer countDown = Player.GetComponent<CountDownTimer>(); //hente countdowntimer scriptet fra spilleren
-            countDown.enabled = true; //slå den til mens man er i gang med at skære
+            CountDownTimer.enabled = true; //slå den til mens man er i gang med at skære
             Debug.Log("the countdown timer script is now turned on");
 
         }
@@ -102,8 +106,8 @@ public class CookZone : MonoBehaviour
             //kniven skal slukkes
             knife.SetActive(false);
 
-            CountDownTimer countDown = Player.GetComponent<CountDownTimer>(); //hente countdowntimer scriptet fra spilleren
-            countDown.enabled = false; //stoppe scriptet når man forlader skære mode
+            //CountDownTimer countDown = Player.GetComponent<CountDownTimer>(); //hente countdowntimer scriptet fra spilleren
+            CountDownTimer.enabled = false; ; //stoppe scriptet når man forlader skære mode
             Debug.Log("the countdown timer script is now turned off");
         }
     }
