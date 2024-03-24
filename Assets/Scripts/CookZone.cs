@@ -30,11 +30,11 @@ public class CookZone : MonoBehaviour
         Cursor.visible = false;
 
         // Tjek om tegnescriptet findes
-        Drawing drawing = Line.GetComponent<Drawing>();
-        if (drawing != null)
+        //Drawing drawing = Line.GetComponent<Drawing>();
+        if (Drawing != null)
         {
             //sluk tegne script
-            drawing.enabled = false;
+            Drawing.enabled = false;
         }
         
         toolTip.SetActive(false); //Sluk tooltip
@@ -100,8 +100,8 @@ public class CookZone : MonoBehaviour
         {
             Debug.Log("Player left the trigger!");
             playerInTrigger = false;
-            Drawing drawing = Line.GetComponent<Drawing>();
-            drawing.enabled = false;
+            //Drawing drawing = Line.GetComponent<Drawing>();
+            Drawing.enabled = false;
 
             //kniven skal slukkes
             knife.SetActive(false);

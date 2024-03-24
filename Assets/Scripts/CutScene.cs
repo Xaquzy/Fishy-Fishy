@@ -33,11 +33,10 @@ public class CutScene : MonoBehaviour
     
     public void Rating()
     {
-        Drawing drawing = Line.GetComponent<Drawing>(); //få adgang til drawing script
-        float accuracyDist = drawing.GetAccuracyDist(); //Få adgang til accuracyDist
-        ratingMessage.SetActive(true);
+        //Drawing drawing = Line.GetComponent<Drawing>(); //få adgang til drawing script
+        float accuracyDist = Drawing.GetAccuracyDist(); //Få adgang til accuracyDist
 
-
+        
         // Deaktiver alle rating beskedeer
         for (int i = 0; i < ratingMessage.transform.childCount; i++)
         {
@@ -99,8 +98,8 @@ public class CutScene : MonoBehaviour
         movement.enabled = false;
 
         //Slukker for Drawing script
-        Drawing drawing = Line.GetComponent<Drawing>();
-        drawing.enabled = false;
+        //Drawing drawing = Line.GetComponent<Drawing>();
+        Drawing.enabled = false;
 
         //Placer spilleren i det rigtige sted 
         Player.position = CutScenePos.position;
@@ -109,7 +108,7 @@ public class CutScene : MonoBehaviour
         knife.SetActive(false);
 
         //Linjen skal slettes
-        drawing.DeleteAllLines();
+        Drawing.DeleteAllLines();
 
 
         //Camera ting

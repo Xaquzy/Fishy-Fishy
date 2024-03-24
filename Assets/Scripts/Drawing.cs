@@ -47,12 +47,13 @@ public class Drawing : MonoBehaviour
             StartNewLine();
         }
 
+        Vector3 worldPos;
         //Når knappen er nede tegner listen
         if (Input.GetMouseButton(0))
         {
             Vector3 mousePos = Input.mousePosition; //Musens position defineres
             mousePos.z = AfstandTilKam; // Afstanden som der tegnes fra kam, det er en selvvalgt z-koordinat da skærmen er 2 dimensionel
-            Vector3 worldPos = CookCam.ScreenToWorldPoint(mousePos); //ScreenToWorldPoint laver musens position på skærmen om til en position i "verden". Dog er positionen 2-dimensionel (x,y,?)
+            worldPos = CookCam.ScreenToWorldPoint(mousePos); //ScreenToWorldPoint laver musens position på skærmen om til en position i "verden". Dog er positionen 2-dimensionel (x,y,?)
             DrawPosition(worldPos); //Tegner til ved positionen i verden (som var musens position der er blevet omdannet)
         }
 

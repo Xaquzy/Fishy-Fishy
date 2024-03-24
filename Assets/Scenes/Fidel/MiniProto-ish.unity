@@ -1991,6 +1991,7 @@ GameObject:
   - component: {fileID: 761527661}
   - component: {fileID: 761527663}
   - component: {fileID: 761527665}
+  - component: {fileID: 761527666}
   m_Layer: 5
   m_Name: Countdown
   m_TagString: Untagged
@@ -2182,6 +2183,27 @@ MonoBehaviour:
   ratingMessage: {fileID: 457795954}
   Line: {fileID: 822386668}
   Drawing: {fileID: 0}
+--- !u!114 &761527666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761527658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49b5caa988c853d4aab8687910386ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineRenderer: {fileID: 822386669}
+  CookCam: {fileID: 193042372}
+  lineWidth: 0.1
+  AfstandTilKam: 9.4
+  KnivDistFraKam: 1.5
+  FishyTargetParent: {fileID: 594690889}
+  KnifeTarget: {fileID: 177929987}
+  countdownText: {fileID: 761527658}
+  countDownTimer: {fileID: 761527663}
 --- !u!1 &796567967
 GameObject:
   m_ObjectHideFlags: 0
@@ -2297,7 +2319,6 @@ GameObject:
   m_Component:
   - component: {fileID: 822386670}
   - component: {fileID: 822386669}
-  - component: {fileID: 822386671}
   m_Layer: 0
   m_Name: Line
   m_TagString: Untagged
@@ -2424,27 +2445,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &822386671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 822386668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49b5caa988c853d4aab8687910386ee9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lineRenderer: {fileID: 822386669}
-  CookCam: {fileID: 193042372}
-  lineWidth: 0.1
-  AfstandTilKam: 9.4
-  KnivDistFraKam: 1.5
-  FishyTargetParent: {fileID: 594690889}
-  KnifeTarget: {fileID: 177929987}
-  countdownText: {fileID: 761527658}
-  countDownTimer: {fileID: 761527663}
 --- !u!1 &833697692
 GameObject:
   m_ObjectHideFlags: 3
