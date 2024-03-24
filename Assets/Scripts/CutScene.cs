@@ -33,20 +33,25 @@ public class CutScene : MonoBehaviour
     
     public void Rating()
     {
+        Debug.Log("Vi er inde i rating funktionen.");
         //Drawing drawing = Line.GetComponent<Drawing>(); //få adgang til drawing script
         float accuracyDist = Drawing.GetAccuracyDist(); //Få adgang til accuracyDist
 
-        
-        // Deaktiver alle rating beskedeer
+        ratingMessage.SetActive(true);
+        //Deaktiver alle rating beskedeer
         for (int i = 0; i < ratingMessage.transform.childCount; i++)
         {
             Transform t = ratingMessage.transform.GetChild(i);
             t.gameObject.SetActive(false);
         }
+
+        
+
         GameObject rating = null;
 
         if (accuracyDist > 0.4)
         {
+            Debug.Log("Vi er inde i S ifsætningens.");
             rating = ratingMessage.transform.Find("S").gameObject;
         }
 
@@ -82,9 +87,11 @@ public class CutScene : MonoBehaviour
             return;
 
         }
-        rating.SetActive(true);
 
-        RatingManager.AddRating(rating.name); //Konverter rating navn til string
+        Debug.Log("Rating er valgt");
+        rating.SetActive(true);
+        Debug.Log("Rating er tændt");
+        //RatingManager.AddRating(rating.name); //Konverter rating navn til string
 
     }
     public void StartCutScene()
@@ -133,7 +140,7 @@ public class CutScene : MonoBehaviour
 
         //Tænder for movement script og slukker for ratingen (og for Cutscenetext som er placeholder)
         movement.enabled = true;
-        ratingMessage.SetActive(false);
+        //ratingMessage.SetActive(false);
 
         //Sluk CountDownTimer script.. altså det script vi er i. Dette er så remaingTime kan genstartes til næste cut i fisken
         enabled = false;

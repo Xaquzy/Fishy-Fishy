@@ -69,7 +69,7 @@ public class Drawing : MonoBehaviour
         Vector3 averageFishTarget = CalcAverageTargetPos(FishyTargetParent);
 
         float AccuracyDist = (averageFishTarget - averageLinePos).magnitude;
-        Debug.Log("Accuracy Score: " + AccuracyDist);
+        //Debug.Log("Accuracy Score: " + AccuracyDist);
 
         //Hold øje med tiden.. når den er 0 skal alle linjer slettes
         CountDownTimer countDownTimer = countdownText.GetComponent<CountDownTimer>();

@@ -466,7 +466,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82865672}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &82865674
 Camera:
   m_ObjectHideFlags: 0
@@ -762,7 +762,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 193042369}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &193042372
 Camera:
   m_ObjectHideFlags: 0
@@ -1449,7 +1449,7 @@ MonoBehaviour:
   Player: {fileID: 2003806807}
   ratingMessage: {fileID: 1519112345}
   CountDownTimer: {fileID: 761527663}
-  Drawing: {fileID: 0}
+  Drawing: {fileID: 2003806817}
 --- !u!1 &474782747
 GameObject:
   m_ObjectHideFlags: 3
@@ -1991,7 +1991,6 @@ GameObject:
   - component: {fileID: 761527661}
   - component: {fileID: 761527663}
   - component: {fileID: 761527665}
-  - component: {fileID: 761527666}
   m_Layer: 5
   m_Name: Countdown
   m_TagString: Untagged
@@ -2180,30 +2179,9 @@ MonoBehaviour:
   CutSceneTime: 5
   RatingReadTime: 5
   knife: {fileID: 177929986}
-  ratingMessage: {fileID: 457795954}
+  ratingMessage: {fileID: 1519112345}
   Line: {fileID: 822386668}
-  Drawing: {fileID: 0}
---- !u!114 &761527666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 761527658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49b5caa988c853d4aab8687910386ee9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lineRenderer: {fileID: 822386669}
-  CookCam: {fileID: 193042372}
-  lineWidth: 0.1
-  AfstandTilKam: 9.4
-  KnivDistFraKam: 1.5
-  FishyTargetParent: {fileID: 594690889}
-  KnifeTarget: {fileID: 177929987}
-  countdownText: {fileID: 761527658}
-  countDownTimer: {fileID: 761527663}
+  Drawing: {fileID: 2003806817}
 --- !u!1 &796567967
 GameObject:
   m_ObjectHideFlags: 0
@@ -2689,7 +2667,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 910140414}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.018141476, y: -0.000000029802322, z: 0.0000000018626451, w: 0.9998355}
+  m_LocalRotation: {x: -0.018141467, y: -0.000000029802322, z: 0.0000000037252903, w: 0.9998355}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4480,6 +4458,7 @@ GameObject:
   - component: {fileID: 2003806812}
   - component: {fileID: 2003806814}
   - component: {fileID: 2003806816}
+  - component: {fileID: 2003806817}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -4654,6 +4633,27 @@ MonoBehaviour:
   objectsToSwap:
   - {fileID: 1547093251}
   - {fileID: 1052689550}
+--- !u!114 &2003806817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003806807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49b5caa988c853d4aab8687910386ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineRenderer: {fileID: 822386669}
+  CookCam: {fileID: 193042372}
+  lineWidth: 0.1
+  AfstandTilKam: 9.4
+  KnivDistFraKam: 1.5
+  FishyTargetParent: {fileID: 594690889}
+  KnifeTarget: {fileID: 177929987}
+  countdownText: {fileID: 761527658}
+  countDownTimer: {fileID: 761527663}
 --- !u!1 &2052742010
 GameObject:
   m_ObjectHideFlags: 3

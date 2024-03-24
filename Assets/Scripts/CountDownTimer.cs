@@ -28,7 +28,9 @@ public class CountDownTimer : MonoBehaviour
     void Start()
     {
         GameObject ratingMessage = Cutscene.ratingMessage;
+        Debug.Log("Rating er på");
         ratingMessage.SetActive(false);
+        Debug.Log("Rating er ikke på");
         StartTimer();
     }
 
