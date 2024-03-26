@@ -124,6 +124,7 @@ public class Drawing : MonoBehaviour
         Vector3 sum = Vector3.zero; //summen sættes til 0
         foreach (LineRenderer line in listWithLinePoints) //Der itereres over hvert element i listen med punkterne
         {
+
             Vector3[] points = new Vector3[line.positionCount]; //Laver en array (en liste i praksis) ved navn 'point' der har samme størrelse som mængden af punkter i en given linje
             numberOfPoints = numberOfPoints + line.positionCount; //Tæller antallet af punkter
             line.GetPositions(points); //for hvert punkt finder den posistionen
@@ -150,6 +151,32 @@ public class Drawing : MonoBehaviour
     }
     public void DeleteAllLines()
     {
-        allLines.Clear(); //Listen med den nuværende linje tømmes
+        foreach (LineRenderer line in allLines)
+        {
+            Destroy(line.gameObject); //Sletter alle objekterne i listen med linjerne
+        }
+    }
+
+    public void SlukRendererForAlleLinjer()
+    {
+        foreach (LineRenderer line in allLines)
+        {
+            if (line != null)
+            {
+                line.enabled = false; //Slukker line renderer da en line renderer hedder line (tjek loopens argument)
+            }
+        }
+    }
+
+
+    public void TændRendererForAlleLinjer()
+    {
+        foreach (LineRenderer line in allLines)
+        {
+            if (line != null)
+            {
+                line.enabled = true; //Tænder line renderer da en line renderer hedder line (tjek loopens argument)
+            }
+        }
     }
 }

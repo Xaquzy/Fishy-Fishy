@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CutScene : MonoBehaviour
 {
@@ -15,14 +16,13 @@ public class CutScene : MonoBehaviour
     public float CutSceneTime = 5f;
     public float RatingReadTime = 5f;
     public GameObject knife; //Så den kan slukkes i cutscene
+    public LineRenderer lineRenderer;
 
     //Rating ting
     public GameObject ratingMessage;
     public GameObject Line; //for at få adgang til drawing script og dermed accuracy dist
-
+    private GameObject TheRating; // Et GameObject der starter tomt men senere sættes den til at være ratingen. Derefter kan ratingen kaldes i udenfor Rating() og slukkes i CutSceneInScene() 
     public Drawing Drawing;
-
-    // Start is called before the first frame update
 
 
     // Update is called once per frame
@@ -91,9 +91,15 @@ public class CutScene : MonoBehaviour
         Debug.Log("Rating er valgt");
         rating.SetActive(true);
         Debug.Log("Rating er tændt");
+
+        //Gør så vi kan kalde på ratingen udenfor funktionen for at slukke den i CutSceneInScene funktionen
+        TheRating = rating;
+
         //RatingManager.AddRating(rating.name); //Konverter rating navn til string
 
     }
+
+ 
     public void StartCutScene()
     {
         StartCoroutine(CutSceneInScene());
@@ -114,36 +120,40 @@ public class CutScene : MonoBehaviour
         //kniven skal slukkes
         knife.SetActive(false);
 
-        //Linjen skal slettes
-        Drawing.DeleteAllLines();
-
+        //gør linjerne gennemsigitg. Hvis linjerne bare slettes så er der ikke en position der kan bruges til at bestemme den rating man skal få senere i rating()
+        Drawing.SlukRendererForAlleLinjer();
 
         //Camera ting
         CookCam.SetActive(false);
         CutSceneCam.SetActive(true);
         MainCam.enabled = false;
-        CutSceneTestText.SetActive(true); //Det er bare en placeholder tester
 
         //Den reelle cutscene
         //Afspil animationer
         //Afspil Lyd
+        CutSceneTestText.SetActive(true); //Det er bare en placeholder tester
 
         yield return new WaitForSeconds(CutSceneTime); //kode til lidt pause så man kan se Cutscene før ratingen popper up
         Rating();
+
+        //Linjerne skal slettes efter de er blevet brugt til at bestemme en rating
+        Drawing.DeleteAllLines();
+        Drawing.TændRendererForAlleLinjer(); //man kan se linjer til næste gang
         yield return new WaitForSeconds(RatingReadTime); //Lidt tid til at læse sin rating
 
         //Gør klar til fortsat spil
         MainCam.enabled = true;
         CutSceneCam.SetActive(false);
-        //Skift fiske objektFunktion
+        CutSceneTestText.SetActive(false); //Det er bare en placeholder tester
+        TheRating.SetActive(false); //Sletter ratingen på skærmen så man kan spille videre
+    
         //Reset spillerens position i køkkenet?
 
         //Tænder for movement script og slukker for ratingen (og for Cutscenetext som er placeholder)
         movement.enabled = true;
         //ratingMessage.SetActive(false);
 
-        //Sluk CountDownTimer script.. altså det script vi er i. Dette er så remaingTime kan genstartes til næste cut i fisken
-        enabled = false;
+
 
         //FOR AT VISE ALLE RATINGS TIL SIDST
         //RatingManager.DisplayRatings(); //Det er en test for at se om ratingen bliver gemt i listen som denne funktion printer
