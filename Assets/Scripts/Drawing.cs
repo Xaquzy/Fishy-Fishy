@@ -14,6 +14,7 @@ public class Drawing : MonoBehaviour
     public float AfstandTilKam = 8f;
     public float KnivDistFraKam = 1.5f;
     public List<GameObject> FishyTargetParent = new List<GameObject>();
+    private int currentGameObjectIndex = 0;
     public Transform KnifeTarget;
     public GameObject countdownText;
     public Transform LineParent;
@@ -126,39 +127,7 @@ public class Drawing : MonoBehaviour
         return sum / numberOfPoints; //Summen divideres med antallet af punkter for at få gennemsnit
     }
 
-    Vector3 CalcAverageTargetPos(List<GameObject> gameObjectList)
-    {
-        Vector3 sumPos = Vector3.zero; // Sum of positions of all children
-        int totalChildren = 0; // Total number of children
-
-        foreach (GameObject gameObject in gameObjectList)
-        {
-            if (gameObject != null)
-            {
-                Transform[] children = gameObject.GetComponentsInChildren<Transform>(); // Get all child transforms
-
-                // Exclude the parent's own transform if needed
-                // (uncomment the line below if the parent's position should not be included in the average)
-                // sumPos -= gameObject.transform.position;
-
-                foreach (Transform child in children)
-                {
-                    sumPos += child.position; // Add child position to the sum
-                    totalChildren++; // Increment total children count
-                }
-            }
-        }
-
-        // Avoid division by zero
-        if (totalChildren == 0)
-        {
-            return Vector3.zero;
-        }
-
-        // Calculate average position
-        return sumPos / totalChildren;
-    }
-
+    //SKRIV OM DETTE I RAPPORTEN. NEDENSTÅENDE FUNKTION BEGREREGNER AVG-TARRGET-POS VED AT BERENGE FOR ET OBJECTS CHILDREN. EFTER DU HAR BESKREVET DETTE SÅ BESKRI PROBLEMET OM AT AVG-TARGET-POS SKAL ÆNDRE SIG PÅ BAGRUND AF FISKEN SÅ DENNE FUNKTION SKAL MODIFICERES TIL AT TAGE EN LISTE SOM ARGUMENT OG BERENGE TARGET POS FOR DET NÆSTE INDEX HVER GANG DEN KALDES
     //Vector3 CalcAverageTargetPos(GameObject gameObject) //GameObject parameteren er fordi den skal tage et gameobject (og dens children) som et argument. Det andet gameObject er bare fordi der skal være et navn
     //{
     //    Transform[] children = FishyTargetParent.GetComponentsInChildren<Transform>(); //Laver en array (en liste i praksis) med alle transforms fra objektets children
@@ -172,6 +141,51 @@ public class Drawing : MonoBehaviour
 
     //    return sumPos / children.Length; //Gennemsnittet beregnes (summen divideret med antallet af children)
     //}
+
+    Vector3 CalcAverageTargetPos(List<GameObject> gameObjectList)
+    {
+        //Tjekker om listen er tom, hvis ja så er den gennemsnitlige pos 0
+        if (gameObjectList.Count == 0)
+        {
+            return Vector3.zero;
+        }
+
+        //Henter det object der skal berenges på ved brug af index
+        GameObject currentGameObject = gameObjectList[currentGameObjectIndex];
+
+        Vector3 sumPos = Vector3.zero; // Summen af positionen af alle børnene sættes til 0
+        int totalChildren = 0; // antalet af børn objektet har sættes til 0
+
+        //tjekker om det nuværende object findes
+        if (currentGameObject != null)
+        {
+            //Laver en array (en liste i praksis) med alle transforms fra objektets children
+            Transform[] children = currentGameObject.GetComponentsInChildren<Transform>();
+
+            foreach (Transform child in children)
+            {
+                sumPos = sumPos + child.position; //De summes op
+                totalChildren = totalChildren + 1; //tæller antallet af børn (dette skal bruges til at beregne gennemsnit.. gennemsnit = sum/antal)
+            }
+        }
+
+        //Hvis der er ingen børn bliver der ik divideret med 0, i stedet returneres en 0 vektor
+        if (totalChildren == 0)
+        {
+            return Vector3.zero;
+        }
+
+        //beregn gennemsnit
+        Vector3 averagePosition = sumPos / totalChildren;
+
+        //går en op i index. Der tages modulo til antallet af gameobjekter så at hvis der er 3 objekter og tælleren er noget til 4 looper den tilbage til 1
+        currentGameObjectIndex = (currentGameObjectIndex + 1) % gameObjectList.Count;
+
+        //Returnere gennemsnitlige pos
+        return averagePosition;
+    }
+
+
     public void DeleteAllLines()
     {
         foreach (LineRenderer line in allLines)

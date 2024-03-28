@@ -58,7 +58,6 @@ public class CookZone : MonoBehaviour
         {
             toolTip.SetActive(true);
             playerInTrigger = true;
-            CountDownTimer.remainingTime = CountDownTimer.CountdownTime;
         }
     }
 
