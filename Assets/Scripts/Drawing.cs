@@ -19,9 +19,9 @@ public class Drawing : MonoBehaviour
     public GameObject countdownText;
     public Transform LineParent;
     private float AccuracyDist;
-
-    private LineRenderer currentLine;
+    
     private List<Vector3> currentLinePoints = new List<Vector3>(); //Liste med alle punkterne som linjen er lavet ud af
+    private LineRenderer currentLine;
     private List<LineRenderer> allLines = new List<LineRenderer>(); //Liste med alle linjer
 
     public CountDownTimer countDownTimer;
@@ -70,8 +70,7 @@ public class Drawing : MonoBehaviour
     {
         currentLine = Instantiate(lineRenderer, Vector3.zero, Quaternion.identity, LineParent); // Ny linje = LavNytGameObjekt(LinerendererPrefabet bliver lavet, Objektets posistion er (0,0,0), Objektet har ingen rotation, LineParent er alle de nye objekterns parent)
         currentLine.positionCount = 0; //Sætter listen med det nuværende punkter til at være tom, altså der er ingen punkter i listen
-        currentLine.startWidth = lineWidth; //Læs det 
-        currentLine.endWidth = lineWidth; //Læs det 
+        currentLine.endWidth = currentLine.startWidth = lineWidth; //Læs det 
         allLines.Add(currentLine);
 
         //CountdownText objektet tændes 

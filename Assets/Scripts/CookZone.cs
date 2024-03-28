@@ -45,8 +45,8 @@ public class CookZone : MonoBehaviour
 
 
 
-    //kniven skal slukkes
-    knife.SetActive(false);
+        //kniven skal slukkes
+        knife.SetActive(false);
 
         //CountdownText objektet slukkes (derved slukkes countdown scriptet på det også)
         countdownText.SetActive(false);

@@ -4649,7 +4649,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 822386669}
   CookCam: {fileID: 193042372}
-  lineWidth: 0.1
+  lineWidth: 0.08
   AfstandTilKam: 9.4
   KnivDistFraKam: 1.5
   FishyTargetParent:
