@@ -146,7 +146,8 @@ public class CutScene : MonoBehaviour
         CutSceneCam.SetActive(false);
         CutSceneTestText.SetActive(false); //Det er bare en placeholder tester
         TheRating.SetActive(false); //Sletter ratingen på skærmen så man kan spille videre
-    
+        knife.SetActive(true); //Kniven skal findes igen
+
         //Reset spillerens position i køkkenet?
 
         //Tænder for movement script og slukker for ratingen (og for Cutscenetext som er placeholder)

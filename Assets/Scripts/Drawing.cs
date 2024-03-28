@@ -62,24 +62,6 @@ public class Drawing : MonoBehaviour
         {
             FinishLine();
         }
-
-        Vector3 averageLinePos = CalculateLinePos(allLines);
-
-        //Beregn distancen mellem avgfishyTargets og linjen...magnitude konverterer det til en længde
-        Vector3 averageFishTarget = CalcAverageTargetPos(FishyTargetParent);
-
-        float AccuracyDist = (averageFishTarget - averageLinePos).magnitude;
-        //Debug.Log("Accuracy Score: " + AccuracyDist);
-
-        //Hold øje med tiden.. når den er 0 skal alle linjer slettes
-        CountDownTimer countDownTimer = countdownText.GetComponent<CountDownTimer>();
-        float remainingTime = countDownTimer.remainingTime; 
-        
-        if (remainingTime <= 1)
-        {
-            DeleteAllLines();
-        }
-        
     }
 
     void StartNewLine()
@@ -96,6 +78,9 @@ public class Drawing : MonoBehaviour
         //countdown scriptet tændes også)
         CountDownTimer countDownTimer = countdownText.GetComponent<CountDownTimer>(); //få adgang til countdown script
         countDownTimer.enabled = true;
+
+        //Timeren startes når en linje tegnes
+        countDownTimer.StartTimer();
 
     }
 
@@ -124,7 +109,6 @@ public class Drawing : MonoBehaviour
         Vector3 sum = Vector3.zero; //summen sættes til 0
         foreach (LineRenderer line in listWithLinePoints) //Der itereres over hvert element i listen med punkterne
         {
-
             Vector3[] points = new Vector3[line.positionCount]; //Laver en array (en liste i praksis) ved navn 'point' der har samme størrelse som mængden af punkter i en given linje
             numberOfPoints = numberOfPoints + line.positionCount; //Tæller antallet af punkter
             line.GetPositions(points); //for hvert punkt finder den posistionen
