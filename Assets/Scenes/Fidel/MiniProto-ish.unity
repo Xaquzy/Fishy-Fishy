@@ -2180,6 +2180,7 @@ MonoBehaviour:
   RatingReadTime: 5
   knife: {fileID: 177929986}
   lineRenderer: {fileID: 822386669}
+  CountdownTimerText: {fileID: 761527658}
   ratingMessage: {fileID: 1519112345}
   Line: {fileID: 822386668}
   Drawing: {fileID: 2003806817}
@@ -4651,9 +4652,11 @@ MonoBehaviour:
   lineWidth: 0.1
   AfstandTilKam: 9.4
   KnivDistFraKam: 1.5
-  FishyTargetParent: {fileID: 594690889}
+  FishyTargetParent:
+  - {fileID: 594690889}
   KnifeTarget: {fileID: 177929987}
   countdownText: {fileID: 761527658}
+  LineParent: {fileID: 822386670}
   countDownTimer: {fileID: 761527663}
 --- !u!1 &2052742010
 GameObject:

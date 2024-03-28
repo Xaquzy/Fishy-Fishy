@@ -13,9 +13,10 @@ public class Drawing : MonoBehaviour
     public float lineWidth = 0.1f;
     public float AfstandTilKam = 8f;
     public float KnivDistFraKam = 1.5f;
-    public GameObject FishyTargetParent;
+    public List<GameObject> FishyTargetParent = new List<GameObject>();
     public Transform KnifeTarget;
     public GameObject countdownText;
+    public Transform LineParent;
     private float AccuracyDist;
 
     private LineRenderer currentLine;
@@ -66,7 +67,7 @@ public class Drawing : MonoBehaviour
 
     void StartNewLine()
     {
-        currentLine = Instantiate(lineRenderer, Vector3.zero, Quaternion.identity, transform); // Ny linje = LavNytGameObjekt(LinerendererPrefabet bliver lavet, Objektets posistion er (0,0,0), Objektet har ingen rotation, LineParent er alle de nye objekterns parent)
+        currentLine = Instantiate(lineRenderer, Vector3.zero, Quaternion.identity, LineParent); // Ny linje = LavNytGameObjekt(LinerendererPrefabet bliver lavet, Objektets posistion er (0,0,0), Objektet har ingen rotation, LineParent er alle de nye objekterns parent)
         currentLine.positionCount = 0; //Sætter listen med det nuværende punkter til at være tom, altså der er ingen punkter i listen
         currentLine.startWidth = lineWidth; //Læs det 
         currentLine.endWidth = lineWidth; //Læs det 
@@ -97,7 +98,7 @@ public class Drawing : MonoBehaviour
         currentLinePoints.Clear(); //Listen med den nuværende linje tømmes
     }
 
-    Vector3 CalculateLinePos(List<LineRenderer> listWithLinePoints)
+    Vector3 CalculateLinePos(List<LineRenderer> listWithLinePoints) //Beskriv denne funktion. Det er en ny version af calculateLinePos. Da der gemmer nye targets så skal vi kunne assigne alle de forskellige targets så man kan loop over alt det her
     {
         // hvis der ikke er nogle vektorer i listen er den gennemsnitlige vektor 0
         if (listWithLinePoints.Count == 0)
@@ -107,45 +108,88 @@ public class Drawing : MonoBehaviour
 
         int numberOfPoints = 0; //Antal
         Vector3 sum = Vector3.zero; //summen sættes til 0
+
         foreach (LineRenderer line in listWithLinePoints) //Der itereres over hvert element i listen med punkterne
         {
-            Vector3[] points = new Vector3[line.positionCount]; //Laver en array (en liste i praksis) ved navn 'point' der har samme størrelse som mængden af punkter i en given linje
-            numberOfPoints = numberOfPoints + line.positionCount; //Tæller antallet af punkter
-            line.GetPositions(points); //for hvert punkt finder den posistionen
-            foreach (Vector3 position in points)
+            if (line != null) // tjek om line rendereren findes... da de tidligere linjer slettes fra spillet, men stadig er en del af denne liste, skal de alle ignores. De er "tomme/ikke-eksisterende" renderes
             {
-                sum = sum + position; //De summes op
+                Vector3[] points = new Vector3[line.positionCount]; //Laver en array (en liste i praksis) ved navn 'point' der har samme størrelse som mængden af punkter i en given linje
+                numberOfPoints = numberOfPoints + line.positionCount; //Tæller antallet af punkter
+                line.GetPositions(points); //for hvert punkt finder den posistionen
+                foreach (Vector3 position in points)
+                {
+                    sum = sum + position; //De summes op
+                }
             }
         }
+
         return sum / numberOfPoints; //Summen divideres med antallet af punkter for at få gennemsnit
     }
 
-    Vector3 CalcAverageTargetPos(GameObject gameObject) //GameObject parameteren er fordi den skal tage et gameobject (og dens children) som et argument. Det andet gameObject er bare fordi der skal være et navn
+    Vector3 CalcAverageTargetPos(List<GameObject> gameObjectList)
     {
-        Transform[] children = FishyTargetParent.GetComponentsInChildren<Transform>(); //Laver en array (en liste i praksis) med alle transforms fra objektets children
-        Vector3 sumPos = Vector3.zero; // Summen af positionen af alle børnene sættes til 0
+        Vector3 sumPos = Vector3.zero; // Sum of positions of all children
+        int totalChildren = 0; // Total number of children
 
-
-        foreach (Transform child in children)
+        foreach (GameObject gameObject in gameObjectList)
         {
-            sumPos = sumPos + child.position; //De summes op
+            if (gameObject != null)
+            {
+                Transform[] children = gameObject.GetComponentsInChildren<Transform>(); // Get all child transforms
+
+                // Exclude the parent's own transform if needed
+                // (uncomment the line below if the parent's position should not be included in the average)
+                // sumPos -= gameObject.transform.position;
+
+                foreach (Transform child in children)
+                {
+                    sumPos += child.position; // Add child position to the sum
+                    totalChildren++; // Increment total children count
+                }
+            }
         }
 
-        return sumPos / children.Length; //Gennemsnittet beregnes (summen divideret med antallet af children)
+        // Avoid division by zero
+        if (totalChildren == 0)
+        {
+            return Vector3.zero;
+        }
+
+        // Calculate average position
+        return sumPos / totalChildren;
     }
+
+    //Vector3 CalcAverageTargetPos(GameObject gameObject) //GameObject parameteren er fordi den skal tage et gameobject (og dens children) som et argument. Det andet gameObject er bare fordi der skal være et navn
+    //{
+    //    Transform[] children = FishyTargetParent.GetComponentsInChildren<Transform>(); //Laver en array (en liste i praksis) med alle transforms fra objektets children
+    //    Vector3 sumPos = Vector3.zero; // Summen af positionen af alle børnene sættes til 0
+
+
+    //    foreach (Transform child in children)
+    //    {
+    //        sumPos = sumPos + child.position; //De summes op
+    //    }
+
+    //    return sumPos / children.Length; //Gennemsnittet beregnes (summen divideret med antallet af children)
+    //}
     public void DeleteAllLines()
     {
         foreach (LineRenderer line in allLines)
         {
-            Destroy(line.gameObject); //Sletter alle objekterne i listen med linjerne
+            if (line != null) // tjek om line rendereren findes... da de tidligere linjer slettes fra spillet, men stadig er en del af denne liste, skal de alle ignores. De er "tomme/ikke-eksisterende" renderes
+            {
+                Destroy(line.gameObject); //Sletter alle objekterne i listen med linjerne
+            }
         }
     }
 
-    public void SlukRendererForAlleLinjer()
+
+
+public void SlukRendererForAlleLinjer()
     {
         foreach (LineRenderer line in allLines)
         {
-            if (line != null)
+            if (line != null) // tjek om line rendereren findes... da de tidligere linjer slettes fra spillet, men stadig er en del af denne liste, skal de alle ignores. De er "tomme/ikke-eksisterende" renderes
             {
                 line.enabled = false; //Slukker line renderer da en line renderer hedder line (tjek loopens argument)
             }
@@ -157,7 +201,7 @@ public class Drawing : MonoBehaviour
     {
         foreach (LineRenderer line in allLines)
         {
-            if (line != null)
+            if (line != null) // tjek om line rendereren findes... da de tidligere linjer slettes fra spillet, men stadig er en del af denne liste, skal de alle ignores. De er "tomme/ikke-eksisterende" renderes
             {
                 line.enabled = true; //Tænder line renderer da en line renderer hedder line (tjek loopens argument)
             }

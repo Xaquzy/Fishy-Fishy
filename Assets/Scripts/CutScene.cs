@@ -17,6 +17,7 @@ public class CutScene : MonoBehaviour
     public float RatingReadTime = 5f;
     public GameObject knife; //Så den kan slukkes i cutscene
     public LineRenderer lineRenderer;
+    public GameObject CountdownTimerText; //Så den kan slukkes i cutscene
 
     //Rating ting
     public GameObject ratingMessage;
@@ -38,6 +39,7 @@ public class CutScene : MonoBehaviour
         float accuracyDist = Drawing.GetAccuracyDist(); //Få adgang til accuracyDist
 
         ratingMessage.SetActive(true);
+        
         //Deaktiver alle rating beskedeer
         for (int i = 0; i < ratingMessage.transform.childCount; i++)
         {
@@ -142,6 +144,7 @@ public class CutScene : MonoBehaviour
         yield return new WaitForSeconds(RatingReadTime); //Lidt tid til at læse sin rating
 
         //Gør klar til fortsat spil
+        CountdownTimerText.SetActive(false); //Timer texten slukkes
         MainCam.enabled = true;
         CutSceneCam.SetActive(false);
         CutSceneTestText.SetActive(false); //Det er bare en placeholder tester
