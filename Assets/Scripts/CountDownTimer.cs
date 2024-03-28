@@ -16,7 +16,6 @@ public class CountDownTimer : MonoBehaviour
 
     //Henter cutscene scriptet
     public CutScene Cutscene;
-
     public UnityEvent OnCountDownFinished;
 
 
