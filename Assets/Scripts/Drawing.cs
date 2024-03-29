@@ -55,7 +55,7 @@ public class Drawing : MonoBehaviour
         //Når knappen er nede tegner listen
         if (Input.GetMouseButton(0))
         {
-            Blood.BloodPooling();
+            Blood.StartCoroutine();
             Vector3 mousePos = Input.mousePosition; //Musens position defineres
             mousePos.z = AfstandTilKam; // Afstanden som der tegnes fra kam, det er en selvvalgt z-koordinat da skærmen er 2 dimensionel
             worldPos = CookCam.ScreenToWorldPoint(mousePos); //ScreenToWorldPoint laver musens position på skærmen om til en position i "verden". Dog er positionen 2-dimensionel (x,y,?)

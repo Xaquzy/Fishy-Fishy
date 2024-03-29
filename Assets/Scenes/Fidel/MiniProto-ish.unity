@@ -1884,7 +1884,7 @@ GameObject:
   - component: {fileID: 609379015}
   - component: {fileID: 609379014}
   m_Layer: 0
-  m_Name: Quad
+  m_Name: BloodPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1948,13 +1948,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609379013}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 72.84971, y: 9.902549, z: -64.46569}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.002758471, y: 0.7071015, z: -0.70710135, w: 0.0027584713}
+  m_LocalPosition: {x: -4.8, y: 1.32, z: -25.86}
+  m_LocalScale: {x: 4.9014096, y: 4.8789005, z: 4.8872366}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -179.553}
 --- !u!1 &660148381
 GameObject:
   m_ObjectHideFlags: 0
@@ -7663,7 +7663,7 @@ Transform:
   m_GameObject: {fileID: 1052689550}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.7469444, y: 1.796328, z: -26.267826}
+  m_LocalPosition: {x: -4.7469444, y: 1.796328, z: -26.16}
   m_LocalScale: {x: 3.8999999, y: 1.592175, z: 2.1550102}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -8570,7 +8570,7 @@ Transform:
   m_GameObject: {fileID: 1547093251}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.7469444, y: 1.796328, z: -26.267826}
+  m_LocalPosition: {x: -4.7469444, y: 1.796328, z: -26.16}
   m_LocalScale: {x: 3.8999999, y: 1.592175, z: 2.1550102}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -9585,6 +9585,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodParticles: {fileID: 1049218792}
+  BloodPool: {fileID: 2100000, guid: 796bac728df99b045a81926a80390fd0, type: 2}
+  fadeDuration: 5
 --- !u!1 &2052742010
 GameObject:
   m_ObjectHideFlags: 3
