@@ -25,6 +25,8 @@ public class Drawing : MonoBehaviour
     private List<LineRenderer> allLines = new List<LineRenderer>(); //Liste med alle linjer
 
     public CountDownTimer countDownTimer;
+    public Blood Blood;
+
     public float GetAccuracyDist() //funktion til at hente accuracyDist der kaldes på i CountDownscipt når tiden er 0 og man ikke kan tegner mere
     {
         AccuracyDist = (CalcAverageTargetPos(FishyTargetParent) - CalculateLinePos(allLines)).magnitude;
@@ -53,6 +55,7 @@ public class Drawing : MonoBehaviour
         //Når knappen er nede tegner listen
         if (Input.GetMouseButton(0))
         {
+            Blood.BloodPooling();
             Vector3 mousePos = Input.mousePosition; //Musens position defineres
             mousePos.z = AfstandTilKam; // Afstanden som der tegnes fra kam, det er en selvvalgt z-koordinat da skærmen er 2 dimensionel
             worldPos = CookCam.ScreenToWorldPoint(mousePos); //ScreenToWorldPoint laver musens position på skærmen om til en position i "verden". Dog er positionen 2-dimensionel (x,y,?)
@@ -198,7 +201,7 @@ public class Drawing : MonoBehaviour
 
 
 
-public void SlukRendererForAlleLinjer()
+public void DisableAllLineRenderer()
     {
         foreach (LineRenderer line in allLines)
         {
@@ -210,7 +213,7 @@ public void SlukRendererForAlleLinjer()
     }
 
 
-    public void TændRendererForAlleLinjer()
+    public void EnableAllLineRenderer()
     {
         foreach (LineRenderer line in allLines)
         {

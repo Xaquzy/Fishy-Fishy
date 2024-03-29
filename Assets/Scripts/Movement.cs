@@ -27,16 +27,16 @@ public class Movement : MonoBehaviour
     public int JumpAmount = 1;
     private int counter;
 
-    IEnumerator FinishCut()
-    {
-        // Check if all followers are acquired
-        if (PlayerPrefs.GetInt("TurtleFollow") == 1 && PlayerPrefs.GetInt("SnakeFollow") == 1 && PlayerPrefs.GetInt("HorseFollow") == 1)
-        {
-            Debug.Log("All followers acquired!");
-            yield return new WaitForSeconds(3);
-            SceneManager.LoadScene(11);
-        }
-    }
+    //IEnumerator FinishCut()
+    //{
+    //    // Check if all followers are acquired
+    //    if (PlayerPrefs.GetInt("TurtleFollow") == 1 && PlayerPrefs.GetInt("SnakeFollow") == 1 && PlayerPrefs.GetInt("HorseFollow") == 1)
+    //    {
+    //        Debug.Log("All followers acquired!");
+    //        yield return new WaitForSeconds(3);
+    //        SceneManager.LoadScene(11);
+    //    }
+    //}
     void Start()
     {
         Animator animator;
@@ -53,7 +53,7 @@ public class Movement : MonoBehaviour
     {
 
         
-        StartCoroutine(FinishCut());
+        //StartCoroutine(FinishCut());
 
         //Grounding
         isGrounded = controller.isGrounded;

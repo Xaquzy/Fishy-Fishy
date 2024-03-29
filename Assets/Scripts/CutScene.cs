@@ -123,7 +123,7 @@ public class CutScene : MonoBehaviour
         knife.SetActive(false);
 
         //gør linjerne gennemsigitg. Hvis linjerne bare slettes så er der ikke en position der kan bruges til at bestemme den rating man skal få senere i rating()
-        Drawing.SlukRendererForAlleLinjer();
+        Drawing.DisableAllLineRenderer();
 
         //Camera ting
         CookCam.SetActive(false);
@@ -140,7 +140,7 @@ public class CutScene : MonoBehaviour
 
         //Linjerne skal slettes efter de er blevet brugt til at bestemme en rating
         Drawing.DeleteAllLines();
-        Drawing.TændRendererForAlleLinjer(); //man kan se linjer til næste gang
+        Drawing.EnableAllLineRenderer(); //man kan se linjer til næste gang
         yield return new WaitForSeconds(RatingReadTime); //Lidt tid til at læse sin rating
 
         //Gør klar til fortsat spil
