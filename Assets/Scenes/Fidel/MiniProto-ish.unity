@@ -466,7 +466,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82865672}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &82865674
 Camera:
   m_ObjectHideFlags: 0
@@ -762,7 +762,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 193042369}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &193042372
 Camera:
   m_ObjectHideFlags: 0
@@ -1448,6 +1448,8 @@ MonoBehaviour:
   countdownText: {fileID: 761527658}
   Player: {fileID: 2003806807}
   ratingMessage: {fileID: 1519112345}
+  CountDownTimer: {fileID: 761527663}
+  Drawing: {fileID: 2003806817}
 --- !u!1 &474782747
 GameObject:
   m_ObjectHideFlags: 3
@@ -1870,6 +1872,89 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cf73db54048fc14a8b32d296c13242c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &609379013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 609379016}
+  - component: {fileID: 609379015}
+  - component: {fileID: 609379014}
+  m_Layer: 0
+  m_Name: BloodPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &609379014
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609379013}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 796bac728df99b045a81926a80390fd0, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &609379015
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609379013}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &609379016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609379013}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.002758471, y: 0.7071015, z: -0.70710135, w: 0.0027584713}
+  m_LocalPosition: {x: -4.8, y: 1.32, z: -25.86}
+  m_LocalScale: {x: 4.9014096, y: 4.8789005, z: 4.8872366}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -179.553}
 --- !u!1 &660148381
 GameObject:
   m_ObjectHideFlags: 0
@@ -1988,7 +2073,7 @@ GameObject:
   - component: {fileID: 761527662}
   - component: {fileID: 761527661}
   - component: {fileID: 761527663}
-  - component: {fileID: 761527664}
+  - component: {fileID: 761527665}
   m_Layer: 5
   m_Name: Countdown
   m_TagString: Untagged
@@ -2124,20 +2209,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca314cc0b5c7bd34ba3bcec244fee81e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CountdownTime: 5
   remainingTime: 6
   countdownText: {fileID: 761527661}
-  ratingMessage: {fileID: 1519112345}
-  Line: {fileID: 822386668}
-  Player: {fileID: 2003806811}
-  CutScenePos: {fileID: 1386966552}
-  MainCam: {fileID: 854134007}
-  CutSceneCam: {fileID: 82865672}
-  CookCam: {fileID: 193042369}
-  CutSceneTestText: {fileID: 59382465}
-  CutSceneTime: 5
-  RatingReadTime: 5
-  knife: {fileID: 177929986}
---- !u!114 &761527664
+  Cutscene: {fileID: 761527665}
+  OnCountDownFinished:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2003806816}
+        m_TargetAssemblyTypeName: SwapObjects, Assembly-CSharp
+        m_MethodName: SwapObjectsInList
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 761527665}
+        m_TargetAssemblyTypeName: CutScene, Assembly-CSharp
+        m_MethodName: StartCutScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  SwapFish: 0
+--- !u!114 &761527665
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2146,13 +2250,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 761527658}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d38dc7d9914c024b888dded15535887, type: 3}
+  m_Script: {fileID: 11500000, guid: b4c57ada3702f1645ad108a648338a4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countDownTimer: {fileID: 761527663}
-  objectsToSwap:
-  - {fileID: 1547093251}
-  - {fileID: 1052689550}
+  Player: {fileID: 2003806811}
+  CutScenePos: {fileID: 2003806811}
+  MainCam: {fileID: 854134007}
+  CutSceneCam: {fileID: 82865672}
+  CookCam: {fileID: 193042369}
+  CutSceneTestText: {fileID: 59382465}
+  CutSceneTime: 5
+  RatingReadTime: 5
+  knife: {fileID: 177929986}
+  lineRenderer: {fileID: 822386669}
+  CountdownTimerText: {fileID: 761527658}
+  ratingMessage: {fileID: 1519112345}
+  Line: {fileID: 822386668}
+  Drawing: {fileID: 2003806817}
 --- !u!1 &796567967
 GameObject:
   m_ObjectHideFlags: 0
@@ -2268,7 +2382,6 @@ GameObject:
   m_Component:
   - component: {fileID: 822386670}
   - component: {fileID: 822386669}
-  - component: {fileID: 822386671}
   m_Layer: 0
   m_Name: Line
   m_TagString: Untagged
@@ -2395,26 +2508,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &822386671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 822386668}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49b5caa988c853d4aab8687910386ee9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lineRenderer: {fileID: 822386669}
-  CookCam: {fileID: 193042372}
-  lineWidth: 0.1
-  AfstandTilKam: 9.4
-  KnivDistFraKam: 1.5
-  FishyTargetParent: {fileID: 594690889}
-  KnifeTarget: {fileID: 177929987}
-  countdownText: {fileID: 761527658}
 --- !u!1 &833697692
 GameObject:
   m_ObjectHideFlags: 3
@@ -2741,7 +2834,7 @@ Transform:
   m_GameObject: {fileID: 1052689550}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.7469444, y: 1.796328, z: -26.267826}
+  m_LocalPosition: {x: -4.7469444, y: 1.796328, z: -26.16}
   m_LocalScale: {x: 3.8999999, y: 1.592175, z: 2.1550102}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3648,7 +3741,7 @@ Transform:
   m_GameObject: {fileID: 1547093251}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.7469444, y: 1.796328, z: -26.267826}
+  m_LocalPosition: {x: -4.7469444, y: 1.796328, z: -26.16}
   m_LocalScale: {x: 3.8999999, y: 1.592175, z: 2.1550102}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4449,6 +4542,9 @@ GameObject:
   - component: {fileID: 2003806813}
   - component: {fileID: 2003806812}
   - component: {fileID: 2003806814}
+  - component: {fileID: 2003806816}
+  - component: {fileID: 2003806817}
+  - component: {fileID: 2003806818}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -4607,6 +4703,61 @@ MonoBehaviour:
   pickUpLayerMask:
     serializedVersion: 2
     m_Bits: 0
+--- !u!114 &2003806816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003806807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d38dc7d9914c024b888dded15535887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countDownTimer: {fileID: 761527663}
+  objectsToSwap:
+  - {fileID: 1547093251}
+  - {fileID: 1052689550}
+--- !u!114 &2003806817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003806807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49b5caa988c853d4aab8687910386ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineRenderer: {fileID: 822386669}
+  CookCam: {fileID: 193042372}
+  lineWidth: 0.08
+  AfstandTilKam: 9.4
+  KnivDistFraKam: 1.5
+  FishyTargetParent:
+  - {fileID: 594690889}
+  KnifeTarget: {fileID: 177929987}
+  countdownText: {fileID: 761527658}
+  LineParent: {fileID: 822386670}
+  countDownTimer: {fileID: 761527663}
+  Blood: {fileID: 2003806818}
+--- !u!114 &2003806818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003806807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 950b9cad4f85aed41b347e0410b0fd53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bloodParticles: {fileID: 0}
+  BloodPool: {fileID: 2100000, guid: 796bac728df99b045a81926a80390fd0, type: 2}
+  fadeDuration: 5
 --- !u!1 &2052742010
 GameObject:
   m_ObjectHideFlags: 3
@@ -4858,3 +5009,4 @@ SceneRoots:
   - {fileID: 177929987}
   - {fileID: 1547093255}
   - {fileID: 1052689551}
+  - {fileID: 609379016}
