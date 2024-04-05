@@ -5,7 +5,7 @@ using UnityEngine;
 public class Blood : MonoBehaviour
 {
 
-    public ParticleSystem bloodParticles;
+    public ParticleSystem waterdrops;
     public Material BloodPool;
     public float fadeDuration = 5f;
 
@@ -88,5 +88,15 @@ public class Blood : MonoBehaviour
     {
         StartCoroutine(Bleed());
         //StartCoroutine(FadeBlood());
+    }
+
+    void OnParticleCollision(GameObject other)
+    {
+        Debug.Log("Particle collided with: " + other.name);
+        if (other.CompareTag("Blood"))
+        {
+            StartCoroutine(FadeBlood());
+        }
+        
     }
 }
