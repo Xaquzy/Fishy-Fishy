@@ -3710,7 +3710,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1052689551
 Transform:
   m_ObjectHideFlags: 0
@@ -4679,7 +4679,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1547093252
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5878,7 +5878,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2003806807}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d38dc7d9914c024b888dded15535887, type: 3}
   m_Name: 
@@ -5925,7 +5925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 950b9cad4f85aed41b347e0410b0fd53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bloodParticles: {fileID: 0}
+  waterdrops: {fileID: 0}
   BloodPool: {fileID: 2100000, guid: 796bac728df99b045a81926a80390fd0, type: 2}
   fadeDuration: 5
 --- !u!1 &2028039559
