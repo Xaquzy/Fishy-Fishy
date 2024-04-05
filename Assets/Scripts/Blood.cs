@@ -12,6 +12,7 @@ public class Blood : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //fahriya
         
         
     }
@@ -55,6 +56,7 @@ public class Blood : MonoBehaviour
 
     public IEnumerator FadeBlood()
     {
+        Debug.Log("Blood is fading");
         // Get the initial opacity value
         float initialOpacity = BloodPool.GetFloat("_Opacity");
 
@@ -82,6 +84,8 @@ public class Blood : MonoBehaviour
 
         // Ensure the opacity is set to the exact target value when the loop ends
         BloodPool.SetFloat("_Opacity", targetOpacity);
+
+        Debug.Log("Blood has faded");
     }
 
     public void StartCoroutine()

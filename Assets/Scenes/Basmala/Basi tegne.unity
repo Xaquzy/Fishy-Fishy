@@ -148,7 +148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34517860}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000014901161, y: -0.000000031961193, z: 0.000000010056894, w: 1}
+  m_LocalRotation: {x: 0.000000014901161, y: 0.000000031961157, z: -0.000000010056883, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -554,7 +554,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 537529179}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15183598, y: -0.000000016558793, z: 0.0000000025437132, w: 0.9884057}
+  m_LocalRotation: {x: 0.15183598, y: 0.000000016558793, z: -0.0000000025437132, w: 0.9884057}
   m_LocalPosition: {x: 0, y: 6.16, z: -17.939999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -854,7 +854,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 833697692}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.018189492, y: -0.000000015886512, z: 0.000000005318302, w: 0.9998346}
+  m_LocalRotation: {x: 0.018189492, y: 0.000000015886476, z: -0.00000000531829, w: 0.9998346}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1073,7 +1073,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 910140414}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.018141434, y: 0.0000000058657488, z: -0.0000000017294095, w: 0.99983543}
+  m_LocalRotation: {x: -0.018141434, y: -0.000000005865772, z: 0.0000000017294162, w: 0.99983543}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1247,7 +1247,7 @@ GameObject:
   - component: {fileID: 1138116338}
   m_Layer: 0
   m_Name: Water
-  m_TagString: Untagged
+  m_TagString: Blood
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6726,7 +6726,7 @@ GameObject:
   - component: {fileID: 2003806815}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Blood
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6896,7 +6896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterdrops: {fileID: 1138116339}
   BloodPool: {fileID: 2100000, guid: 796bac728df99b045a81926a80390fd0, type: 2}
-  fadeDuration: 5
+  fadeDuration: 3
 --- !u!1 &2052742010
 GameObject:
   m_ObjectHideFlags: 3
