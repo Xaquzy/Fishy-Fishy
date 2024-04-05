@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class RemoveOrgans : MonoBehaviour
 {
@@ -10,22 +11,38 @@ public class RemoveOrgans : MonoBehaviour
     public float HandDistFraKam = 1.5f;
     [SerializeField] private LayerMask pickUpLayerMask;
     private RemovableOrgan removableOrgan;
+    public GameObject countdownText;
     private void Update()
     {
         // Grabpoint følger med musen
         Vector3 MousePos = Input.mousePosition; //Musens position defineres
         MousePos.z = HandDistFraKam;
         Hand.position = CookCam.ScreenToWorldPoint(MousePos); //ScreenToWorldPoint
+
+        Ray ray = CookCam.ScreenPointToRay(MousePos);
+        Debug.DrawRay(ray.origin, ray.direction * 1000, Color.cyan);
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (removableOrgan == null)
             //Not carrying an object, try to grab
             {
-                if (Physics.Raycast(Hand.position, -Hand.up, out RaycastHit raycastHit, pickUpDistance, pickUpLayerMask)) //der findes ikke down så vi bruger minus op
+
+                if (Physics.Raycast(ray, out RaycastHit raycastHit, pickUpDistance, pickUpLayerMask)) //der findes ikke down så vi bruger minus op
                 {
+                    Debug.Log("hit");
                     if (raycastHit.transform.TryGetComponent(out removableOrgan))
                     {
+                        Debug.Log("Object hit: " + raycastHit.transform.name); // Debug log når et correct object er hit
                         removableOrgan.Grab(Hand);
+
+                        //countdown scriptet tændes
+                        CountDownTimer countDownTimer = countdownText.GetComponent<CountDownTimer>(); //få adgang til countdown script
+                        countDownTimer.enabled = true;
+
+                        //Timeren startes når en linje tegnes
+                        countDownTimer.StartTimer();
+
                     }
                 }
             }

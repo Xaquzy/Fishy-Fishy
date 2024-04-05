@@ -60,7 +60,6 @@ public class CookZone : MonoBehaviour
         if (playerInTrigger && Input.GetKeyDown(KeyCode.E))
         {
             InCookMode = true;
-            Debug.Log("IN COOK MODE");
             Cursor.visible = true;
             toolTip.SetActive(false);
             CookCam.SetActive(true);
@@ -123,8 +122,6 @@ public class CookZone : MonoBehaviour
     void ChooseEgenskab()
     {
         //Lav et tool tip der viser hvilket tal der svarer til hvilken egenskab
-
-        Debug.Log("VÆLG EGENSKAB");
         if (Input.GetKeyDown(KeyCode.Alpha1)) //Hvis man trykker på tallet 1
         {
             if (RemoveOrgansscript != null)
