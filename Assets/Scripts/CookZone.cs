@@ -10,43 +10,36 @@ public class CookZone : MonoBehaviour
     public Transform PlayerPos;
     public GameObject toolTip;
     public GameObject Line;
-    public GameObject knife;
     public GameObject countdownText;
     public GameObject Player;
     public GameObject ratingMessage;
     private bool playerInTrigger = false;
+    private bool InCookMode = false;
 
     //kalde på countdowntimer scriptet
     public CountDownTimer CountDownTimer;
-    //kalde på drawing script
-    public Drawing Drawing;
+    
+    //kalde på alle egenskabsscripts og deres tilhørende objekter
+    public Drawing Drawingscript;
+    public GameObject knife;
+
+    public RemoveOrgans RemoveOrgansscript;
+    public GameObject Hand;
 
 
     private void Start()
     {
-        //Sluk for musen
-        //Sluk for musen
+
         //Sluk for musen
         Cursor.visible = false;
 
-        // Tjek om tegnescriptet findes
-        //Drawing drawing = Line.GetComponent<Drawing>();
-        if (Drawing != null)
-        {
-            //sluk tegne script
-            Drawing.enabled = false;
-        }
-        
+        // Sluk egenskabsscriptne
+        SlukEgenskaber();
+
+
         toolTip.SetActive(false); //Sluk tooltip
         CookCam.SetActive(false); //Sluk cookcam
         ratingMessage.SetActive(false); //sluk ratings
-
-
-
-
-
-        //kniven skal slukkes
-        knife.SetActive(false);
 
         //CountdownText objektet slukkes (derved slukkes countdown scriptet på det også)
         countdownText.SetActive(false);
@@ -66,24 +59,22 @@ public class CookZone : MonoBehaviour
         // Check if the player is in the trigger zone and pressed the "E" key
         if (playerInTrigger && Input.GetKeyDown(KeyCode.E))
         {
+            InCookMode = true;
+            Debug.Log("IN COOK MODE");
             Cursor.visible = true;
             toolTip.SetActive(false);
             CookCam.SetActive(true);
             MainCam.enabled = false;
-
-
-            //kniven skal tændes
-            knife.SetActive(true);
-
-            //Tegne scriptet tændes
-            //Drawing drawing = Line.GetComponent<Drawing>();
-            Drawing.enabled = true;
-
-            CountDownTimer.enabled = true; //slå den til mens man er i gang med at skære
+            CountDownTimer.enabled = true; //slå den til mens man er i gang med din handling
             Debug.Log("the countdown timer script is now turned on");
 
         }
 
+        if (InCookMode == true)
+        {
+            //Vælg egenskabsfunktion
+            ChooseEgenskab();
+        }
         if (playerInTrigger == false)
         {
             toolTip.SetActive(false);
@@ -99,8 +90,9 @@ public class CookZone : MonoBehaviour
         {
             Debug.Log("Player left the trigger!");
             playerInTrigger = false;
+            InCookMode = false;
             //Drawing drawing = Line.GetComponent<Drawing>();
-            Drawing.enabled = false;
+            Drawingscript.enabled = false;
 
             //kniven skal slukkes
             knife.SetActive(false);
@@ -110,4 +102,53 @@ public class CookZone : MonoBehaviour
             Debug.Log("the countdown timer script is now turned off");
         }
     }
+
+    void SlukEgenskaber()
+    {
+        if (Drawingscript != null)
+        {
+            //sluk tegne script
+            Drawingscript.enabled = false;
+            knife.SetActive(false);
+        }
+
+        if (RemoveOrgansscript != null)
+        {
+            //sluk GrabObject script
+            RemoveOrgansscript.enabled = false;
+            Hand.SetActive(false);
+        }
+    }
+
+    void ChooseEgenskab()
+    {
+        //Lav et tool tip der viser hvilket tal der svarer til hvilken egenskab
+
+        Debug.Log("VÆLG EGENSKAB");
+        if (Input.GetKeyDown(KeyCode.Alpha1)) //Hvis man trykker på tallet 1
+        {
+            if (RemoveOrgansscript != null)
+            {
+                SlukEgenskaber(); //slukker alle og tænder en så man ikke har flere på samme tid
+
+                //Tænd GrabObject script
+                RemoveOrgansscript.enabled = true;
+                Hand.SetActive(true);
+
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2)) //Hvis man trykker på tallet 2
+        {
+            if (Drawingscript != null)
+            {
+                SlukEgenskaber(); //slukker alle og tænder en så man ikke har flere på samme tid
+
+                //Tænd tegne script
+                Drawingscript.enabled = true;
+                knife.SetActive(true);
+            }
+        }
+    }
+
 }
