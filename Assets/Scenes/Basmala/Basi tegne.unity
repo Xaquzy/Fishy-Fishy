@@ -6896,7 +6896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterdrops: {fileID: 1138116339}
   BloodPool: {fileID: 2100000, guid: 796bac728df99b045a81926a80390fd0, type: 2}
-  fadeDuration: 3
+  fadeDuration: 5
 --- !u!1 &2052742010
 GameObject:
   m_ObjectHideFlags: 3
