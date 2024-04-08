@@ -29,13 +29,23 @@ public class Drawing : MonoBehaviour
 
     public float GetAccuracyDist() //funktion til at hente accuracyDist der kaldes på i CountDownscipt når tiden er 0 og man ikke kan tegner mere
     {
-        AccuracyDist = (CalcAverageTargetPos(FishyTargetParent) - CalculateLinePos(allLines)).magnitude;
+        // Calculate the average target position
+        Vector3 averageTargetPos = CalcAverageTargetPos(FishyTargetParent);
+
+        // Calculate the line position
+        Vector3 linePos = CalculateLinePos(allLines);
+
+        // Calculate the accuracy distance
+        AccuracyDist = (averageTargetPos - linePos).magnitude;
+
         return AccuracyDist;
+        //AccuracyDist = (CalcAverageTargetPos(FishyTargetParent) - CalculateLinePos(allLines)).magnitude;
+        //return AccuracyDist;
     }
 
     void Start()
     {
-        AccuracyDist = 0;
+     AccuracyDist = 0;
     }
 
     void Update()

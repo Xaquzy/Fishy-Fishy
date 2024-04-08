@@ -38,7 +38,7 @@ public class CutScene : MonoBehaviour
     {
         Debug.Log("Vi er inde i rating funktionen.");
         float accuracyDist = Drawing.GetAccuracyDist(); //Få adgang til accuracyDist
-
+        Debug.Log("1:" + accuracyDist);
         ratingMessage.SetActive(true);
         
         //Deaktiver alle rating beskedeer
@@ -47,15 +47,16 @@ public class CutScene : MonoBehaviour
             Transform t = ratingMessage.transform.GetChild(i);
             t.gameObject.SetActive(false);
         }
-
+        Debug.Log("2:" + accuracyDist);
         GameObject rating = null;
 
         // Default rating if DropObjZone is not available
         rating = ratingMessage.transform.Find("S").gameObject;
-
+        Debug.Log("3:" + accuracyDist);
         // Ratings for drawing
         if (accuracyDist != 0)
         {
+            Debug.Log("4:" + accuracyDist);
             if (accuracyDist > 0.00001 && accuracyDist < 0.4)
             {
                 Debug.Log("Vi er inde i S ifsætningens.");
@@ -79,36 +80,41 @@ public class CutScene : MonoBehaviour
             }
             else if (accuracyDist > 0.75)
             {
+                Debug.Log("5:" + accuracyDist);
                 rating = ratingMessage.transform.Find("F").gameObject;
             }
+            Debug.Log("6:" + accuracyDist);
         }
+        Debug.Log("7:" + accuracyDist);
         // Ratings for DropObjZone
         if (DropObjZone != null)
         {
-            if (DropObjZone.ZoneScore >= 5)
-            {
-                rating = ratingMessage.transform.Find("F").gameObject;
-            }
-            else if (DropObjZone.ZoneScore == 4)
-            {
-                rating = ratingMessage.transform.Find("D").gameObject;
-            }
-            else if (DropObjZone.ZoneScore == 3)
-            {
-                rating = ratingMessage.transform.Find("C").gameObject;
-            }
-            else if (DropObjZone.ZoneScore == 2)
-            {
-                rating = ratingMessage.transform.Find("B").gameObject;
-            }
-            else if (DropObjZone.ZoneScore == 1)
-            {
-                rating = ratingMessage.transform.Find("A").gameObject;
-            }
-            else if (DropObjZone.ZoneScore == 0)
-            {
-                rating = ratingMessage.transform.Find("S").gameObject;
-            }
+            Debug.Log("Vi er i drop tingen lalala");
+            //Debug.Log("8:" + accuracyDist);
+            //if (DropObjZone.ZoneScore >= 5)
+            //{
+            //    rating = ratingMessage.transform.Find("F").gameObject;
+            //}
+            //else if (DropObjZone.ZoneScore == 4)
+            //{
+            //    rating = ratingMessage.transform.Find("D").gameObject;
+            //}
+            //else if (DropObjZone.ZoneScore == 3)
+            //{
+            //    rating = ratingMessage.transform.Find("C").gameObject;
+            //}
+            //else if (DropObjZone.ZoneScore == 2)
+            //{
+            //    rating = ratingMessage.transform.Find("B").gameObject;
+            //}
+            //else if (DropObjZone.ZoneScore == 1)
+            //{
+            //    rating = ratingMessage.transform.Find("A").gameObject;
+            //}
+            //else if (DropObjZone.ZoneScore == 0)
+            //{
+            //    rating = ratingMessage.transform.Find("S").gameObject;
+            //}
         }
         Debug.Log("Rating er valgt");
 
