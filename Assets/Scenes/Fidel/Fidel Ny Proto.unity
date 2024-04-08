@@ -7530,6 +7530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AmountToMoveOn: 3
+  ZoneScore: 0
 --- !u!1 &632910825
 GameObject:
   m_ObjectHideFlags: 0
@@ -7926,6 +7927,7 @@ MonoBehaviour:
   ratingMessage: {fileID: 1519112345}
   Line: {fileID: 822386668}
   Drawing: {fileID: 2003806817}
+  DropObjZone: {fileID: 621127015}
 --- !u!1 &796567967
 GameObject:
   m_ObjectHideFlags: 0

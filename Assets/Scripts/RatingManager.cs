@@ -7,7 +7,7 @@ public class RatingManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(ratings);
+        //Debug.Log(ratings);
     }
 
 
