@@ -8,12 +8,17 @@ public class Blood : MonoBehaviour
     public ParticleSystem waterdrops;
     public Material BloodPool;
     public float fadeDuration = 5f;
+    private float initialSize;
+    private float initialOpacity;
 
     // Start is called before the first frame update
     void Start()
     {
-        //fahriya
-        
+        BloodPool.SetFloat("_Size", initialSize);
+        BloodPool.SetFloat("_Opacity", initialOpacity);
+
+        initialSize = 0f; // Set to your desired initial size value
+        initialOpacity = 1f; // Set to your desired initial opacity value  
         
     }
 
