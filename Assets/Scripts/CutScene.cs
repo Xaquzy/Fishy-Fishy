@@ -18,6 +18,7 @@ public class CutScene : MonoBehaviour
     public GameObject knife; //Så den kan slukkes i cutscene
     public LineRenderer lineRenderer;
     public GameObject CountdownTimerText; //Så den kan slukkes i cutscene
+    public CookZone CookZone;
 
     //Rating ting
     public GameObject ratingMessage;
@@ -35,7 +36,6 @@ public class CutScene : MonoBehaviour
     public void Rating()
     {
         Debug.Log("Vi er inde i rating funktionen.");
-        //Drawing drawing = Line.GetComponent<Drawing>(); //få adgang til drawing script
         float accuracyDist = Drawing.GetAccuracyDist(); //Få adgang til accuracyDist
 
         ratingMessage.SetActive(true);
@@ -112,9 +112,8 @@ public class CutScene : MonoBehaviour
         Movement movement = Player.GetComponent<Movement>();
         movement.enabled = false;
 
-        //Slukker for Drawing script
-        //Drawing drawing = Line.GetComponent<Drawing>();
-        Drawing.enabled = false;
+        //Slukker for alle egenskaber
+        CookZone.SlukEgenskaber();
 
         //Placer spilleren i det rigtige sted 
         Player.position = CutScenePos.position;

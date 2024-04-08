@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static UnityEditor.PlayerSettings;
 
 public class RemoveOrgans : MonoBehaviour
@@ -12,6 +13,13 @@ public class RemoveOrgans : MonoBehaviour
     [SerializeField] private LayerMask pickUpLayerMask;
     private RemovableOrgan removableOrgan;
     public GameObject countdownText;
+    public float TidTilAtGrabbeObj = 10f;
+    private bool timerStarted;
+
+    private void Start()
+    {
+        timerStarted = false;
+    }
     private void Update()
     {
         // Grabpoint følger med musen
@@ -30,18 +38,21 @@ public class RemoveOrgans : MonoBehaviour
 
                 if (Physics.Raycast(ray, out RaycastHit raycastHit, pickUpDistance, pickUpLayerMask)) //der findes ikke down så vi bruger minus op
                 {
-                    Debug.Log("hit");
                     if (raycastHit.transform.TryGetComponent(out removableOrgan))
                     {
-                        Debug.Log("Object hit: " + raycastHit.transform.name); // Debug log når et correct object er hit
                         removableOrgan.Grab(Hand);
 
-                        //countdown scriptet tændes
-                        CountDownTimer countDownTimer = countdownText.GetComponent<CountDownTimer>(); //få adgang til countdown script
-                        countDownTimer.enabled = true;
-
-                        //Timeren startes når en linje tegnes
-                        countDownTimer.StartTimer();
+                        if (!timerStarted)
+                        {
+                            //countdown scriptet tændes;
+                            CountDownTimer countDownTimer = countdownText.GetComponent<CountDownTimer>(); //få adgang til countdown script
+                            countDownTimer.enabled = true;
+                            countDownTimer.CountdownTime = TidTilAtGrabbeObj;
+                            countDownTimer.StartTimer();
+                            countdownText.SetActive(true);
+                            timerStarted = true;
+                        }
+                        
 
                     }
                 }
