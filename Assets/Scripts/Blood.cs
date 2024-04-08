@@ -14,12 +14,10 @@ public class Blood : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        initialSize = 0f; // Set initial size value
+        initialOpacity = 1f; // Set initial opacity value  
         BloodPool.SetFloat("_Size", initialSize);
         BloodPool.SetFloat("_Opacity", initialOpacity);
-
-        initialSize = 0f; // Set to your desired initial size value
-        initialOpacity = 1f; // Set to your desired initial opacity value  
-        
     }
 
     // Update is called once per frame
@@ -102,7 +100,7 @@ public class Blood : MonoBehaviour
     void OnParticleCollision(GameObject other)
     {
         Debug.Log("Particle collided with: " + other.name);
-        if (other.CompareTag("Blood"))
+        if (other.CompareTag("Water"))
         {
             StartCoroutine(FadeBlood());
         }
