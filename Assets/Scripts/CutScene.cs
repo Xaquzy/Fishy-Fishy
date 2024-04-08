@@ -20,12 +20,14 @@ public class CutScene : MonoBehaviour
     public GameObject CountdownTimerText; //Så den kan slukkes i cutscene
     public CookZone CookZone;
 
+
     //Rating ting
     public GameObject ratingMessage;
     public GameObject Line; 
     private GameObject TheRating; // Et GameObject der starter tomt men senere sættes den til at være ratingen. Derefter kan ratingen kaldes i udenfor Rating() og slukkes i CutSceneInScene() 
     public Drawing Drawing;
     public DropObjZone DropObjZone;
+    public bool Cutting;
 
 
     // Update is called once per frame
@@ -54,7 +56,8 @@ public class CutScene : MonoBehaviour
         rating = ratingMessage.transform.Find("S").gameObject;
         Debug.Log("3:" + accuracyDist);
         // Ratings for drawing
-        if (accuracyDist != 0)
+        //if (accuracyDist != 0)
+        if (Cutting==true)
         {
             Debug.Log("4:" + accuracyDist);
             if (accuracyDist > 0.00001 && accuracyDist < 0.4)
@@ -87,34 +90,34 @@ public class CutScene : MonoBehaviour
         }
         Debug.Log("7:" + accuracyDist);
         // Ratings for DropObjZone
-        if (DropObjZone != null)
+        //if (DropObjZone != null)
+        if (Cutting == false)
         {
             Debug.Log("Vi er i drop tingen lalala");
-            //Debug.Log("8:" + accuracyDist);
-            //if (DropObjZone.ZoneScore >= 5)
-            //{
-            //    rating = ratingMessage.transform.Find("F").gameObject;
-            //}
-            //else if (DropObjZone.ZoneScore == 4)
-            //{
-            //    rating = ratingMessage.transform.Find("D").gameObject;
-            //}
-            //else if (DropObjZone.ZoneScore == 3)
-            //{
-            //    rating = ratingMessage.transform.Find("C").gameObject;
-            //}
-            //else if (DropObjZone.ZoneScore == 2)
-            //{
-            //    rating = ratingMessage.transform.Find("B").gameObject;
-            //}
-            //else if (DropObjZone.ZoneScore == 1)
-            //{
-            //    rating = ratingMessage.transform.Find("A").gameObject;
-            //}
-            //else if (DropObjZone.ZoneScore == 0)
-            //{
-            //    rating = ratingMessage.transform.Find("S").gameObject;
-            //}
+            if (DropObjZone.ZoneScore >= 5)
+            {
+                rating = ratingMessage.transform.Find("F").gameObject;
+            }
+            else if (DropObjZone.ZoneScore == 4)
+            {
+                rating = ratingMessage.transform.Find("D").gameObject;
+            }
+            else if (DropObjZone.ZoneScore == 3)
+            {
+                rating = ratingMessage.transform.Find("C").gameObject;
+            }
+            else if (DropObjZone.ZoneScore == 2)
+            {
+                rating = ratingMessage.transform.Find("B").gameObject;
+            }
+            else if (DropObjZone.ZoneScore == 1)
+            {
+                rating = ratingMessage.transform.Find("A").gameObject;
+            }
+            else if (DropObjZone.ZoneScore == 0)
+            {
+                rating = ratingMessage.transform.Find("S").gameObject;
+            }
         }
         Debug.Log("Rating er valgt");
 

@@ -5,15 +5,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class SwapObjects : MonoBehaviour
-
    
 {
-    public CountDownTimer countDownTimer; 
     public List<GameObject> objectsToSwap = new List<GameObject>();
     private int currentIndex = 0;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         if (objectsToSwap.Count < 2)
@@ -35,19 +31,6 @@ public class SwapObjects : MonoBehaviour
             }
         }
     }
-
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    float remainingTime = countDownTimer.remainingTime;
-    //    bool SwapFish = countDownTimer.SwapFish;
-
-    //    if (remainingTime <=1 && SwapFish)
-    //    {   
-    //        SwapObjectsInList();
-    //        countDownTimer.SwapFish = false;
-    //    }
-    //}
 
     public void SwapObjectsInList()
     {
