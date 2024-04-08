@@ -26,6 +26,10 @@ public class CookZone : MonoBehaviour
     public RemoveOrgans RemoveOrgansscript;
     public GameObject Hand;
 
+    public WaterHose WaterHosescript;
+    public GameObject hose;
+
+
 
     private void Start()
     {
@@ -102,7 +106,7 @@ public class CookZone : MonoBehaviour
         }
     }
 
-    void SlukEgenskaber()
+    public void SlukEgenskaber()
     {
         if (Drawingscript != null)
         {
@@ -116,6 +120,13 @@ public class CookZone : MonoBehaviour
             //sluk GrabObject script
             RemoveOrgansscript.enabled = false;
             Hand.SetActive(false);
+        }
+
+        if (WaterHosescript != null)
+        {
+            //Sluk vand
+            WaterHosescript.enabled = false;
+            hose.SetActive(false);
         }
     }
 
@@ -144,6 +155,18 @@ public class CookZone : MonoBehaviour
                 //Tænd tegne script
                 Drawingscript.enabled = true;
                 knife.SetActive(true);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3)) //Hvis man trykker på tallet 3
+        {
+            if (WaterHosescript != null)
+            {
+                SlukEgenskaber(); //slukker alle og tænder en så man ikke har flere på samme tid
+
+                //Tænd tegne script
+                WaterHosescript.enabled = true;
+                hose.SetActive(true);
             }
         }
     }
