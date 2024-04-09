@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Basmala/Main Menu.unity
+    guid: 3bdf348f4aec59f4db1aa37a0d1b3bb1
+  - enabled: 1
+    path: Assets/Scenes/Basmala/First Time.unity
+    guid: 5f19180f44387074ea3a35ee9f8cdffc
+  - enabled: 1
+    path: Assets/Scenes/Fidel/MiniProto-ish.unity
+    guid: 4893027b44b5cbd4a854d67631bac2d9
   m_configObjects: {}
