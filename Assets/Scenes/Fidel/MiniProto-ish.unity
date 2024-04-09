@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2701,6 +2701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AmountToMoveOn: 3
+  ZoneScore: 0
 --- !u!1 &632910825
 GameObject:
   m_ObjectHideFlags: 0
@@ -3097,6 +3098,7 @@ MonoBehaviour:
   ratingMessage: {fileID: 1519112345}
   Line: {fileID: 822386668}
   Drawing: {fileID: 2003806817}
+  DropObjZone: {fileID: 621127015}
 --- !u!1 &796567967
 GameObject:
   m_ObjectHideFlags: 0
@@ -5973,7 +5975,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d38dc7d9914c024b888dded15535887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countDownTimer: {fileID: 761527663}
   objectsToSwap:
   - {fileID: 1547093251}
   - {fileID: 1052689550}

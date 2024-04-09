@@ -51,11 +51,8 @@ public class CutScene : MonoBehaviour
         GameObject rating = null;
 
         //Ratings for drab/drop
-        Debug.Log("Accuracy Dist: " + accuracyDist);
-        if (float.IsNaN(accuracyDist))
+        if (float.IsNaN(accuracyDist)) //Hvis accucacy ikke er et tal (NaN). Vi bestemte dette ved at debug.log for at finde ud af hvad vi skal hae i if-sætningen ud fra accacydist. vi startede med if accuracyDist = null
         {
-            Debug.Log("Vi er i drop tingen lalala");
-
             if (DropObjZone.ZoneScore >= 5)
             {
                 rating = ratingMessage.transform.Find("F").gameObject;
