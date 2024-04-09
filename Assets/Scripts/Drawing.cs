@@ -112,10 +112,10 @@ public class Drawing : MonoBehaviour
         currentLinePoints.Clear();              //Listen med den nuværende linje tømmes
     }
 
-    Vector3 CalculateLinePos(List<LineRenderer> listWithLinePoints) //Beskriv denne funktion. Det er en ny version af calculateLinePos. Da der gemmer nye targets så skal vi kunne assigne alle de forskellige targets så man kan loop over alt det her
+    Vector3 CalculateLinePos(List<LineRenderer> AllLines) //Beskriv denne funktion. Det er en ny version af calculateLinePos. Da der gemmer nye targets så skal vi kunne assigne alle de forskellige targets så man kan loop over alt det her
     {
         // hvis der ikke er nogle vektorer i listen er den gennemsnitlige vektor 0
-        if (listWithLinePoints.Count == 0)
+        if (AllLines.Count == 0)
         {
             return Vector3.zero;
         }
@@ -123,7 +123,7 @@ public class Drawing : MonoBehaviour
         int numberOfPoints = 0; //Antal
         Vector3 sum = Vector3.zero; //summen sættes til 0
 
-        foreach (LineRenderer line in listWithLinePoints) //Der itereres over hvert element i listen med punkterne
+        foreach (LineRenderer line in AllLines) //Der itereres over hvert element i listen med punkterne
         {
             if (line != null) // tjek om line rendereren findes... da de tidligere linjer slettes fra spillet, men stadig er en del af denne liste, skal de alle ignores. De er "tomme/ikke-eksisterende" renderes
             {
