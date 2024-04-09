@@ -114,7 +114,7 @@ public class Drawing : MonoBehaviour
 
     Vector3 CalculateLinePos(List<LineRenderer> AllLines) //Beskriv denne funktion. Det er en ny version af calculateLinePos. Da der gemmer nye targets så skal vi kunne assigne alle de forskellige targets så man kan loop over alt det her
     {
-        // hvis der ikke er nogle vektorer i listen er den gennemsnitlige vektor 0
+        // hvis der ikke er noget i listen er den gennemsnitlige vektor 0
         if (AllLines.Count == 0)
         {
             return Vector3.zero;
@@ -163,11 +163,11 @@ public class Drawing : MonoBehaviour
             return Vector3.zero;
         }
 
-        //Henter det object der skal berenges på ved brug af index
-        GameObject currentGameObject = gameObjectList[currentGameObjectIndex];
-
         Vector3 sumPos = Vector3.zero; // Summen af positionen af alle børnene sættes til 0
         int totalChildren = 0; // antalet af børn objektet har sættes til 0
+
+        //Henter det object der skal berenges på ved brug af index
+        GameObject currentGameObject = gameObjectList[currentGameObjectIndex];
 
         //tjekker om det nuværende object findes
         if (currentGameObject != null)
