@@ -53,7 +53,7 @@ public class Drawing : MonoBehaviour
         //Kniven følger med musen
         Vector3 MousePos = Input.mousePosition; //Musens position defineres
         MousePos.z = KnivDistFraKam;
-        KnifeTarget.position = CookCam.ScreenToWorldPoint(MousePos); //ScreenToWorldPoint laver musens position på skærmen om til en position i "verden". Dog er positionen 2-dimensionel (x,y,?)
+        KnifeTarget.position = CookCam.ScreenToWorldPoint(MousePos);                                                //ScreenToWorldPoint laver musens position på skærmen om til en position i "verden". Dog er positionen 2-dimensionel (x,y,?)
 
         //Når man trykker starter en ny linje
         if (Input.GetMouseButtonDown(0))
@@ -61,15 +61,16 @@ public class Drawing : MonoBehaviour
             StartNewLine();
         }
 
-        Vector3 worldPos;
+        
         //Når knappen er nede tegner listen
         if (Input.GetMouseButton(0))
         {
             Blood.StartCoroutine();
             Vector3 mousePos = Input.mousePosition; //Musens position defineres
-            mousePos.z = AfstandTilKam; // Afstanden som der tegnes fra kam, det er en selvvalgt z-koordinat da skærmen er 2 dimensionel
-            worldPos = CookCam.ScreenToWorldPoint(mousePos); //ScreenToWorldPoint laver musens position på skærmen om til en position i "verden". Dog er positionen 2-dimensionel (x,y,?)
-            DrawPosition(worldPos); //Tegner til ved positionen i verden (som var musens position der er blevet omdannet)
+            mousePos.z = AfstandTilKam;                                                                                                                     // Afstanden som der tegnes fra kam, det er en selvvalgt z-koordinat da skærmen er 2 dimensionel
+            Vector3 worldPos;
+            worldPos = CookCam.ScreenToWorldPoint(mousePos);                                                //ScreenToWorldPoint laver musens position på skærmen om til en position i "verden". Dog er positionen 2-dimensionel (x,y,?)
+            DrawPosition(worldPos);                                                                     //Tegner til ved positionen i verden (som var musens position der er blevet omdannet)
         }
 
         //Når man giver slip stopper linjen
@@ -81,16 +82,16 @@ public class Drawing : MonoBehaviour
 
     void StartNewLine()
     {
-        currentLine = Instantiate(lineRenderer, Vector3.zero, Quaternion.identity, LineParent); // Ny linje = LavNytGameObjekt(LinerendererPrefabet bliver lavet, Objektets posistion er (0,0,0), Objektet har ingen rotation, LineParent er alle de nye objekterns parent)
-        currentLine.positionCount = 0; //Sætter listen med det nuværende punkter til at være tom, altså der er ingen punkter i listen
-        currentLine.endWidth = currentLine.startWidth = lineWidth; //Læs det 
+        currentLine = Instantiate(lineRenderer, Vector3.zero, Quaternion.identity, LineParent);     // Ny linje = LavNytGameObjekt(LinerendererPrefabet bliver lavet, Objektets posistion er (0,0,0), Objektet har ingen rotation, LineParent er alle de nye objekterns parent)
+        currentLine.positionCount = 0;                                                              //Sætter listen med det nuværende punkter til at være tom, altså der er ingen punkter i listen
+        currentLine.endWidth = currentLine.startWidth = lineWidth;                              //Læs det 
         allLines.Add(currentLine);
 
         //CountdownText objektet tændes 
         countdownText.SetActive(true);
 
         //countdown scriptet tændes også)
-        CountDownTimer countDownTimer = countdownText.GetComponent<CountDownTimer>(); //få adgang til countdown script
+        CountDownTimer countDownTimer = countdownText.GetComponent<CountDownTimer>();               //få adgang til countdown script
         countDownTimer.enabled = true;
 
         //Timeren startes når en linje tegnes
@@ -100,15 +101,15 @@ public class Drawing : MonoBehaviour
 
     void DrawPosition(Vector3 position)
     {
-        currentLinePoints.Add(position); //Tilføjer musens position til listen med punkter
-        currentLine.positionCount = currentLinePoints.Count; //Antallet af punkter i linjen sættes lig med antallet af punkter som vi selv har defineret at linjen skal have
-        currentLine.SetPosition(currentLinePoints.Count - 1, position); //Tegner en linje fra det forrige punkt til det nuværende punkt
+        currentLinePoints.Add(position);                                    //Tilføjer musens position til listen med punkter
+        currentLine.positionCount = currentLinePoints.Count;                    //Antallet af punkter i linjen sættes lig med antallet af punkter som vi selv har defineret at linjen skal have
+        currentLine.SetPosition(currentLinePoints.Count - 1, position);     //Tager et indeks og en position. index er fra 0 men de naturlige tal (som bruges når man talle rantallet af punkter i linjen) er fra 1)
     }
 
     void FinishLine()
     {
-        currentLine = null; //Stopper den nuværende linje
-        currentLinePoints.Clear(); //Listen med den nuværende linje tømmes
+        currentLine = null;                     //Stopper den nuværende linje
+        currentLinePoints.Clear();              //Listen med den nuværende linje tømmes
     }
 
     Vector3 CalculateLinePos(List<LineRenderer> listWithLinePoints) //Beskriv denne funktion. Det er en ny version af calculateLinePos. Da der gemmer nye targets så skal vi kunne assigne alle de forskellige targets så man kan loop over alt det her
