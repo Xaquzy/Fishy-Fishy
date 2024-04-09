@@ -45,7 +45,7 @@ public class Drawing : MonoBehaviour
 
     void Start()
     {
-     AccuracyDist = 0;
+
     }
 
     void Update()

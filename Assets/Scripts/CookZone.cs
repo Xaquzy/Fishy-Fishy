@@ -8,6 +8,7 @@ public class CookZone : MonoBehaviour
     public GameObject CookCam;
     public CinemachineFreeLook MainCam;
     public Transform PlayerPos;
+    public Transform CookPos;
     public GameObject toolTip;
     public GameObject Line;
     public GameObject countdownText;
@@ -33,7 +34,6 @@ public class CookZone : MonoBehaviour
 
     private void Start()
     {
-
         //Sluk for musen
         Cursor.visible = false;
 
@@ -63,6 +63,7 @@ public class CookZone : MonoBehaviour
         // Check if the player is in the trigger zone and pressed the "E" key
         if (playerInTrigger && Input.GetKeyDown(KeyCode.E))
         {
+            PlayerPos.position = CookPos.position;
             InCookMode = true;
             Cursor.visible = true;
             toolTip.SetActive(false);
@@ -70,6 +71,8 @@ public class CookZone : MonoBehaviour
             MainCam.enabled = false;
             CountDownTimer.enabled = true; //slå den til mens man er i gang med din handling
             Debug.Log("the countdown timer script is now turned on");
+
+            
 
         }
 
@@ -97,8 +100,10 @@ public class CookZone : MonoBehaviour
             //Drawing drawing = Line.GetComponent<Drawing>();
             Drawingscript.enabled = false;
 
-            //kniven skal slukkes
+            //Objekterne der er vigtige til egenskaberne skal 
             knife.SetActive(false);
+            hose.SetActive(false);
+            Hand.SetActive(false);
 
             //CountDownTimer countDown = Player.GetComponent<CountDownTimer>(); //hente countdowntimer scriptet fra spilleren
             CountDownTimer.enabled = false; ; //stoppe scriptet når man forlader skære mode

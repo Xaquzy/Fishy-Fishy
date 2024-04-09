@@ -2027,6 +2027,7 @@ MonoBehaviour:
   CookCam: {fileID: 193042369}
   MainCam: {fileID: 854134007}
   PlayerPos: {fileID: 2003806811}
+  CookPos: {fileID: 1386966552}
   toolTip: {fileID: 1896498278}
   Line: {fileID: 822386668}
   countdownText: {fileID: 761527658}
@@ -2927,7 +2928,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 339, y: 125}
+  m_AnchoredPosition: {x: 339, y: 172.6}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &761527661
@@ -3084,7 +3085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 2003806811}
-  CutScenePos: {fileID: 2003806811}
+  CutScenePos: {fileID: 1386966552}
   MainCam: {fileID: 854134007}
   CutSceneCam: {fileID: 82865672}
   CookCam: {fileID: 193042369}
@@ -4357,7 +4358,6 @@ GameObject:
   - component: {fileID: 1386966552}
   - component: {fileID: 1386966555}
   - component: {fileID: 1386966554}
-  - component: {fileID: 1386966553}
   m_Layer: 2
   m_Name: CutscenePos
   m_TagString: Untagged
@@ -4380,27 +4380,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 503368202}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1386966553
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1386966551}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1386966554
 MeshRenderer:
   m_ObjectHideFlags: 0
