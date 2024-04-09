@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEngine.Rendering.DebugUI;
 
 public class CutScene : MonoBehaviour
 {
@@ -27,20 +28,18 @@ public class CutScene : MonoBehaviour
     private GameObject TheRating; // Et GameObject der starter tomt men senere sættes den til at være ratingen. Derefter kan ratingen kaldes i udenfor Rating() og slukkes i CutSceneInScene() 
     public Drawing Drawing;
     public DropObjZone DropObjZone;
-    public bool Cutting;
 
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     
     public void Rating()
     {
         Debug.Log("Vi er inde i rating funktionen.");
         float accuracyDist = Drawing.GetAccuracyDist(); //Få adgang til accuracyDist
-        Debug.Log("1:" + accuracyDist);
         ratingMessage.SetActive(true);
         
         //Deaktiver alle rating beskedeer
@@ -49,76 +48,72 @@ public class CutScene : MonoBehaviour
             Transform t = ratingMessage.transform.GetChild(i);
             t.gameObject.SetActive(false);
         }
-        Debug.Log("2:" + accuracyDist);
         GameObject rating = null;
 
-        // Default rating if DropObjZone is not available
-        rating = ratingMessage.transform.Find("S").gameObject;
-        Debug.Log("3:" + accuracyDist);
-        // Ratings for drawing
-        //if (accuracyDist != 0)
-        if (Cutting==true)
-        {
-            Debug.Log("4:" + accuracyDist);
-            if (accuracyDist > 0.00001 && accuracyDist < 0.4)
-            {
-                Debug.Log("Vi er inde i S ifsætningens.");
-                rating = ratingMessage.transform.Find("S").gameObject;
-            }
-            else if (accuracyDist > 0.4 && accuracyDist < 0.5)
-            {
-                rating = ratingMessage.transform.Find("A").gameObject;
-            }
-            else if (accuracyDist > 0.5 && accuracyDist < 0.55)
-            {
-                rating = ratingMessage.transform.Find("B").gameObject;
-            }
-            else if (accuracyDist > 0.55 && accuracyDist < 0.65)
-            {
-                rating = ratingMessage.transform.Find("C").gameObject;
-            }
-            else if (accuracyDist > 0.65 && accuracyDist < 0.75)
-            {
-                rating = ratingMessage.transform.Find("D").gameObject;
-            }
-            else if (accuracyDist > 0.75)
-            {
-                Debug.Log("5:" + accuracyDist);
-                rating = ratingMessage.transform.Find("F").gameObject;
-            }
-            Debug.Log("6:" + accuracyDist);
-        }
-        Debug.Log("7:" + accuracyDist);
-        // Ratings for DropObjZone
-        //if (DropObjZone != null)
-        if (Cutting == false)
+        //Ratings for drab/drop
+        Debug.Log("Accuracy Dist: " + accuracyDist);
+        if (float.IsNaN(accuracyDist))
         {
             Debug.Log("Vi er i drop tingen lalala");
+
             if (DropObjZone.ZoneScore >= 5)
             {
                 rating = ratingMessage.transform.Find("F").gameObject;
             }
-            else if (DropObjZone.ZoneScore == 4)
+            if (DropObjZone.ZoneScore == 4)
             {
                 rating = ratingMessage.transform.Find("D").gameObject;
             }
-            else if (DropObjZone.ZoneScore == 3)
+            if (DropObjZone.ZoneScore == 3)
             {
                 rating = ratingMessage.transform.Find("C").gameObject;
             }
-            else if (DropObjZone.ZoneScore == 2)
+            if (DropObjZone.ZoneScore == 2)
             {
                 rating = ratingMessage.transform.Find("B").gameObject;
             }
-            else if (DropObjZone.ZoneScore == 1)
+            if (DropObjZone.ZoneScore == 1)
             {
                 rating = ratingMessage.transform.Find("A").gameObject;
             }
-            else if (DropObjZone.ZoneScore == 0)
+            if (DropObjZone.ZoneScore == 0)
             {
                 rating = ratingMessage.transform.Find("S").gameObject;
             }
         }
+        
+        //Ratings for tegne
+        else
+        {
+            Debug.Log("Accuracy Dist: " + accuracyDist);
+            if (accuracyDist > 0.00001 && accuracyDist < 0.4)
+            {
+                Debug.Log("Vi er inde i S if sætningens.");
+                rating = ratingMessage.transform.Find("S").gameObject;
+            }
+            if (accuracyDist > 0.4 && accuracyDist < 0.5)
+            {
+                rating = ratingMessage.transform.Find("A").gameObject;
+            }
+            if (accuracyDist > 0.5 && accuracyDist < 0.55)
+            {
+                rating = ratingMessage.transform.Find("B").gameObject;
+            }
+            if (accuracyDist > 0.55 && accuracyDist < 0.65)
+            {
+                rating = ratingMessage.transform.Find("C").gameObject;
+            }
+            if (accuracyDist > 0.65 && accuracyDist < 0.75)
+            {
+                rating = ratingMessage.transform.Find("D").gameObject;
+            }
+            if (accuracyDist > 0.75)
+            {
+                rating = ratingMessage.transform.Find("F").gameObject;
+            }
+        }
+        
+
         Debug.Log("Rating er valgt");
 
         rating.SetActive(true);
@@ -127,7 +122,6 @@ public class CutScene : MonoBehaviour
 
         //Gør så vi kan kalde på ratingen udenfor funktionen for at slukke den i CutSceneInScene funktionen
         TheRating = rating;
-
         //RatingManager.AddRating(rating.name); //Konverter rating navn til string
     }
 
