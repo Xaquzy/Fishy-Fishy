@@ -29,8 +29,18 @@ public class Drawing : MonoBehaviour
 
     public float GetAccuracyDist() //funktion til at hente accuracyDist der kaldes på i CountDownscipt når tiden er 0 og man ikke kan tegner mere
     {
-        AccuracyDist = (CalcAverageTargetPos(FishyTargetParent) - CalculateLinePos(allLines)).magnitude;
+        // Calculate the average target position
+        Vector3 averageTargetPos = CalcAverageTargetPos(FishyTargetParent);
+
+        // Calculate the line position
+        Vector3 linePos = CalculateLinePos(allLines);
+
+        // Calculate the accuracy distance
+        AccuracyDist = (averageTargetPos - linePos).magnitude;
+
         return AccuracyDist;
+        //AccuracyDist = (CalcAverageTargetPos(FishyTargetParent) - CalculateLinePos(allLines)).magnitude;
+        //return AccuracyDist;
     }
 
     void Start()
@@ -43,7 +53,7 @@ public class Drawing : MonoBehaviour
         //Kniven følger med musen
         Vector3 MousePos = Input.mousePosition; //Musens position defineres
         MousePos.z = KnivDistFraKam;
-        KnifeTarget.position = CookCam.ScreenToWorldPoint(MousePos); //ScreenToWorldPoint laver musens position på skærmen om til en position i "verden". Dog er positionen 2-dimensionel (x,y,?)
+        KnifeTarget.position = CookCam.ScreenToWorldPoint(MousePos);                                                //ScreenToWorldPoint laver musens position på skærmen om til en position i "verden". Dog er positionen 2-dimensionel (x,y,?)
 
         //Når man trykker starter en ny linje
         if (Input.GetMouseButtonDown(0))
@@ -51,15 +61,16 @@ public class Drawing : MonoBehaviour
             StartNewLine();
         }
 
-        Vector3 worldPos;
+        
         //Når knappen er nede tegner listen
         if (Input.GetMouseButton(0))
         {
             Blood.StartCoroutine();
             Vector3 mousePos = Input.mousePosition; //Musens position defineres
-            mousePos.z = AfstandTilKam; // Afstanden som der tegnes fra kam, det er en selvvalgt z-koordinat da skærmen er 2 dimensionel
-            worldPos = CookCam.ScreenToWorldPoint(mousePos); //ScreenToWorldPoint laver musens position på skærmen om til en position i "verden". Dog er positionen 2-dimensionel (x,y,?)
-            DrawPosition(worldPos); //Tegner til ved positionen i verden (som var musens position der er blevet omdannet)
+            mousePos.z = AfstandTilKam;                                                                                                                     // Afstanden som der tegnes fra kam, det er en selvvalgt z-koordinat da skærmen er 2 dimensionel
+            Vector3 worldPos;
+            worldPos = CookCam.ScreenToWorldPoint(mousePos);                                                //ScreenToWorldPoint laver musens position på skærmen om til en position i "verden". Dog er positionen 2-dimensionel (x,y,?)
+            DrawPosition(worldPos);                                                                     //Tegner til ved positionen i verden (som var musens position der er blevet omdannet)
         }
 
         //Når man giver slip stopper linjen
@@ -71,16 +82,16 @@ public class Drawing : MonoBehaviour
 
     void StartNewLine()
     {
-        currentLine = Instantiate(lineRenderer, Vector3.zero, Quaternion.identity, LineParent); // Ny linje = LavNytGameObjekt(LinerendererPrefabet bliver lavet, Objektets posistion er (0,0,0), Objektet har ingen rotation, LineParent er alle de nye objekterns parent)
-        currentLine.positionCount = 0; //Sætter listen med det nuværende punkter til at være tom, altså der er ingen punkter i listen
-        currentLine.endWidth = currentLine.startWidth = lineWidth; //Læs det 
+        currentLine = Instantiate(lineRenderer, Vector3.zero, Quaternion.identity, LineParent);     // Ny linje = LavNytGameObjekt(LinerendererPrefabet bliver lavet, Objektets posistion er (0,0,0), Objektet har ingen rotation, LineParent er alle de nye objekterns parent)
+        currentLine.positionCount = 0;                                                              //Sætter listen med det nuværende punkter til at være tom, altså der er ingen punkter i listen
+        currentLine.endWidth = currentLine.startWidth = lineWidth;                              //Læs det 
         allLines.Add(currentLine);
 
         //CountdownText objektet tændes 
         countdownText.SetActive(true);
 
         //countdown scriptet tændes også)
-        CountDownTimer countDownTimer = countdownText.GetComponent<CountDownTimer>(); //få adgang til countdown script
+        CountDownTimer countDownTimer = countdownText.GetComponent<CountDownTimer>();               //få adgang til countdown script
         countDownTimer.enabled = true;
 
         //Timeren startes når en linje tegnes
@@ -90,21 +101,21 @@ public class Drawing : MonoBehaviour
 
     void DrawPosition(Vector3 position)
     {
-        currentLinePoints.Add(position); //Tilføjer musens position til listen med punkter
-        currentLine.positionCount = currentLinePoints.Count; //Antallet af punkter i linjen sættes lig med antallet af punkter som vi selv har defineret at linjen skal have
-        currentLine.SetPosition(currentLinePoints.Count - 1, position); //Tegner en linje fra det forrige punkt til det nuværende punkt
+        currentLinePoints.Add(position);                                    //Tilføjer musens position til listen med punkter
+        currentLine.positionCount = currentLinePoints.Count;                    //Antallet af punkter i linjen sættes lig med antallet af punkter som vi selv har defineret at linjen skal have
+        currentLine.SetPosition(currentLinePoints.Count - 1, position);     //Tager et indeks og en position. index er fra 0 men de naturlige tal (som bruges når man talle rantallet af punkter i linjen) er fra 1)
     }
 
     void FinishLine()
     {
-        currentLine = null; //Stopper den nuværende linje
-        currentLinePoints.Clear(); //Listen med den nuværende linje tømmes
+        currentLine = null;                     //Stopper den nuværende linje
+        currentLinePoints.Clear();              //Listen med den nuværende linje tømmes
     }
 
-    Vector3 CalculateLinePos(List<LineRenderer> listWithLinePoints) //Beskriv denne funktion. Det er en ny version af calculateLinePos. Da der gemmer nye targets så skal vi kunne assigne alle de forskellige targets så man kan loop over alt det her
+    Vector3 CalculateLinePos(List<LineRenderer> AllLines) //Beskriv denne funktion. Det er en ny version af calculateLinePos. Da der gemmer nye targets så skal vi kunne assigne alle de forskellige targets så man kan loop over alt det her
     {
-        // hvis der ikke er nogle vektorer i listen er den gennemsnitlige vektor 0
-        if (listWithLinePoints.Count == 0)
+        // hvis der ikke er noget i listen er den gennemsnitlige vektor 0
+        if (AllLines.Count == 0)
         {
             return Vector3.zero;
         }
@@ -112,7 +123,7 @@ public class Drawing : MonoBehaviour
         int numberOfPoints = 0; //Antal
         Vector3 sum = Vector3.zero; //summen sættes til 0
 
-        foreach (LineRenderer line in listWithLinePoints) //Der itereres over hvert element i listen med punkterne
+        foreach (LineRenderer line in AllLines) //Der itereres over hvert element i listen med punkterne
         {
             if (line != null) // tjek om line rendereren findes... da de tidligere linjer slettes fra spillet, men stadig er en del af denne liste, skal de alle ignores. De er "tomme/ikke-eksisterende" renderes
             {
@@ -152,11 +163,11 @@ public class Drawing : MonoBehaviour
             return Vector3.zero;
         }
 
-        //Henter det object der skal berenges på ved brug af index
-        GameObject currentGameObject = gameObjectList[currentGameObjectIndex];
-
         Vector3 sumPos = Vector3.zero; // Summen af positionen af alle børnene sættes til 0
         int totalChildren = 0; // antalet af børn objektet har sættes til 0
+
+        //Henter det object der skal berenges på ved brug af index
+        GameObject currentGameObject = gameObjectList[currentGameObjectIndex];
 
         //tjekker om det nuværende object findes
         if (currentGameObject != null)

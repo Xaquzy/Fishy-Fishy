@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEngine.Rendering.DebugUI;
 
 public class CutScene : MonoBehaviour
 {
@@ -18,26 +19,27 @@ public class CutScene : MonoBehaviour
     public GameObject knife; //Så den kan slukkes i cutscene
     public LineRenderer lineRenderer;
     public GameObject CountdownTimerText; //Så den kan slukkes i cutscene
+    public CookZone CookZone;
+
 
     //Rating ting
     public GameObject ratingMessage;
-    public GameObject Line; //for at få adgang til drawing script og dermed accuracy dist
+    public GameObject Line; 
     private GameObject TheRating; // Et GameObject der starter tomt men senere sættes den til at være ratingen. Derefter kan ratingen kaldes i udenfor Rating() og slukkes i CutSceneInScene() 
     public Drawing Drawing;
+    public DropObjZone DropObjZone;
 
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     
     public void Rating()
     {
         Debug.Log("Vi er inde i rating funktionen.");
-        //Drawing drawing = Line.GetComponent<Drawing>(); //få adgang til drawing script
         float accuracyDist = Drawing.GetAccuracyDist(); //Få adgang til accuracyDist
-
         ratingMessage.SetActive(true);
         
         //Deaktiver alle rating beskedeer
@@ -46,62 +48,82 @@ public class CutScene : MonoBehaviour
             Transform t = ratingMessage.transform.GetChild(i);
             t.gameObject.SetActive(false);
         }
-
-        
-
         GameObject rating = null;
 
-        if (accuracyDist > 0.4)
+        //Ratings for drab/drop
+        if (float.IsNaN(accuracyDist)) //Hvis accucacy ikke er et tal (NaN). Vi bestemte dette ved at debug.log for at finde ud af hvad vi skal hae i if-sætningen ud fra accacydist. vi startede med if accuracyDist = null
         {
-            Debug.Log("Vi er inde i S ifsætningens.");
-            rating = ratingMessage.transform.Find("S").gameObject;
-        }
 
-        if (accuracyDist > 0.4 && accuracyDist < 0.5)
+            if (DropObjZone.ZoneScore >= 5)
+            {
+                rating = ratingMessage.transform.Find("F").gameObject;
+            }
+            if (DropObjZone.ZoneScore == 4)
+            {
+                rating = ratingMessage.transform.Find("D").gameObject;
+            }
+            if (DropObjZone.ZoneScore == 3)
+            {
+                rating = ratingMessage.transform.Find("C").gameObject;
+            }
+            if (DropObjZone.ZoneScore == 2)
+            {
+                rating = ratingMessage.transform.Find("B").gameObject;
+            }
+            if (DropObjZone.ZoneScore == 1)
+            {
+                rating = ratingMessage.transform.Find("A").gameObject;
+            }
+            if (DropObjZone.ZoneScore == 0)
+            {
+                rating = ratingMessage.transform.Find("S").gameObject;
+            }
+        }
+        
+        //Ratings for tegne
+        else
         {
-            rating = ratingMessage.transform.Find("A").gameObject;
+            Debug.Log("Accuracy Dist: " + accuracyDist);
+            if (accuracyDist > 0.00001 && accuracyDist < 0.4)
+            {
+                Debug.Log("Vi er inde i S if sætningens.");
+                rating = ratingMessage.transform.Find("S").gameObject;
+            }
+            if (accuracyDist > 0.4 && accuracyDist < 0.5)
+            {
+                rating = ratingMessage.transform.Find("A").gameObject;
+            }
+            if (accuracyDist > 0.5 && accuracyDist < 0.55)
+            {
+                rating = ratingMessage.transform.Find("B").gameObject;
+            }
+            if (accuracyDist > 0.55 && accuracyDist < 0.65)
+            {
+                rating = ratingMessage.transform.Find("C").gameObject;
+            }
+            if (accuracyDist > 0.65 && accuracyDist < 0.75)
+            {
+                rating = ratingMessage.transform.Find("D").gameObject;
+            }
+            if (accuracyDist > 0.75)
+            {
+                rating = ratingMessage.transform.Find("F").gameObject;
+            }
         }
-
-        if (accuracyDist > 0.5 && accuracyDist < 0.55)
-        {
-            rating = ratingMessage.transform.Find("B").gameObject;
-        }
-
-        if (accuracyDist > 0.55 && accuracyDist < 0.65)
-        {
-            rating = ratingMessage.transform.Find("C").gameObject;
-        }
-
-        if (accuracyDist > 0.65 && accuracyDist < 0.75)
-        {
-            rating = ratingMessage.transform.Find("D").gameObject;
-        }
-
-        if (accuracyDist > 0.75)
-        {
-            rating = ratingMessage.transform.Find("F").gameObject;
-        }
-
-        if (rating == null)
-        {
-            // Print a log message if the GameObject doesn't exist
-            Debug.LogError("The rating does not exist.");
-            return;
-
-        }
+        
 
         Debug.Log("Rating er valgt");
+
         rating.SetActive(true);
+
         Debug.Log("Rating er tændt");
 
         //Gør så vi kan kalde på ratingen udenfor funktionen for at slukke den i CutSceneInScene funktionen
         TheRating = rating;
-
         //RatingManager.AddRating(rating.name); //Konverter rating navn til string
-
     }
 
- 
+
     public void StartCutScene()
     {
         StartCoroutine(CutSceneInScene());
@@ -112,9 +134,8 @@ public class CutScene : MonoBehaviour
         Movement movement = Player.GetComponent<Movement>();
         movement.enabled = false;
 
-        //Slukker for Drawing script
-        //Drawing drawing = Line.GetComponent<Drawing>();
-        Drawing.enabled = false;
+        //Slukker for alle egenskaber
+        CookZone.SlukEgenskaber();
 
         //Placer spilleren i det rigtige sted 
         Player.position = CutScenePos.position;
@@ -154,15 +175,11 @@ public class CutScene : MonoBehaviour
         //Reset spillerens position i køkkenet?
 
         //Tænder for movement script og slukker for ratingen (og for Cutscenetext som er placeholder)
-        movement.enabled = true;
-        //ratingMessage.SetActive(false);
+        movement.enabled = true; //.SetActive(false);
 
 
 
         //FOR AT VISE ALLE RATINGS TIL SIDST
         //RatingManager.DisplayRatings(); //Det er en test for at se om ratingen bliver gemt i listen som denne funktion printer
     }
-
-    
-
 }

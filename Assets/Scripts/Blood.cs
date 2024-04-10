@@ -5,15 +5,19 @@ using UnityEngine;
 public class Blood : MonoBehaviour
 {
 
-    public ParticleSystem bloodParticles;
+    public ParticleSystem waterdrops;
     public Material BloodPool;
     public float fadeDuration = 5f;
+    private float initialSize;
+    private float initialOpacity;
 
     // Start is called before the first frame update
     void Start()
     {
-        
-        
+        initialSize = 0f; // Set initial size value
+        initialOpacity = 1f; // Set initial opacity value  
+        BloodPool.SetFloat("_Size", initialSize);
+        BloodPool.SetFloat("_Opacity", initialOpacity);
     }
 
     // Update is called once per frame
@@ -55,6 +59,7 @@ public class Blood : MonoBehaviour
 
     public IEnumerator FadeBlood()
     {
+        Debug.Log("Blood is fading");
         // Get the initial opacity value
         float initialOpacity = BloodPool.GetFloat("_Opacity");
 
@@ -82,11 +87,23 @@ public class Blood : MonoBehaviour
 
         // Ensure the opacity is set to the exact target value when the loop ends
         BloodPool.SetFloat("_Opacity", targetOpacity);
+
+        Debug.Log("Blood has faded");
     }
 
     public void StartCoroutine()
     {
         StartCoroutine(Bleed());
         //StartCoroutine(FadeBlood());
+    }
+
+    void OnParticleCollision(GameObject other)
+    {
+        Debug.Log("Particle collided with: " + other.name);
+        if (other.CompareTag("Water"))
+        {
+            StartCoroutine(FadeBlood());
+        }
+        
     }
 }
