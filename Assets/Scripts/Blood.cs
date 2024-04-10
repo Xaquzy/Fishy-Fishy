@@ -20,12 +20,7 @@ public class Blood : MonoBehaviour
         BloodPool.SetFloat("_Opacity", initialOpacity);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     public IEnumerator Bleed()
     {
         // Get the initial opacity value
@@ -94,7 +89,6 @@ public class Blood : MonoBehaviour
     public void StartCoroutine()
     {
         StartCoroutine(Bleed());
-        //StartCoroutine(FadeBlood());
     }
 
     void OnParticleCollision(GameObject other)
