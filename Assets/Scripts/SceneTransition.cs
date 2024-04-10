@@ -22,7 +22,7 @@ public class SceneTransition : MonoBehaviour
 
     public void LoadNewGame()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
         SceneManager.LoadScene("MiniProto-ish");
     }
