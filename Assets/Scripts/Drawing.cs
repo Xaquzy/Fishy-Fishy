@@ -112,7 +112,7 @@ public class Drawing : MonoBehaviour
         currentLinePoints.Clear();              //Listen med den nuværende linje tømmes
     }
 
-    Vector3 CalculateLinePos(List<LineRenderer> AllLines) //Beskriv denne funktion. Det er en ny version af calculateLinePos. Da der gemmer nye targets så skal vi kunne assigne alle de forskellige targets så man kan loop over alt det her
+    Vector3 CalculateLinePos(List<LineRenderer> AllLines)                                                               //Beskriv denne funktion. Det er en ny version af calculateLinePos. Da der gemmer nye targets så skal vi kunne assigne alle de forskellige targets så man kan loop over alt det her
     {
         // hvis der ikke er noget i listen er den gennemsnitlige vektor 0
         if (AllLines.Count == 0)
@@ -125,16 +125,16 @@ public class Drawing : MonoBehaviour
 
         foreach (LineRenderer line in AllLines) //Der itereres over hvert element i listen med punkterne
         {
-            if (line != null) // tjek om line rendereren findes... da de tidligere linjer slettes fra spillet, men stadig er en del af denne liste, skal de alle ignores. De er "tomme/ikke-eksisterende" renderes
+            if (line != null) // tjek om line rendereren findes...                                                da de tidligere linjer slettes fra spillet, men stadig er en del af denne liste, skal de alle ignores. De er "tomme/ikke-eksisterende" renderes
             {
-                Vector3[] points = new Vector3[line.positionCount];         //Laver en array (en liste i praksis) ved navn 'point' der har samme størrelse som mængden af punkter i en given linje
-                line.GetPositions(points);                                   //for hvert punkt finder den posistionen
+                Vector3[] points = new Vector3[line.positionCount];                                                         //Laver en array der har samme størrelse som mængden af punkter i en given linje
+                line.GetPositions(points);    //for hvert punkt finder den posistionen
                 foreach (Vector3 position in points)
                 {
                     sum = sum + position; //De summes op
                 }
 
-                numberOfPoints = numberOfPoints + line.positionCount;       //Tæller antallet af punkter
+                numberOfPoints = numberOfPoints + line.positionCount; //Tæller antallet af punkter
             }
         }
 
