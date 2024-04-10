@@ -17,6 +17,8 @@ public class CutScene : MonoBehaviour
     public float CutSceneTime = 5f;
     public float RatingReadTime = 5f;
     public GameObject knife; //Så den kan slukkes i cutscene
+    public GameObject hose; //Så den kan slukkes i cutscene
+    public GameObject hand; //Så den kan slukkes i cutscene
     public LineRenderer lineRenderer;
     public GameObject CountdownTimerText; //Så den kan slukkes i cutscene
     public CookZone CookZone;
@@ -140,8 +142,10 @@ public class CutScene : MonoBehaviour
         //Placer spilleren i det rigtige sted 
         Player.position = CutScenePos.position;
 
-        //kniven skal slukkes
+        //objekterne skal slukkes
         knife.SetActive(false);
+        hose.SetActive(false);
+        hand.SetActive(false);
 
         //gør linjerne gennemsigitg. Hvis linjerne bare slettes så er der ikke en position der kan bruges til at bestemme den rating man skal få senere i rating()
         Drawing.DisableAllLineRenderer();
