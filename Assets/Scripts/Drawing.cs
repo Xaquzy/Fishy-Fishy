@@ -127,13 +127,14 @@ public class Drawing : MonoBehaviour
         {
             if (line != null) // tjek om line rendereren findes... da de tidligere linjer slettes fra spillet, men stadig er en del af denne liste, skal de alle ignores. De er "tomme/ikke-eksisterende" renderes
             {
-                Vector3[] points = new Vector3[line.positionCount]; //Laver en array (en liste i praksis) ved navn 'point' der har samme størrelse som mængden af punkter i en given linje
-                numberOfPoints = numberOfPoints + line.positionCount; //Tæller antallet af punkter
-                line.GetPositions(points); //for hvert punkt finder den posistionen
+                Vector3[] points = new Vector3[line.positionCount];         //Laver en array (en liste i praksis) ved navn 'point' der har samme størrelse som mængden af punkter i en given linje
+                line.GetPositions(points);                                   //for hvert punkt finder den posistionen
                 foreach (Vector3 position in points)
                 {
                     sum = sum + position; //De summes op
                 }
+
+                numberOfPoints = numberOfPoints + line.positionCount;       //Tæller antallet af punkter
             }
         }
 
