@@ -86,28 +86,28 @@ public class CutScene : MonoBehaviour
         else
         {
             Debug.Log("Accuracy Dist: " + accuracyDist);
-            if (accuracyDist > 0.00001 && accuracyDist < 0.4)
+            if (accuracyDist > 0.00001 && accuracyDist < 0.52)
             {
                 Debug.Log("Vi er inde i S if sætningens.");
                 rating = ratingMessage.transform.Find("S").gameObject;
             }
-            if (accuracyDist > 0.4 && accuracyDist < 0.5)
+            if (accuracyDist > 0.52 && accuracyDist < 0.58)
             {
                 rating = ratingMessage.transform.Find("A").gameObject;
             }
-            if (accuracyDist > 0.5 && accuracyDist < 0.55)
+            if (accuracyDist > 0.58 && accuracyDist < 0.63)
             {
                 rating = ratingMessage.transform.Find("B").gameObject;
             }
-            if (accuracyDist > 0.55 && accuracyDist < 0.65)
+            if (accuracyDist > 0.63 && accuracyDist < 0.70)
             {
                 rating = ratingMessage.transform.Find("C").gameObject;
             }
-            if (accuracyDist > 0.65 && accuracyDist < 0.75)
+            if (accuracyDist > 0.70 && accuracyDist < 0.9)
             {
                 rating = ratingMessage.transform.Find("D").gameObject;
             }
-            if (accuracyDist > 0.75)
+            if (accuracyDist > 0.9)
             {
                 rating = ratingMessage.transform.Find("F").gameObject;
             }
