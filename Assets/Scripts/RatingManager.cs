@@ -16,31 +16,31 @@ public class RatingManager : MonoBehaviour
 
     }
 
-    // Opret en liste til at gemme ratings
+    //Opret en liste til at gemme ratings
     private static List<GameObject> ratingsList = new List<GameObject>();
 
-    // Funktion til at tilføje en ratings til listen
+    //Funktion til at tilføje en ratings til listen
     public static void AddRating(GameObject ratingObject)
     {
         ratingsList.Add(ratingObject);
     }
 
-
+    //Funktion til at vise alle ratings
     public void DisplayRatings()
     {
-        // Loop through all ratings
+        //Loop gennem alle ratings
         for (int i = 0; i < ratingsList.Count; i++)
         {
-            // Set the position of the text based on index
+            //Beregn positionen af rating baseret på indeks
             Vector3 newPosition = textParent.position + Vector3.down * (vertikaleMellemrum * i);
 
-            // Instantiate a new rating object
+            //Lav en kope af den rating de fik (som vi gemte i listen)
             GameObject newRating = Instantiate(ratingsList[i], newPosition, Quaternion.identity, textParent);
 
+            //Sæt rating objektets position
             newRating.transform.position = newPosition;
 
-
-            // Ensure the new rating object is active
+            //Tænd det nye rating objekt
             newRating.SetActive(true);
         }
     }
