@@ -30,6 +30,7 @@ public class CutScene : MonoBehaviour
     private GameObject TheRating; // Et GameObject der starter tomt men senere sættes den til at være ratingen. Derefter kan ratingen kaldes i udenfor Rating() og slukkes i CutSceneInScene() 
     public Drawing Drawing;
     public DropObjZone DropObjZone;
+    public RatingManager RatingManager;
 
 
     // Update is called once per frame
@@ -122,9 +123,8 @@ public class CutScene : MonoBehaviour
 
         //Gør så vi kan kalde på ratingen udenfor funktionen for at slukke den i CutSceneInScene funktionen
         TheRating = rating;
-        //RatingManager.AddRating(rating.name); //Konverter rating navn til string
+        RatingManager.AddRating(rating);
     }
-
 
     public void StartCutScene()
     {
@@ -184,6 +184,6 @@ public class CutScene : MonoBehaviour
 
 
         //FOR AT VISE ALLE RATINGS TIL SIDST
-        //RatingManager.DisplayRatings(); //Det er en test for at se om ratingen bliver gemt i listen som denne funktion printer
+        RatingManager.DisplayRatings(); //Det er en test for at se om ratingen bliver gemt i listen som denne funktion printer
     }
 }

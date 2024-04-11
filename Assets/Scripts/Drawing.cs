@@ -141,12 +141,10 @@ public class Drawing : MonoBehaviour
         return sum / numberOfPoints; //Summen divideres med antallet af punkter for at få gennemsnit
     }
 
-    //SKRIV OM DETTE I RAPPORTEN. NEDENSTÅENDE FUNKTION BEGREREGNER AVG-TARRGET-POS VED AT BERENGE FOR ET OBJECTS CHILDREN. EFTER DU HAR BESKREVET DETTE SÅ BESKRI PROBLEMET OM AT AVG-TARGET-POS SKAL ÆNDRE SIG PÅ BAGRUND AF FISKEN SÅ DENNE FUNKTION SKAL MODIFICERES TIL AT TAGE EN LISTE SOM ARGUMENT OG BERENGE TARGET POS FOR DET NÆSTE INDEX HVER GANG DEN KALDES
     //Vector3 CalcAverageTargetPos(GameObject gameObject) //GameObject parameteren er fordi den skal tage et gameobject (og dens children) som et argument. Det andet gameObject er bare fordi der skal være et navn
     //{
     //    Transform[] children = FishyTargetParent.GetComponentsInChildren<Transform>(); //Laver en array (en liste i praksis) med alle transforms fra objektets children
     //    Vector3 sumPos = Vector3.zero; // Summen af positionen af alle børnene sættes til 0
-
 
     //    foreach (Transform child in children)
     //    {

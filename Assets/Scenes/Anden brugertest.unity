@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -337,7 +337,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: D- Dissapointing
+  m_text: D - Dissapointing
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b0127bb880f978942849a1e5028e1e4e, type: 2}
   m_sharedMaterial: {fileID: 6247045328269160895, guid: b0127bb880f978942849a1e5028e1e4e, type: 2}
@@ -400,7 +400,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -93.38867, w: 0}
+  m_margin: {x: 0, y: 0, z: -126.30542, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2481,6 +2481,7 @@ MonoBehaviour:
   Line: {fileID: 105369477}
   Drawing: {fileID: 1652180115}
   DropObjZone: {fileID: 1030729894}
+  RatingManager: {fileID: 0}
 --- !u!224 &140377502
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11297,6 +11298,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4088284768052e94a9d4c3ef12b7292b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textParent: {fileID: 471493974}
+  vertikaleMellemrum: 30
 --- !u!1 &472184098
 GameObject:
   m_ObjectHideFlags: 0
@@ -25600,7 +25603,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1594590941}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.018189484, y: -0, z: 0.000000009313227, w: 0.9998346}
+  m_LocalRotation: {x: 0.018189497, y: -0, z: 0.000000005587936, w: 0.9998346}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
