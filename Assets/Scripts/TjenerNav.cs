@@ -1,58 +1,50 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class TjenerNav : MonoBehaviour
+public class AgentMovement : MonoBehaviour
 {
-    public Transform[] tableLocations; // Array of table locations
-    public Transform counterLocation; // Counter location
-    public float servingTime = 3f; // Time taken to serve food
-    public float waitTimeAtTable = 5f; // Time to wait at each table before returning to the counter
-    public float waitTimeAtCounter = 2f; // Time to wait at the counter before going to the next table
+    public Transform Counter; // Home location
+    public Transform[] tableLocation; // List of locations to cycle through
+    private NavMeshAgent agent;
+    private int currentLocationIndex = 0;
 
-    private NavMeshAgent Tjener;
-    private int currentTableIndex = 0;
-    private bool isAtCounter = true; // Initially, the server is at the counter
-
-    private void Start()
+    void Start()
     {
-        Tjener = GetComponent<NavMeshAgent>();
-        ReturnToCounter();
-    }
-
-    private void Update()
-    {
-        if (Tjener.remainingDistance < 0.1f && !Tjener.pathPending)
+        agent = GetComponent<NavMeshAgent>();
+        if (tableLocation.Length < 1)
         {
-            if (isAtCounter)
+            Debug.LogError("At least one location is required for movement.");
+            enabled = false;
+        }
+        GoToNextLocation();
+    }
+    void Update()
+    {
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        {
+            if ((transform.position - Counter.position).magnitude <= agent.stoppingDistance)
+
             {
+                // If at home, go to the next location
+                GoToNextLocation();
             }
             else
             {
-                ReturnToCounter();
+                // If at a location, return home
+                ToCounter();
             }
         }
     }
-
-    private void GoToNextTable()
+    void GoToNextLocation()
     {
-        if (tableLocations.Length == 0)
-        {
-            Debug.LogError("No table locations assigned!");
-            return;
-        }
-
-        if (currentTableIndex >= tableLocations.Length)
-        {
-            currentTableIndex = 0; // Reset to the first table
-        }
-
-        Tjener.SetDestination(tableLocations[currentTableIndex].position);
-        isAtCounter = false;
+        agent.SetDestination(tableLocation[currentLocationIndex].position);
+        currentLocationIndex = (currentLocationIndex + 1) % tableLocation.Length;
     }
 
-
-    private void ReturnToCounter()
+    void ToCounter()
     {
-        Tjener.SetDestination(counterLocation.position);
+        agent.SetDestination(Counter.position);
     }
+
+   
 }
