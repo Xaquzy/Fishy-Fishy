@@ -29,6 +29,7 @@ public class CookZone : MonoBehaviour
 
     public WaterHose WaterHosescript;
     public GameObject hose;
+    public GameObject hoseModel;
 
 
 
@@ -148,6 +149,9 @@ public class CookZone : MonoBehaviour
                 RemoveOrgansscript.enabled = true;
                 Hand.SetActive(true);
 
+                //Hosemodel
+                hoseModel.SetActive(true);
+
             }
         }
 
@@ -160,6 +164,9 @@ public class CookZone : MonoBehaviour
                 //Tænd tegne script
                 Drawingscript.enabled = true;
                 knife.SetActive(true);
+
+                //Hosemodel
+                hoseModel.SetActive(true);
             }
         }
 
@@ -172,6 +179,7 @@ public class CookZone : MonoBehaviour
                 //Tænd tegne script
                 WaterHosescript.enabled = true;
                 hose.SetActive(true);
+                hoseModel.SetActive(false);
             }
         }
     }
