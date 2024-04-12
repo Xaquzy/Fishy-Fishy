@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AgentMovement : MonoBehaviour
+public class TjenerNav : MonoBehaviour
 {
     public Transform Counter; // Home location
     public Transform[] tableLocation; // List of locations to cycle through

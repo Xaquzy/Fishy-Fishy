@@ -20,11 +20,11 @@ public class Movement : MonoBehaviour
     float trueSpeed;
 
     //Jumping
-    public float jumpHeight = 1;
+    //public float jumpHeight = 1;
     public float gravity = (int)9.82;
     bool isGrounded;
     Vector3 velocity;
-    public int JumpAmount = 1;
+    private int JumpAmount = 1;
     private int counter;
 
     //IEnumerator FinishCut()
@@ -94,11 +94,11 @@ public class Movement : MonoBehaviour
             counter = JumpAmount;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && counter > 0)
-        {
-            velocity.y = Mathf.Sqrt((jumpHeight * 10) * -2f * gravity);
-            counter = counter - 1;
-        }
+        //if (Input.GetKeyDown(KeyCode.Space) && counter > 0)
+        //{
+         //   velocity.y = Mathf.Sqrt((jumpHeight * 10) * -2f * gravity);
+         //   counter = counter - 1;
+       // }
 
 
         if (velocity.y > -20)
