@@ -19,7 +19,8 @@ public class Drawing : MonoBehaviour
     public GameObject countdownText;
     public Transform LineParent;
     private float AccuracyDist;
-    
+    public GameObject DebugFishyTargetParent;
+
     private List<Vector3> currentLinePoints = new List<Vector3>(); //Liste med alle punkterne som linjen er lavet ud af
     private LineRenderer currentLine;
     private List<LineRenderer> allLines = new List<LineRenderer>(); //Liste med alle linjer
@@ -50,6 +51,8 @@ public class Drawing : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("ACDIST: " + (DebugCalcAverageTargetPos(DebugFishyTargetParent) - CalculateLinePos(allLines)).magnitude);
+
         //Kniven følger med musen
         Vector3 MousePos = Input.mousePosition; //Musens position defineres
         MousePos.z = KnivDistFraKam;
@@ -141,18 +144,18 @@ public class Drawing : MonoBehaviour
         return sum / numberOfPoints; //Summen divideres med antallet af punkter for at få gennemsnit
     }
 
-    //Vector3 CalcAverageTargetPos(GameObject gameObject) //GameObject parameteren er fordi den skal tage et gameobject (og dens children) som et argument. Det andet gameObject er bare fordi der skal være et navn
-    //{
-    //    Transform[] children = FishyTargetParent.GetComponentsInChildren<Transform>(); //Laver en array (en liste i praksis) med alle transforms fra objektets children
-    //    Vector3 sumPos = Vector3.zero; // Summen af positionen af alle børnene sættes til 0
+    Vector3 DebugCalcAverageTargetPos(GameObject gameObject) //GameObject parameteren er fordi den skal tage et gameobject (og dens children) som et argument. Det andet gameObject er bare fordi der skal være et navn
+    {
+        Transform[] children = DebugFishyTargetParent.GetComponentsInChildren<Transform>(); //Laver en array (en liste i praksis) med alle transforms fra objektets children
+        Vector3 sumPos = Vector3.zero; // Summen af positionen af alle børnene sættes til 0
 
-    //    foreach (Transform child in children)
-    //    {
-    //        sumPos = sumPos + child.position; //De summes op
-    //    }
+        foreach (Transform child in children)
+        {
+            sumPos = sumPos + child.position; //De summes op
+        }
 
-    //    return sumPos / children.Length; //Gennemsnittet beregnes (summen divideret med antallet af children)
-    //}
+        return sumPos / children.Length; //Gennemsnittet beregnes (summen divideret med antallet af children)
+    }
 
     Vector3 CalcAverageTargetPos(List<GameObject> gameObjectList)
     {
