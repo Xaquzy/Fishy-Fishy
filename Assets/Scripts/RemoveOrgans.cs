@@ -29,6 +29,7 @@ public class RemoveOrgans : MonoBehaviour
 
         //Ray til raycast pickupdrop
         Ray ray = CookCam.ScreenPointToRay(MousePos);
+        Debug.DrawRay(ray.origin, ray.direction, Color.cyan);
 
         if (Input.GetKeyDown(KeyCode.E))
         {
