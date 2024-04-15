@@ -26,7 +26,7 @@ public class RemoveOrgans : MonoBehaviour
         Vector3 MousePos = Input.mousePosition; //Musens position defineres
         MousePos.z = HandDistFraKam;
         Hand.position = CookCam.ScreenToWorldPoint(MousePos); //ScreenToWorldPoint
-
+        
         //Ray til raycast pickupdrop
         Ray ray = CookCam.ScreenPointToRay(MousePos);
         Debug.DrawRay(ray.origin, ray.direction, Color.cyan);
@@ -36,7 +36,6 @@ public class RemoveOrgans : MonoBehaviour
             if (removableOrgan == null)
             //Not carrying an object, try to grab
             {
-
                 if (Physics.Raycast(ray, out RaycastHit raycastHit, pickUpDistance, pickUpLayerMask)) //der findes ikke down så vi bruger minus op
                 {
                     if (raycastHit.transform.TryGetComponent(out removableOrgan))
@@ -58,6 +57,7 @@ public class RemoveOrgans : MonoBehaviour
                     }
                 }
             }
+            
             else
             {
                 removableOrgan.Drop();
