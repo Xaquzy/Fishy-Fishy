@@ -13,6 +13,7 @@ public class RemovableOrgan : MonoBehaviour
     }
     public void Grab(Transform objectGrabPointTransform)
     {
+        objectRigidBody.constraints = RigidbodyConstraints.None; // slukker for freeze position. grunden til freeze position er tændt er grundetr æstetik hos organerne så det hele ikke bare falder alle steder i fisken
         this.objectGrabPointTransform = objectGrabPointTransform;
         objectRigidBody.useGravity = false;
     }

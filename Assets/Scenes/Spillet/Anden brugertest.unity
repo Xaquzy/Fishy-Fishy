@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4747,6 +4747,7 @@ Transform:
   - {fileID: 6481141220714741554}
   - {fileID: 8418067460308635163}
   - {fileID: 3841427596500074125}
+  - {fileID: 6949108568668817224}
   m_Father: {fileID: 543450652373663693}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &242340656
@@ -5874,7 +5875,6 @@ Transform:
   - {fileID: 2036647568329229277}
   - {fileID: 4921279363168308837}
   - {fileID: 2484831411001794045}
-  - {fileID: 6949108568668817224}
   - {fileID: 95041702094030090}
   - {fileID: 6759063255423180832}
   m_Father: {fileID: 543450652373663693}
@@ -34550,6 +34550,7 @@ MonoBehaviour:
   lineWidth: 0.08
   AfstandTilKam: 9.4
   KnivDistFraKam: 1.5
+  TidTilTegne: 5
   FishyTargetParent:
   - {fileID: 786581224}
   - {fileID: 737000043}
@@ -44461,8 +44462,7 @@ GameObject:
   - component: {fileID: 4991690350076077798}
   - component: {fileID: 6949108568668817226}
   - component: {fileID: 6949108568668817227}
-  - component: {fileID: 6949108568668817228}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Knogle.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45440,8 +45440,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.95277274, y: 0.0000000018626451, z: 0.000000029802322, w: 0.30368447}
   m_LocalPosition: {x: -1.3518977, y: 1.9362376, z: -5.999203}
-  m_LocalScale: {x: -0.022216154, y: -0.022216152, z: -0.022216154}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.02221615, y: 0.02221615, z: 0.02221615}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 272886768}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -46788,7 +46788,7 @@ GameObject:
   - component: {fileID: 7420099991419049115}
   m_Layer: 6
   m_Name: jaer.001
-  m_TagString: Untagged
+  m_TagString: GrabObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50840,7 +50840,7 @@ GameObject:
   - component: {fileID: 8402068513754093574}
   m_Layer: 6
   m_Name: air bladder.001
-  m_TagString: Untagged
+  m_TagString: GrabObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54437,7 +54437,7 @@ GameObject:
   - component: {fileID: 8327260482996583583}
   m_Layer: 6
   m_Name: hej.001
-  m_TagString: Untagged
+  m_TagString: GrabObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55218,7 +55218,7 @@ GameObject:
   - component: {fileID: 7566545598751017708}
   m_Layer: 6
   m_Name: lever?.001
-  m_TagString: Untagged
+  m_TagString: GrabObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -55590,7 +55590,7 @@ GameObject:
   - component: {fileID: 6503185554569123606}
   m_Layer: 6
   m_Name: kindey.001
-  m_TagString: Untagged
+  m_TagString: GrabObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57389,7 +57389,7 @@ GameObject:
   - component: {fileID: 6941556458365676543}
   m_Layer: 6
   m_Name: brain idk.001
-  m_TagString: Untagged
+  m_TagString: GrabObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57504,12 +57504,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573412696247092852}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.9527726, y: 0.0000000018626449, z: 0.000000029802319, w: 0.30368453}
-  m_LocalPosition: {x: -1.8022618, y: 1.8268179, z: -6.2772737}
-  m_LocalScale: {x: 0.1018196, y: 0.10181964, z: 0.10181964}
+  m_LocalRotation: {x: 0.9527727, y: 0.000000013038517, z: 0.000000029802326, w: 0.3036846}
+  m_LocalPosition: {x: -1.8022618, y: 1.8268175, z: -6.2772737}
+  m_LocalScale: {x: 0.10181959, y: 0.10181961, z: 0.101819605}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 272886768}
+  m_Father: {fileID: 240468894}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &6949108568668817226
 Rigidbody:
@@ -57559,18 +57559,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 30.009045, y: 0.45382455, z: 8.104854}
   m_Center: {x: 12.484493, y: 0.21411109, z: 0.65061766}
---- !u!114 &6949108568668817228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 573412696247092852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cf73db54048fc14a8b32d296c13242c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!33 &6970644044442087944
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -58395,7 +58383,7 @@ GameObject:
   - component: {fileID: 7305943010111781303}
   m_Layer: 6
   m_Name: "\xE5bning.001"
-  m_TagString: Untagged
+  m_TagString: GrabObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

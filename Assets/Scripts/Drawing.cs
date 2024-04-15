@@ -13,6 +13,7 @@ public class Drawing : MonoBehaviour
     public float lineWidth = 0.1f;
     public float AfstandTilKam = 8f;
     public float KnivDistFraKam = 1.5f;
+    public float TidTilTegne = 5;
     public List<GameObject> FishyTargetParent = new List<GameObject>();
     private int currentGameObjectIndex = 0;
     public Transform KnifeTarget;
@@ -20,6 +21,7 @@ public class Drawing : MonoBehaviour
     public Transform LineParent;
     private float AccuracyDist;
     public GameObject DebugFishyTargetParent;
+
 
     private List<Vector3> currentLinePoints = new List<Vector3>(); //Liste med alle punkterne som linjen er lavet ud af
     private LineRenderer currentLine;
@@ -96,9 +98,10 @@ public class Drawing : MonoBehaviour
         //countdown scriptet tændes også)
         CountDownTimer countDownTimer = countdownText.GetComponent<CountDownTimer>();               //få adgang til countdown script
         countDownTimer.enabled = true;
-
         //Timeren startes når en linje tegnes
         countDownTimer.StartTimer();
+        countDownTimer.CountdownTime = TidTilTegne;
+        countDownTimer.remainingTime = TidTilTegne;
 
     }
 
