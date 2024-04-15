@@ -5,16 +5,19 @@ using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.UIElements.Experimental;
 
 public class RatingManager : MonoBehaviour
 {
     //Rating ting
     public GameObject ratingParent;
+    public GameObject FinalRating;
     [HideInInspector] public GameObject TheRating; // Et GameObject der starter tomt men senere sættes den til at være ratingen. Derefter kan ratingen kaldes i udenfor RatingManager og slukkes i CutScene 
     public Drawing Drawing;
     public DropObjZone DropObjZone;
     public Transform textParent;
     public float vertikaleMellemrum = 50f;
+    private int TotalRatingScore = 0;
 
     void Update()
     {
@@ -42,26 +45,32 @@ public class RatingManager : MonoBehaviour
             if (DropObjZone.ZoneScore >= 5)
             {
                 rating = ratingParent.transform.Find("F").gameObject;
+                TotalRatingScore += 0;
             }
             if (DropObjZone.ZoneScore == 4)
             {
                 rating = ratingParent.transform.Find("D").gameObject;
+                TotalRatingScore += 4;
             }
             if (DropObjZone.ZoneScore == 3)
             {
                 rating = ratingParent.transform.Find("C").gameObject;
+                TotalRatingScore += 7;
             }
             if (DropObjZone.ZoneScore == 2)
             {
                 rating = ratingParent.transform.Find("B").gameObject;
+                TotalRatingScore += 10;
             }
             if (DropObjZone.ZoneScore == 1)
             {
                 rating = ratingParent.transform.Find("A").gameObject;
+                TotalRatingScore += 12;
             }
             if (DropObjZone.ZoneScore == 0)
             {
                 rating = ratingParent.transform.Find("S").gameObject;
+                TotalRatingScore += 13;
             }
         }
 
@@ -73,26 +82,32 @@ public class RatingManager : MonoBehaviour
             {
                 Debug.Log("Vi er inde i S if sætningens.");
                 rating = ratingParent.transform.Find("S").gameObject;
+                TotalRatingScore += 13;
             }
             if (accuracyDist > 580.1 && accuracyDist < 580.15)
             {
                 rating = ratingParent.transform.Find("A").gameObject;
+                TotalRatingScore += 12;
             }
             if (accuracyDist > 580.15 && accuracyDist < 580.17)
             {
                 rating = ratingParent.transform.Find("B").gameObject;
+                TotalRatingScore += 10;
             }
             if (accuracyDist > 580.17 && accuracyDist < 580.21)
             {
                 rating = ratingParent.transform.Find("C").gameObject;
+                TotalRatingScore += 7;
             }
             if (accuracyDist > 580.21 && accuracyDist < 580.24)
             {
                 rating = ratingParent.transform.Find("D").gameObject;
+                TotalRatingScore += 4;
             }
             if (accuracyDist > 580.24)
             {
                 rating = ratingParent.transform.Find("F").gameObject;
+                TotalRatingScore += 0;
             }
         }
 
@@ -135,5 +150,38 @@ public class RatingManager : MonoBehaviour
             //Tænd det nye rating objekt
             newRating.SetActive(true);
         }
+
+        GameObject finalRating = null;
+        if (TotalRatingScore >= 108)
+        {
+            finalRating = FinalRating.transform.Find("Final S").gameObject;
+        }
+
+        if (TotalRatingScore < 108 && TotalRatingScore >= 92)
+        {
+            finalRating = FinalRating.transform.Find("Final A").gameObject;
+        }
+
+        if (TotalRatingScore < 92 && TotalRatingScore >= 66)
+        {
+            finalRating = FinalRating.transform.Find("Final B").gameObject;
+        }
+
+        if (TotalRatingScore < 66 && TotalRatingScore >= 39)
+        {
+            finalRating = FinalRating.transform.Find("Final C").gameObject;
+        }
+
+        if (TotalRatingScore < 39 && TotalRatingScore > 4)
+        {
+            finalRating = FinalRating.transform.Find("Final D").gameObject;
+        }
+
+        if (TotalRatingScore <=4)
+        {
+            finalRating = FinalRating.transform.Find("Final F").gameObject;
+        }
+        finalRating.SetActive(true);
+
     }
 }
