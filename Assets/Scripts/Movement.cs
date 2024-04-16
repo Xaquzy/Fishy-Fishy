@@ -27,6 +27,14 @@ public class Movement : MonoBehaviour
     private int JumpAmount = 1;
     private int counter;
 
+
+    //Conversation manager
+
+    public AudioSource Convo1;
+    public AudioSource Convo2;
+    public AudioSource Convo3;
+    
+
     //IEnumerator FinishCut()
     //{
     //    // Check if all followers are acquired
@@ -125,5 +133,29 @@ public class Movement : MonoBehaviour
         //        PlayerPrefs.DeleteAll();
         //    }
 
+
+        if (Convo1.isPlaying || Convo2.isPlaying || Convo3.isPlaying)
+        {
+            // If any of the convos  are playing, stop the other convos
+            //if (Convo1.isPlaying)
+            //{
+            //    Convo2.Stop();
+            //    Convo3.Stop();
+            //}
+            //else if (Convo2.isPlaying)
+            //{
+            //    Convo1.Stop();
+            //    Convo3.Stop();
+            //}
+            //else if (Convo3.isPlaying)
+            //{
+            //    Convo1.Stop();
+            //    Convo2.Stop();
+            //}
+
+          
+        }
+
     }
+
 }
