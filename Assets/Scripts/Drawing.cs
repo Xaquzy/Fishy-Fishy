@@ -13,7 +13,6 @@ public class Drawing : MonoBehaviour
     public LineRenderer lineRenderer;
     public Camera CookCam;
     public float lineWidth = 0.1f;
-    public float AfstandTilKam = 8f;
     public float KnivDistFraKam = 1.5f;
     public float TidTilTegne = 5;
     public List<GameObject> FishyTargetParent = new List<GameObject>();
