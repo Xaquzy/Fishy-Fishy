@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 using UnityEngine.UIElements.Experimental;
 
 public class Drawing : MonoBehaviour
@@ -20,7 +22,7 @@ public class Drawing : MonoBehaviour
     public GameObject countdownText;
     public Transform LineParent;
     private float AccuracyDist;
-    public GameObject DebugFishyTargetParent;
+    public LayerMask TegneFlade;
 
 
     private List<Vector3> currentLinePoints = new List<Vector3>(); //Liste med alle punkterne som linjen er lavet ud af
@@ -64,16 +66,13 @@ public class Drawing : MonoBehaviour
             StartNewLine();
         }
 
-        
+
         //Når knappen er nede tegner listen
         if (Input.GetMouseButton(0))
         {
             Blood.StartCoroutine();
-            Vector3 mousePos = Input.mousePosition; //Musens position defineres
-            mousePos.z = AfstandTilKam;                                                                                                                     // Afstanden som der tegnes fra kam, det er en selvvalgt z-koordinat da skærmen er 2 dimensionel
-            Vector3 worldPos;
-            worldPos = CookCam.ScreenToWorldPoint(mousePos);                                                //ScreenToWorldPoint laver musens position på skærmen om til en position i "verden". Dog er positionen 2-dimensionel (x,y,?)
-            DrawPosition(worldPos);                                                                     //Tegner til ved positionen i verden (som var musens position der er blevet omdannet)
+            //ScreenToWorldPoint laver musens position på skærmen om til en position i "verden". Dog er positionen 2-dimensionel (x,y,?)
+            DrawPosition();                                                                     //Tegner til ved positionen i verden (som var musens position der er blevet omdannet)
         }
 
         //Når man giver slip stopper linjen
@@ -105,11 +104,19 @@ public class Drawing : MonoBehaviour
         }
     }
 
-    void DrawPosition(Vector3 position)
+    void DrawPosition()
     {
-        currentLinePoints.Add(position);                                    //Tilføjer musens position til listen med punkter
-        currentLine.positionCount = currentLinePoints.Count;                    //Antallet af punkter i linjen sættes lig med antallet af punkter som vi selv har defineret at linjen skal have
-        currentLine.SetPosition(currentLinePoints.Count - 1, position);     //Tager et indeks og en position. index er fra 0 men de naturlige tal (som bruges når man talle rantallet af punkter i linjen) er fra 1)
+        Ray ray = CookCam.ScreenPointToRay(Input.mousePosition);
+
+
+        if (Physics.Raycast(ray, out RaycastHit raycasthit, Mathf.Infinity, TegneFlade))
+        {
+            Vector3 DrawPos;
+            DrawPos = raycasthit.point; //tegner ved hvor raycast rammer
+            currentLinePoints.Add(DrawPos);                                    //Tilføjer musens position til listen med punkter
+            currentLine.positionCount = currentLinePoints.Count;                    //Antallet af punkter i linjen sættes lig med antallet af punkter som vi selv har defineret at linjen skal have
+            currentLine.SetPosition(currentLinePoints.Count - 1, DrawPos);     //Tager et indeks og en position. index er fra 0 men de naturlige tal (som bruges når man talle rantallet af punkter i linjen) er fra 1)
+        }
     }
 
     void FinishLine()
@@ -128,6 +135,8 @@ public class Drawing : MonoBehaviour
 
         int numberOfPoints = 0; //Antal
         Vector3 sum = Vector3.zero; //summen sættes til 0
+        float SumX = 0;
+        float SumZ = 0;
 
         foreach (LineRenderer line in AllLines) //Der itereres over hvert element i listen med punkterne
         {
@@ -137,28 +146,24 @@ public class Drawing : MonoBehaviour
                 line.GetPositions(points);    //for hvert punkt finder den posistionen
                 foreach (Vector3 position in points)
                 {
-                    sum = sum + line.transform.TransformPoint(position); //De summes op
+                    Vector3 worldPosition = line.transform.TransformPoint(position);
+                    SumX += worldPosition.x;
+                    SumZ += worldPosition.z;
+                    sum += worldPosition; //De summes op
                 }
 
                 numberOfPoints = numberOfPoints + line.positionCount; //Tæller antallet af punkter
             }
         }
 
-        return sum / numberOfPoints; //Summen divideres med antallet af punkter for at få gennemsnit
+        //beregn gennemsnit
+        float averageX = SumX / numberOfPoints;
+        float averageZ = SumZ / numberOfPoints;
+
+        //return sum / numberOfPoints; //Summen divideres med antallet af punkter for at få gennemsnit
+        return new Vector3(averageX, 0, averageZ);
     }
 
-    Vector3 DebugCalcAverageTargetPos(GameObject gameObject) //GameObject parameteren er fordi den skal tage et gameobject (og dens children) som et argument. Det andet gameObject er bare fordi der skal være et navn
-    {
-        Transform[] children = DebugFishyTargetParent.GetComponentsInChildren<Transform>(); //Laver en array (en liste i praksis) med alle transforms fra objektets children
-        Vector3 sumPos = Vector3.zero; // Summen af positionen af alle børnene sættes til 0
-
-        foreach (Transform child in children)
-        {
-            sumPos = sumPos + gameObject.transform.TransformPoint(child.localPosition); //De summes op. Positionenerne omdannes til global positioner
-        }
-
-        return sumPos / children.Length; //Gennemsnittet beregnes (summen divideret med antallet af children)
-    }
 
     Vector3 CalcAverageTargetPos(List<GameObject> gameObjectList)
     {
@@ -168,6 +173,8 @@ public class Drawing : MonoBehaviour
             return Vector3.zero;
         }
 
+        float SumX = 0f;
+        float SumZ = 0f;
         Vector3 sumPos = Vector3.zero; // Summen af positionen af alle børnene sættes til 0
         int totalChildren = 0; // antalet af børn objektet har sættes til 0
 
@@ -182,7 +189,9 @@ public class Drawing : MonoBehaviour
 
             foreach (Transform child in children)
             {
-                sumPos = sumPos + currentGameObject.transform.TransformPoint(child.localPosition); //De summes op. Positionenerne omdannes til global positioner da børn transforms afhænger af parent
+                SumX += child.position.x;
+                SumZ += child.position.z;
+                sumPos += child.position; //De summes op
                 totalChildren = totalChildren + 1; //tæller antallet af børn (dette skal bruges til at beregne gennemsnit.. gennemsnit = sum/antal)
             }
         }
@@ -194,13 +203,16 @@ public class Drawing : MonoBehaviour
         }
 
         //beregn gennemsnit
+        float averageX = SumX / totalChildren;
+        float averageZ = SumZ / totalChildren;
         Vector3 averagePosition = sumPos / totalChildren;
 
         //går en op i index. Der tages modulo til antallet af gameobjekter så at hvis der er 3 objekter og tælleren er noget til 4 looper den tilbage til 1
         currentGameObjectIndex = (currentGameObjectIndex + 1) % gameObjectList.Count;
 
         //Returnere gennemsnitlige pos
-        return averagePosition;
+        //return averagePosition;
+        return new Vector3(averageX, 0, averageZ);
     }
 
 
@@ -217,7 +229,7 @@ public class Drawing : MonoBehaviour
 
 
 
-public void DisableAllLineRenderer()
+    public void DisableAllLineRenderer()
     {
         foreach (LineRenderer line in allLines)
         {
@@ -240,3 +252,4 @@ public void DisableAllLineRenderer()
         }
     }
 }
+
