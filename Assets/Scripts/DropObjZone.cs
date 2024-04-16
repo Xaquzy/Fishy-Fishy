@@ -5,7 +5,7 @@ using UnityEngine;
 public class DropObjZone : MonoBehaviour
 {
     public int AmountToMoveOn;
-    public int ZoneScore;
+    [HideInInspector] public int ZoneScore;
 
     public void Start()
     {
