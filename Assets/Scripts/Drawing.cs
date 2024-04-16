@@ -156,7 +156,7 @@ public class Drawing : MonoBehaviour
 
         foreach (Transform child in children)
         {
-            sumPos = sumPos + child.position; //De summes op
+            sumPos = sumPos + gameObject.transform.TransformPoint(child.localPosition); //De summes op. Positionenerne omdannes til global positioner
         }
 
         return sumPos / children.Length; //Gennemsnittet beregnes (summen divideret med antallet af children)
@@ -184,7 +184,7 @@ public class Drawing : MonoBehaviour
 
             foreach (Transform child in children)
             {
-                sumPos = sumPos + child.position; //De summes op
+                sumPos = sumPos + currentGameObject.transform.TransformPoint(child.localPosition); //De summes op. Positionenerne omdannes til global positioner da børn transforms afhænger af parent
                 totalChildren = totalChildren + 1; //tæller antallet af børn (dette skal bruges til at beregne gennemsnit.. gennemsnit = sum/antal)
             }
         }
