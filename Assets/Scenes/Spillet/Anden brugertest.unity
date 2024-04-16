@@ -3100,6 +3100,7 @@ MonoBehaviour:
   CountdownTime: 5
   remainingTime: 6
   countdownText: {fileID: 140377503}
+  timer_running: 0
   Cutscene: {fileID: 140377501}
   OnCountDownFinished:
     m_PersistentCalls:
@@ -34417,6 +34418,7 @@ MonoBehaviour:
     m_Bits: 64
   countdownText: {fileID: 140377499}
   TidTilAtGrabbeObj: 10
+  countDownTimer: {fileID: 140377500}
 --- !u!114 &1652180115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61114,7 +61116,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

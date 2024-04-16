@@ -14,11 +14,12 @@ public class RemoveOrgans : MonoBehaviour
     private RemovableOrgan removableOrgan;
     public GameObject countdownText;
     public float TidTilAtGrabbeObj = 10f;
-    private bool timerStarted;
+    public CountDownTimer countDownTimer; 
+
 
     private void Start()
     {
-        timerStarted = false;
+
     }
     private void Update()
     {
@@ -42,23 +43,26 @@ public class RemoveOrgans : MonoBehaviour
                     {
                         removableOrgan.Grab(Hand);
 
-                        if (!timerStarted)
+                        if (countDownTimer.timer_running == false)
                         {
                             //countdown scriptet tændes;
+                            Debug.Log("CountDownActive");
                             CountDownTimer countDownTimer = countdownText.GetComponent<CountDownTimer>(); //få adgang til countdown script
                             countDownTimer.enabled = true;
                             countDownTimer.CountdownTime = TidTilAtGrabbeObj;
                             countDownTimer.StartTimer();
                             countdownText.SetActive(true);
-                            timerStarted = true;
                         }
                         
 
                     }
                 }
             }
-            
-            else
+        }
+
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            if (removableOrgan != null)
             {
                 removableOrgan.Drop();
                 removableOrgan = null;

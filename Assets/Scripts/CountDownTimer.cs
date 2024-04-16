@@ -12,7 +12,7 @@ public class CountDownTimer : MonoBehaviour
     public float CountdownTime = 5f;
     public float remainingTime;
     [SerializeField] TextMeshProUGUI countdownText;
-    private bool timer_running = false;
+    public bool timer_running = false;
 
     //Henter cutscene scriptet
     public CutScene Cutscene;

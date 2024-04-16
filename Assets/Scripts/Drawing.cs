@@ -46,10 +46,10 @@ public class Drawing : MonoBehaviour
         //return AccuracyDist;
     }
 
-    void Start()
-    {
-
-    }
+    //void Start()
+    //{
+    //    TimerActivateable = true;
+    //}
 
     void Update()
     {
@@ -92,17 +92,19 @@ public class Drawing : MonoBehaviour
         currentLine.endWidth = currentLine.startWidth = lineWidth;                              //Læs det 
         allLines.Add(currentLine);
 
-        //CountdownText objektet tændes 
-        countdownText.SetActive(true);
+        if (countDownTimer.timer_running == false)
+        {
+            //CountdownText objektet tændes 
+            countdownText.SetActive(true);
 
-        //countdown scriptet tændes også)
-        CountDownTimer countDownTimer = countdownText.GetComponent<CountDownTimer>();               //få adgang til countdown script
-        countDownTimer.enabled = true;
-        //Timeren startes når en linje tegnes
-        countDownTimer.StartTimer();
-        countDownTimer.CountdownTime = TidTilTegne;
-        countDownTimer.remainingTime = TidTilTegne;
-
+            //countdown scriptet tændes også)
+            CountDownTimer countDownTimer = countdownText.GetComponent<CountDownTimer>();               //få adgang til countdown script
+            countDownTimer.enabled = true;
+            //Timeren startes når en linje tegnes
+            countDownTimer.StartTimer();
+            countDownTimer.CountdownTime = TidTilTegne;
+            countDownTimer.remainingTime = TidTilTegne;
+        }
     }
 
     void DrawPosition(Vector3 position)
