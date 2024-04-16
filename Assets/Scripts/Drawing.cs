@@ -53,8 +53,6 @@ public class Drawing : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("ACDIST: " + (DebugCalcAverageTargetPos(DebugFishyTargetParent) - CalculateLinePos(allLines)).magnitude);
-
         //Kniven følger med musen
         Vector3 MousePos = Input.mousePosition; //Musens position defineres
         MousePos.z = KnivDistFraKam;
@@ -139,7 +137,7 @@ public class Drawing : MonoBehaviour
                 line.GetPositions(points);    //for hvert punkt finder den posistionen
                 foreach (Vector3 position in points)
                 {
-                    sum = sum + position; //De summes op
+                    sum = sum + line.transform.TransformPoint(position); //De summes op
                 }
 
                 numberOfPoints = numberOfPoints + line.positionCount; //Tæller antallet af punkter

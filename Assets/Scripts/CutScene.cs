@@ -78,7 +78,9 @@ public class CutScene : MonoBehaviour
         CountdownTimerText.SetActive(false); //Timer texten slukkes
         MainCam.enabled = true;
         CutSceneCam.SetActive(false);
+
         CutSceneTestText.SetActive(false); //Det er bare en placeholder tester
+
         RatingManager.TheRating.SetActive(false); //Sletter ratingen på skærmen så man kan spille videre
         knife.SetActive(true); //Kniven skal findes igen
 
