@@ -62,7 +62,7 @@ public class CookZone : MonoBehaviour
     private void Update()
     {
         // Check if the player is in the trigger zone and pressed the "E" key
-        if (playerInTrigger && Input.GetKeyDown(KeyCode.E))
+        if (playerInTrigger && Input.GetKeyDown(KeyCode.Space))
         {
             PlayerPos.position = CookPos.position;
             InCookMode = true;
