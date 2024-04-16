@@ -13,7 +13,6 @@ public class Drawing : MonoBehaviour
     public LineRenderer lineRenderer;
     public Camera CookCam;
     public float lineWidth = 0.1f;
-    public float AfstandTilKam = 8f;
     public float KnivDistFraKam = 1.5f;
     public float TidTilTegne = 5;
     public List<GameObject> FishyTargetParent = new List<GameObject>();
@@ -146,10 +145,9 @@ public class Drawing : MonoBehaviour
                 line.GetPositions(points);    //for hvert punkt finder den posistionen
                 foreach (Vector3 position in points)
                 {
-                    Vector3 worldPosition = line.transform.TransformPoint(position);
-                    SumX += worldPosition.x;
-                    SumZ += worldPosition.z;
-                    sum += worldPosition; //De summes op
+                    SumX += position.x;
+                    SumZ += position.z;
+                    sum += position; //De summes op
                 }
 
                 numberOfPoints = numberOfPoints + line.positionCount; //Tæller antallet af punkter

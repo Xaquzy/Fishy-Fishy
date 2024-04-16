@@ -78,32 +78,32 @@ public class RatingManager : MonoBehaviour
         else
         {
             Debug.Log("Accuracy Dist: " + accuracyDist);
-            if (accuracyDist > 0.00001 && accuracyDist <= 288.45)
+            if (accuracyDist > 0.00001 && accuracyDist <= 0.1)
             {
                 rating = ratingParent.transform.Find("S").gameObject;
                 TotalRatingScore += 13;
             }
-            if (accuracyDist > 288.45 && accuracyDist <= 287.5)
+            if (accuracyDist > 0.1 && accuracyDist <= 0.15)
             {
                 rating = ratingParent.transform.Find("A").gameObject;
                 TotalRatingScore += 12;
             }
-            if (accuracyDist > 288.4 && accuracyDist <= 288.6)
+            if (accuracyDist > 0.15 && accuracyDist <= 0.2)
             {
                 rating = ratingParent.transform.Find("B").gameObject;
                 TotalRatingScore += 10;
             }
-            if (accuracyDist > 287.55 && accuracyDist <= 287.6)
+            if (accuracyDist > 0.2 && accuracyDist <= 0.25)
             {
                 rating = ratingParent.transform.Find("C").gameObject;
                 TotalRatingScore += 7;
             }
-            if (accuracyDist > 287.6 && accuracyDist <= 287.65)
+            if (accuracyDist > 0.25 && accuracyDist <= 0.3)
             {
                 rating = ratingParent.transform.Find("D").gameObject;
                 TotalRatingScore += 4;
             }
-            if (accuracyDist > 287.65)
+            if (accuracyDist > 0.3)
             {
                 rating = ratingParent.transform.Find("F").gameObject;
                 TotalRatingScore += 0;

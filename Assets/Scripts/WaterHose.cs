@@ -13,10 +13,9 @@ public class WaterHose : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Grabpoint følger med musen
+        // Hose følger med musen
         Vector3 MousePos = Input.mousePosition; //Musens position defineres
         MousePos.z = DistFraKam;
         hose.position = CookCam.ScreenToWorldPoint(MousePos); //ScreenToWorldPoint
-
     }
 }
