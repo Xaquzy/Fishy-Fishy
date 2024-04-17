@@ -2035,7 +2035,7 @@ GameObject:
   m_Component:
   - component: {fileID: 105369478}
   - component: {fileID: 105369479}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3143,6 +3143,7 @@ MonoBehaviour:
   MainCam: {fileID: 2050777199}
   CutSceneCam: {fileID: 1662601925}
   CookCam: {fileID: 86823051}
+  WinCam: {fileID: 0}
   CutSceneTestText: {fileID: 1907619343}
   CutSceneTime: 5
   RatingReadTime: 5
@@ -3155,6 +3156,7 @@ MonoBehaviour:
   Drawing: {fileID: 1652180115}
   RatingManager: {fileID: 471493975}
   DropObjZone: {fileID: 1067144596}
+  AntalCutScenesISpillet: 11
 --- !u!224 &140377502
 RectTransform:
   m_ObjectHideFlags: 0

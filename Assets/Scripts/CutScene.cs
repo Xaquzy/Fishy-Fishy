@@ -13,6 +13,7 @@ public class CutScene : MonoBehaviour
     public CinemachineFreeLook MainCam;
     public GameObject CutSceneCam;
     public GameObject CookCam;
+    public GameObject WinCam;
     public GameObject CutSceneTestText;
     public float CutSceneTime = 5f;
     public float RatingReadTime = 5f;
@@ -25,12 +26,18 @@ public class CutScene : MonoBehaviour
     public Drawing Drawing;
     public RatingManager RatingManager;
     public DropObjZone DropObjZone;
-
+    private int AntalCutScenesSpillet = 0;
+    public int AntalCutScenesISpillet = 11;
 
     // Update is called once per frame
     void Update()
     {
+        if (AntalCutScenesSpillet == AntalCutScenesISpillet)
+        {
+            //SKIFT TIL FINAL WIN CAM
 
+            RatingManager.DisplayRatings();
+        }
     }
 
     public void StartCutScene()
@@ -92,5 +99,6 @@ public class CutScene : MonoBehaviour
 
         //Tænder for movement script og slukker for ratingen (og for Cutscenetext som er placeholder)
         movement.enabled = true; //.SetActive(false);
+        AntalCutScenesSpillet = AntalCutScenesSpillet + 1;
     }
 }
