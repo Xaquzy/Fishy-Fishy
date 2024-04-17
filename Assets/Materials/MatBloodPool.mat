@@ -27,11 +27,11 @@ Material:
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
-    - _Opacity: 0
+    - _Opacity: 1
     - _Shape: -4.17
     - _Shape_Strength: 0.67
     - _Sharpness: 1
-    - _Size: 0.32
+    - _Size: 0.24579631
     m_Colors:
     - _Color: {r: 0.8396226, g: 0.01473022, b: 0, a: 0}
   m_BuildTextureStacks: []
