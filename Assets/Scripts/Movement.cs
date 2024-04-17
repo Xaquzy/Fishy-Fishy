@@ -30,9 +30,9 @@ public class Movement : MonoBehaviour
 
     //Conversation manager
 
-    public AudioSource Convo1;
-    public AudioSource Convo2;
-    public AudioSource Convo3;
+    //public AudioSource Convo1;
+    //public AudioSource Convo2;
+    //public AudioSource Convo3;
     
 
     //IEnumerator FinishCut()
@@ -134,8 +134,8 @@ public class Movement : MonoBehaviour
         //    }
 
 
-        if (Convo1.isPlaying || Convo2.isPlaying || Convo3.isPlaying)
-        {
+        //if (Convo1.isPlaying || Convo2.isPlaying || Convo3.isPlaying)
+        //{
             // If any of the convos  are playing, stop the other convos
             //if (Convo1.isPlaying)
             //{
@@ -154,7 +154,7 @@ public class Movement : MonoBehaviour
             //}
 
           
-        }
+        //}
 
     }
 
