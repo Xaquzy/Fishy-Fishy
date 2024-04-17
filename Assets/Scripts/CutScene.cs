@@ -10,7 +10,6 @@ public class CutScene : MonoBehaviour
     //Cutscene ting
     public Transform Player;
     public Transform CutScenePos;
-    public Transform PostCutScenePos;
     public CinemachineFreeLook MainCam;
     public GameObject CutSceneCam;
     public GameObject CookCam;
@@ -80,7 +79,6 @@ public class CutScene : MonoBehaviour
         CountdownTimerText.SetActive(false); //Timer texten slukkes
         MainCam.enabled = true;
         CutSceneCam.SetActive(false);
-        Player.position = PostCutScenePos.position;
 
         CutSceneTestText.SetActive(false); //Det er bare en placeholder tester
 

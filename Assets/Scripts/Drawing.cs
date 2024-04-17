@@ -34,22 +34,30 @@ public class Drawing : MonoBehaviour
 
     public float GetAccuracyDist() //funktion til at hente accuracyDist der kaldes på i CountDownscipt når tiden er 0 og man ikke kan tegner mere
     {
+
         //Hvis target er placeholder der er ACD NaN så ratings i grab/drop virker
         if (FishyTargetParent[currentGameObjectIndex] == placeholderGameObject)
         {
             AccuracyDist = float.NaN;
+            
+            //Index går kun op når CalAvgTar bliver kaldt. Da den ik blir kaldt når ACD skal være NaN gør vi så indexet går op manuelt her
+            currentGameObjectIndex = (currentGameObjectIndex + 1) % FishyTargetParent.Count;
             return AccuracyDist;
+
         }
-        else // ellers beregn ACD som dist mellem dem
+        else
         {
+
             Vector3 averageTargetPos = CalcAverageTargetPos(FishyTargetParent);
             Vector3 linePos = CalculateLinePos(allLines);
-            AccuracyDist = (averageTargetPos - linePos).magnitude;
+            AccuracyDist = (averageTargetPos - linePos).magnitude;          //AccuracyDist = (CalcAverageTargetPos(FishyTargetParent) - CalculateLinePos(allLines)).magnitude;
+           
             return AccuracyDist;
-            //AccuracyDist = (CalcAverageTargetPos(FishyTargetParent) - CalculateLinePos(allLines)).magnitude;
-            //return AccuracyDist
         }
+        
+            
     }
+   
 
     void Start()
     {
