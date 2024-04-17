@@ -16,6 +16,7 @@ public class Drawing : MonoBehaviour
     public float KnivDistFraKam = 1.5f;
     public float TidTilTegne = 5;
     public List<GameObject> FishyTargetParent = new List<GameObject>();
+    public GameObject placeholderGameObject;
     private int currentGameObjectIndex = 0;
     public Transform KnifeTarget;
     public GameObject countdownText;
@@ -33,24 +34,26 @@ public class Drawing : MonoBehaviour
 
     public float GetAccuracyDist() //funktion til at hente accuracyDist der kaldes på i CountDownscipt når tiden er 0 og man ikke kan tegner mere
     {
-        // Calculate the average target position
-        Vector3 averageTargetPos = CalcAverageTargetPos(FishyTargetParent);
-
-        // Calculate the line position
-        Vector3 linePos = CalculateLinePos(allLines);
-
-        // Calculate the accuracy distance
-        AccuracyDist = (averageTargetPos - linePos).magnitude;
-
-        return AccuracyDist;
-        //AccuracyDist = (CalcAverageTargetPos(FishyTargetParent) - CalculateLinePos(allLines)).magnitude;
-        //return AccuracyDist;
+        //Hvis target er placeholder der er ACD NaN så ratings i grab/drop virker
+        if (FishyTargetParent[currentGameObjectIndex] == placeholderGameObject)
+        {
+            AccuracyDist = float.NaN;
+            return AccuracyDist;
+        }
+        else // ellers beregn ACD som dist mellem dem
+        {
+            Vector3 averageTargetPos = CalcAverageTargetPos(FishyTargetParent);
+            Vector3 linePos = CalculateLinePos(allLines);
+            AccuracyDist = (averageTargetPos - linePos).magnitude;
+            return AccuracyDist;
+            //AccuracyDist = (CalcAverageTargetPos(FishyTargetParent) - CalculateLinePos(allLines)).magnitude;
+            //return AccuracyDist
+        }
     }
 
-    //void Start()
-    //{
-    //    TimerActivateable = true;
-    //}
+    void Start()
+    {
+    }
 
     void Update()
     {

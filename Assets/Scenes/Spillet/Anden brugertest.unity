@@ -5907,7 +5907,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 309920932}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.018141463, y: -0.00000008940697, z: 9.313226e-10, w: 0.9998355}
+  m_LocalRotation: {x: -0.018141462, y: -0.00000008940697, z: 9.313226e-10, w: 0.9998355}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30542,7 +30542,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1594590941}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0181895, y: -0.000000059604645, z: -0, w: 0.9998346}
+  m_LocalRotation: {x: 0.018189488, y: -0.00000008940697, z: 0.0000000027939677, w: 0.99983466}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30912,6 +30912,7 @@ MonoBehaviour:
   - {fileID: 2131497013}
   - {fileID: 30530844}
   - {fileID: 1411713435}
+  placeholderGameObject: {fileID: 30530844}
   KnifeTarget: {fileID: 2000897194}
   countdownText: {fileID: 140377499}
   LineParent: {fileID: 105369478}
