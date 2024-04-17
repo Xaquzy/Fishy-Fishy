@@ -41,7 +41,7 @@ public class RatingManager : MonoBehaviour
         //Ratings for drab/drop
         if (float.IsNaN(accuracyDist)) //Hvis accucacy ikke er et tal (NaN). Vi bestemte dette ved at debug.log for at finde ud af hvad vi skal hae i if-sætningen ud fra accacydist. vi startede med if accuracyDist = null
         {
-
+            Debug.Log("ACD: NaN");
             if (DropObjZone.ZoneScore >= 5)
             {
                 rating = ratingParent.transform.Find("F").gameObject;
