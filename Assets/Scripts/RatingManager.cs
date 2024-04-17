@@ -110,6 +110,12 @@ public class RatingManager : MonoBehaviour
             }
         }
 
+        if (rating == null)
+        {
+            rating = ratingParent.transform.Find("S").gameObject;
+            TotalRatingScore += 13;
+        }
+
 
         Debug.Log("Rating er valgt");
 
