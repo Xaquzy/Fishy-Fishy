@@ -17,6 +17,7 @@ public class RatingManager : MonoBehaviour
     public DropObjZone DropObjZone;
     public Transform textParent;
     public float vertikaleMellemrum = 50f;
+    public float horizontalMellemrum = 100f;
     private int TotalRatingScore = 0;
 
     void Update()
@@ -140,11 +141,12 @@ public class RatingManager : MonoBehaviour
     //Funktion til at vise alle ratings
     public void DisplayRatings()
     {
+        int kolonne = 0;
         //Loop gennem alle ratings
         for (int i = 0; i < ratingsList.Count; i++)
         {
             //Beregn positionen af rating baseret på indeks
-            Vector3 newPosition = textParent.position + Vector3.down * (vertikaleMellemrum * i);
+            Vector3 newPosition = textParent.position + Vector3.down * (vertikaleMellemrum * i) + Vector3.right * (horizontalMellemrum * kolonne);
 
             //Lav en kopi af den rating de fik (som vi gemte i listen)
             GameObject newRating = Instantiate(ratingsList[i], newPosition, Quaternion.identity, textParent);
@@ -154,6 +156,11 @@ public class RatingManager : MonoBehaviour
 
             //Tænd det nye rating objekt
             newRating.SetActive(true);
+
+            if (i == 5)
+            {
+                kolonne = kolonne + 1;  
+            }
         }
 
         GameObject finalRating = null;
