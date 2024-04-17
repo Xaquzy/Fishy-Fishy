@@ -19,7 +19,8 @@ public class CookZone : MonoBehaviour
 
     //kalde på countdowntimer scriptet
     public CountDownTimer CountDownTimer;
-    
+
+
     //kalde på alle egenskabsscripts og deres tilhørende objekter
     public Drawing Drawingscript;
     public GameObject knife;
@@ -152,6 +153,7 @@ public class CookZone : MonoBehaviour
                 //Hosemodel
                 hoseModel.SetActive(true);
 
+
             }
         }
 
@@ -183,5 +185,4 @@ public class CookZone : MonoBehaviour
             }
         }
     }
-
 }

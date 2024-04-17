@@ -25,6 +25,7 @@ public class CutScene : MonoBehaviour
     public CookZone CookZone;
     public Drawing Drawing;
     public RatingManager RatingManager;
+    public DropObjZone DropObjZone;
 
 
     // Update is called once per frame
@@ -84,6 +85,9 @@ public class CutScene : MonoBehaviour
         CutSceneTestText.SetActive(false); //Det er bare en placeholder tester
 
         RatingManager.TheRating.SetActive(false); //Sletter ratingen på skærmen så man kan spille videre
+        DropObjZone.AmountToMoveOnIndex = (DropObjZone.AmountToMoveOnIndex + 1) % DropObjZone.AmountToMoveOn.Count;  //Opdaterer ens index til zonescore ting til organdr                                                                                                          
+        DropObjZone.ZoneScore = DropObjZone.AmountToMoveOn[DropObjZone.AmountToMoveOnIndex];
+
         knife.SetActive(true); //Kniven skal findes igen
 
         //Reset spillerens position i køkkenet?
