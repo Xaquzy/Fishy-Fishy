@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Basmala/Main Menu.unity
+    path: Assets/Scenes/Spillet/Main Menu.unity
     guid: 3bdf348f4aec59f4db1aa37a0d1b3bb1
   - enabled: 1
     path: Assets/Scenes/Basmala/First Time.unity
