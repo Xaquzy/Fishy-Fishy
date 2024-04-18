@@ -41,6 +41,10 @@ public class TutCookZone : MonoBehaviour
 
     public Blood Blood;
 
+    private bool part1Played = false;
+    private bool part2Played = false;
+    private bool part3Played = false;
+
 
     private void Start()
     {
@@ -87,7 +91,35 @@ public class TutCookZone : MonoBehaviour
             CountDownTimer.enabled = true; //slå den til mens man er i gang med din handling
             Debug.Log("the countdown timer script is now turned on");
 
-            
+            if (SwapObjects.currentIndex == 0 && !part1Played)
+            {
+                Part1.Play();
+                Debug.Log("Det er nu tid til at skære gutter");
+                pressParent.transform.Find("Press2").gameObject.SetActive(true);
+                part1Played = true;
+
+            }
+            if (SwapObjects.currentIndex == 1 && !part2Played)
+            {
+                Debug.Log("Det er nu tid til at vakse gutter");
+                pressParent.transform.Find("Press3").gameObject.SetActive(true);
+                Part2.Play();
+                part2Played = true;
+
+            }
+            Debug.Log("Opacity" + Blood.BloodPool.GetFloat("_Opacity"));
+
+            // Check if Part2 has been played and BloodPool opacity is 0
+            if (part2Played && Blood.BloodPool.GetFloat("_Opacity") == 0 && !part3Played)
+            {
+                Debug.Log("Det er nu tid til at grabbe gutter");
+                pressParent.transform.Find("Press1").gameObject.SetActive(true);
+                Debug.Log("Before playing Part3");
+                Part3.Play();
+                Debug.Log("After playing Part3");
+
+                part3Played = true;
+            }
         }
 
         if (InCookMode == true)
@@ -95,33 +127,15 @@ public class TutCookZone : MonoBehaviour
             //Vælg egenskabsfunktion
             ChooseEgenskab();
 
-            if (SwapObjects.currentIndex == 0)
-            {
-                Part1.Play();
-                Debug.Log("Det er nu tid til at skære gutter");
-                pressParent.transform.Find("Press2").gameObject.SetActive(true);
-                
-            }
-            if (SwapObjects.currentIndex == 1)
-            {
-                Debug.Log("Det er nu tid til at vakse gutter");
-                pressParent.transform.Find("Press3").gameObject.SetActive(true);
-                Part2.Play();
-
-            }
-            // Check if Part2 has been played and BloodPool opacity is 0
-            if (Part2.isPlaying && Blood.BloodPool.GetFloat("_Opacity") == 0)
-            {
-                Debug.Log("Det er nu tid til at grabbe gutter");
-                pressParent.transform.Find("Press1").gameObject.SetActive(true);
-                Part3.Play();
-            }
         }
         if (playerInTrigger == false)
         {
             toolTip.SetActive(false);
             CookCam.SetActive(false);
             MainCam.enabled = true;
+            pressParent.transform.Find("Press1").gameObject.SetActive(false);
+            pressParent.transform.Find("Press2").gameObject.SetActive(false);
+            pressParent.transform.Find("Press3").gameObject.SetActive(false);
         }
     }
 
@@ -144,9 +158,7 @@ public class TutCookZone : MonoBehaviour
             //CountDownTimer countDown = Player.GetComponent<CountDownTimer>(); //hente countdowntimer scriptet fra spilleren
             CountDownTimer.enabled = false; ; //stoppe scriptet når man forlader skære mode
             
-            pressParent.transform.Find("Press1").gameObject.SetActive(false);
-            pressParent.transform.Find("Press2").gameObject.SetActive(false);
-            pressParent.transform.Find("Press3").gameObject.SetActive(false);
+            
 
             Debug.Log("the countdown timer script is now turned off");
         }
