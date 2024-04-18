@@ -23,11 +23,13 @@ public class CameraMove : MonoBehaviour
     public float LastPointTime = 2f;
     public GameObject TutorialCam;
     public CinemachineFreeLook MainCam;
+    private float timeElapsed = 0;
 
     private bool isMoving = true;
 
     private void Start()
     {
+        timeElapsed = 0;
         NextPoint();
 
         subParent.SetActive(true);
@@ -42,6 +44,8 @@ public class CameraMove : MonoBehaviour
 
     void Update()
     {
+        timeElapsed = timeElapsed + Time.deltaTime;
+        Debug.Log("Time Elapsed: " + timeElapsed);
         if (!isMoving)
         {
             return;
@@ -58,33 +62,34 @@ public class CameraMove : MonoBehaviour
             NextPoint();
         }
 
-        Debug.Log("Current position: " + transform.position);
-        if (Vector3.Distance(transform.position, new Vector3(185.860565f, 204.089996f, 195.037949f)) < 0.03f)
+        //Debug.Log("Current position: " + transform.position);
+
+        if (timeElapsed >= 7f)
         {
             Sub1.SetActive(false);
             Sub2.SetActive(true);
         }
-        if (Vector3.Distance(transform.position, new Vector3(196.451462f, 204.089996f, 211.227127f)) < 0.03f)
+        if (timeElapsed >= 12f)
         {
             Sub2.SetActive(false);
             Sub3.SetActive(true);
         }
-        if (Vector3.Distance(transform.position, new Vector3(214.567444f, 204.089996f, 214.730057f)) < 0.03f)
+        if (timeElapsed >= 19.5f)
         {
             Sub3.SetActive(false);
             Sub4.SetActive(true);
         }
-        if (Vector3.Distance(transform.position, new Vector3(215.847168f, 204.089996f, 201.592606f)) < 0.03f)
+        if (timeElapsed >= 26f)
         {
             Sub4.SetActive(false);
             Sub5.SetActive(true);
         }
-        if (Vector3.Distance(transform.position, new Vector3(215.903076f, 204.089996f, 191.234177f)) < 0.03f)
+        if (timeElapsed >= 31f)
         {
             Sub5.SetActive(false);
             Sub6.SetActive(true);
         }
-         if (Vector3.Distance(transform.position, new Vector3(215.929993f, 204.089996f, 186.25f)) < 0.03f)
+        if (timeElapsed >= 33f)
         {
             Debug.Log("JOJFNFE");
             isMoving = false; // Stop the camera movement
