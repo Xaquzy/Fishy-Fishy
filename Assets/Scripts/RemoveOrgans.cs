@@ -14,12 +14,15 @@ public class RemoveOrgans : MonoBehaviour
     private RemovableOrgan removableOrgan;
     public GameObject countdownText;
     public float TidTilAtGrabbeObj = 10f;
-    public CountDownTimer countDownTimer; 
+    public CountDownTimer countDownTimer;
+    
+    //Animation
+    public Animator HandAnimator;
+
 
 
     private void Start()
     {
-
     }
     private void Update()
     {
@@ -41,8 +44,10 @@ public class RemoveOrgans : MonoBehaviour
                 {
                     if (raycastHit.transform.TryGetComponent(out removableOrgan))
                     {
+                        HandAnimator.SetBool("Ud", false);
+                        HandAnimator.SetBool("Ind", true);
                         removableOrgan.Grab(Hand);
-
+          
                         if (countDownTimer.timer_running == false)
                         {
                             //countdown scriptet tændes;
@@ -64,6 +69,8 @@ public class RemoveOrgans : MonoBehaviour
         {
             if (removableOrgan != null)
             {
+                HandAnimator.SetBool("Ind", false);
+                HandAnimator.SetBool("Ud", true);
                 removableOrgan.Drop();
                 removableOrgan = null;
             }
