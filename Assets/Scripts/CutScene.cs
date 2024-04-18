@@ -14,6 +14,7 @@ public class CutScene : MonoBehaviour
     public CinemachineFreeLook MainCam;
     public GameObject CutSceneCam;
     public GameObject CookCam;
+    public SwapObjects SwapObjects;
     
     //Animation
     public Animator PlayerAnimator;
@@ -97,6 +98,7 @@ public class CutScene : MonoBehaviour
 
         CutSceneTestText.SetActive(false); //Det er bare en placeholder tester
         PlayerAnimator.SetBool("Cutscene", false);
+        SwapObjects.SwapObjectsInList();
 
         RatingManager.TheRating.SetActive(false); //Sletter ratingen på skærmen så man kan spille videre
         DropObjZone.AmountToMoveOnIndex = (DropObjZone.AmountToMoveOnIndex + 1) % DropObjZone.AmountToMoveOn.Count;  //Opdaterer ens index til zonescore ting til organdr                                                                                                          
