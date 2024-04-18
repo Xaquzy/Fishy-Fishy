@@ -8,7 +8,7 @@ public class SwapObjects : MonoBehaviour
    
 {
     public List<GameObject> objectsToSwap = new List<GameObject>();
-    private int currentIndex = 0;
+    public int currentIndex = 0;
 
     void Start()
     {

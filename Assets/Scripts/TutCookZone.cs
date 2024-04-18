@@ -95,23 +95,26 @@ public class TutCookZone : MonoBehaviour
             //Vælg egenskabsfunktion
             ChooseEgenskab();
 
-            if (SwapObjects.objectsToSwap[0])
+            if (SwapObjects.currentIndex == 0)
             {
-                pressParent.transform.Find("Press2").gameObject.SetActive(true);
                 Part1.Play();
+                Debug.Log("Det er nu tid til at skære gutter");
+                pressParent.transform.Find("Press2").gameObject.SetActive(true);
+                
             }
-            if (SwapObjects.objectsToSwap[1])
+            if (SwapObjects.currentIndex == 1)
             {
-                pressParent.transform.Find("Press1").gameObject.SetActive(true);
+                Debug.Log("Det er nu tid til at vakse gutter");
+                pressParent.transform.Find("Press3").gameObject.SetActive(true);
                 Part2.Play();
 
-                if (Blood.BloodPool.GetFloat("_Opacity") == 0)
-                {
-                    pressParent.transform.Find("Press1").gameObject.SetActive(true);
-                    Part3.Play();
-
-                }
-
+            }
+            // Check if Part2 has been played and BloodPool opacity is 0
+            if (Part2.isPlaying && Blood.BloodPool.GetFloat("_Opacity") == 0)
+            {
+                Debug.Log("Det er nu tid til at grabbe gutter");
+                pressParent.transform.Find("Press1").gameObject.SetActive(true);
+                Part3.Play();
             }
         }
         if (playerInTrigger == false)

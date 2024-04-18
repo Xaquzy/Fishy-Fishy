@@ -27,6 +27,7 @@ public class CameraMove : MonoBehaviour
 
     private bool isMoving = true;
 
+
     private void Start()
     {
         timeElapsed = 0;

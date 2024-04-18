@@ -29,6 +29,7 @@ public class CutScene : MonoBehaviour
     public LineRenderer lineRenderer;
     public GameObject CountdownTimerText; //Så den kan slukkes i cutscene
     public CookZone CookZone;
+    public TutCookZone TutCookZone;
     public Drawing Drawing;
     public RatingManager RatingManager;
     public DropObjZone DropObjZone;
@@ -57,7 +58,15 @@ public class CutScene : MonoBehaviour
         movement.enabled = false;
 
         //Slukker for alle egenskaber
-        CookZone.SlukEgenskaber();
+        if(CookZone==null)
+        {
+            TutCookZone.SlukEgenskaber();
+        }
+        else
+        {
+            CookZone.SlukEgenskaber();
+        }
+        
 
         //Placer spilleren i det rigtige sted og med korrekt rotation
         Player.position = CutScenePos.position;
