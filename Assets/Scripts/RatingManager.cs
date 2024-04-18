@@ -141,29 +141,29 @@ public class RatingManager : MonoBehaviour
     //Funktion til at vise alle ratings
     public void DisplayRatings()
     {
-        int kolonne = 0;
-        int række = 0;
-        //Loop gennem alle ratings
-        for (int i = 0; i < ratingsList.Count; i++)
-        {
-            //Beregn positionen af rating baseret på indeks
-            Vector3 newPosition = textParent.position + Vector3.down * (vertikaleMellemrum * række) + Vector3.right * (horizontalMellemrum * kolonne);
+    //    int kolonne = 0;
+    //    int række = 0;
+    //    //Loop gennem alle ratings
+    //    for (int i = 0; i < ratingsList.Count; i++)
+    //    {
+    //        //Beregn positionen af rating baseret på indeks
+    //        Vector3 newPosition = textParent.position + Vector3.down * (vertikaleMellemrum * række) + Vector3.right * (horizontalMellemrum * kolonne);
 
-            //Lav en kopi af den rating de fik (som vi gemte i listen)
-            GameObject newRating = Instantiate(ratingsList[i], newPosition, Quaternion.identity, textParent);
+    //        //Lav en kopi af den rating de fik (som vi gemte i listen)
+    //        GameObject newRating = Instantiate(ratingsList[i], newPosition, Quaternion.identity, textParent);
 
-            //Sæt rating objektets position
-            newRating.transform.position = newPosition;
+    //        //Sæt rating objektets position
+    //        newRating.transform.position = newPosition;
 
-            //Tænd det nye rating objekt
-            newRating.SetActive(true);
+    //        //Tænd det nye rating objekt
+    //        newRating.SetActive(true);
 
-            if ((i + 1) % 5 == 0)
-            {
-                kolonne = kolonne + 1;
-                række = 0;
-            }
-        }
+    //        if ((i + 1) % 5 == 0) 
+    //        {
+    //            kolonne = kolonne + 1;
+    //            række = 0;
+    //        }
+    //   }
 
         GameObject finalRating = null;
         if (TotalRatingScore >= 108)
