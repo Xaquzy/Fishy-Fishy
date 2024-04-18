@@ -23,6 +23,7 @@ public class CookZone : MonoBehaviour
     //kalde på alle egenskabsscripts og deres tilhørende objekter
     public Drawing Drawingscript;
     public GameObject knife;
+    public GameObject Modelkniv;
 
     public RemoveOrgans RemoveOrgansscript;
     public GameObject Hand;
@@ -151,6 +152,9 @@ public class CookZone : MonoBehaviour
                 //Hosemodel
                 hoseModel.SetActive(true);
 
+                //kniv model
+                Modelkniv.SetActive(true);
+
 
             }
         }
@@ -164,6 +168,7 @@ public class CookZone : MonoBehaviour
                 //Tænd tegne script
                 Drawingscript.enabled = true;
                 knife.SetActive(true);
+                Modelkniv.SetActive(false);
 
                 //Hosemodel
                 hoseModel.SetActive(true);
@@ -180,6 +185,9 @@ public class CookZone : MonoBehaviour
                 WaterHosescript.enabled = true;
                 hose.SetActive(true);
                 hoseModel.SetActive(false);
+
+                //Kniv model
+                Modelkniv.SetActive(true);
             }
         }
     }
