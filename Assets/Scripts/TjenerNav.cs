@@ -23,7 +23,6 @@ public class TjenerNav : MonoBehaviour
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
             if ((transform.position - Counter.position).magnitude <= agent.stoppingDistance)
-
             {
                 // If at home, go to the next location
                 GoToNextLocation();
@@ -35,6 +34,7 @@ public class TjenerNav : MonoBehaviour
             }
         }
     }
+
     void GoToNextLocation()
     {
         agent.SetDestination(tableLocation[currentLocationIndex].position);
