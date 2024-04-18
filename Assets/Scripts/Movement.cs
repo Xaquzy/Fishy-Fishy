@@ -59,8 +59,8 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Cursor.visible = false;
 
-        
         //StartCoroutine(FinishCut());
 
         //Grounding

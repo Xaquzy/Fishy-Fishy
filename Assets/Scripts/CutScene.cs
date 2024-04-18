@@ -20,7 +20,6 @@ public class CutScene : MonoBehaviour
     public Animator PlayerAnimator;
 
     //public GameObject WinCam;
-    public GameObject CutSceneTestText;
     public float CutSceneTime = 5f;
     public float RatingReadTime = 5f;
     public GameObject knife; //Så den kan slukkes i cutscene
@@ -80,7 +79,6 @@ public class CutScene : MonoBehaviour
         //Den reelle cutscene
         //Afspil animationer
         //Afspil Lyd
-        CutSceneTestText.SetActive(true); //Det er bare en placeholder tester
         PlayerAnimator.SetBool("Cutscene", true);
 
         yield return new WaitForSeconds(CutSceneTime); //kode til lidt pause så man kan se Cutscene før ratingen popper up
@@ -96,7 +94,6 @@ public class CutScene : MonoBehaviour
         MainCam.enabled = true;
         CutSceneCam.SetActive(false);
 
-        CutSceneTestText.SetActive(false); //Det er bare en placeholder tester
         PlayerAnimator.SetBool("Cutscene", false);
         SwapObjects.SwapObjectsInList();
 
