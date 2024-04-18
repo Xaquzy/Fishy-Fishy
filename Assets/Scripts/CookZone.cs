@@ -7,7 +7,6 @@ public class CookZone : MonoBehaviour
 {
     public GameObject CookCam;
     public CinemachineFreeLook MainCam;
-    public Transform PlayerPos;
     public Transform CookPos;
     public GameObject toolTip;
     public GameObject Line;
@@ -65,7 +64,6 @@ public class CookZone : MonoBehaviour
         // Check if the player is in the trigger zone and pressed the "E" key
         if (playerInTrigger && Input.GetKeyDown(KeyCode.Space))
         {
-            PlayerPos.position = CookPos.position;
             InCookMode = true;
             Cursor.visible = true;
             toolTip.SetActive(false);

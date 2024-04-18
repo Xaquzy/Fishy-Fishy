@@ -11,7 +11,7 @@ public class Movement : MonoBehaviour
     float turnSmoothVelocity;
 
     //Animation
-    //public Animator PlayerAnimator;
+    public Animator PlayerAnimator;
 
     //Movement
     Vector2 movement;
@@ -117,21 +117,17 @@ public class Movement : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
 
         //        //Animation
-        //        if (direction.magnitude <= 0)
-        //        {
-        //            PlayerAnimator.SetBool("Moving", false);
-        //        }
-        //        else
-        //        {
-        //            PlayerAnimator.SetBool("Moving", true);
-        //        }
+                if (direction.magnitude <= 0)
+                {
+                    PlayerAnimator.SetBool("isMoving", false);
+                }
+                else
+                {
+                    PlayerAnimator.SetBool("isMoving", true);
+                }
 
-        //    }
-        //    private void OnApplicationQuit()
-        //    {
-        //        Debug.Log("SLET");
-        //        PlayerPrefs.DeleteAll();
-        //    }
+            }
+
 
 
         //if (Convo1.isPlaying || Convo2.isPlaying || Convo3.isPlaying)
@@ -156,6 +152,5 @@ public class Movement : MonoBehaviour
           
         //}
 
-    }
-
 }
+
