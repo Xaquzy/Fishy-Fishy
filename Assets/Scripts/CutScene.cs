@@ -12,7 +12,6 @@ public class CutScene : MonoBehaviour
     public Transform CutScenePos;
     public Transform CutSceneDir;
     public CinemachineFreeLook MainCam;
-    public GameObject CutSceneCam;
     public GameObject CookCam;
     
     //Animation
@@ -95,7 +94,6 @@ public class CutScene : MonoBehaviour
         //Gør klar til fortsat spil
         CountdownTimerText.SetActive(false); //Timer texten slukkes
         MainCam.enabled = true;
-        CutSceneCam.SetActive(false);
 
         CutSceneTestText.SetActive(false); //Det er bare en placeholder tester
         PlayerAnimator.SetBool("Cutscene", false);
