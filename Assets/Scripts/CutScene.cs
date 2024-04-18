@@ -26,7 +26,6 @@ public class CutScene : MonoBehaviour
     public GameObject hose; //Så den kan slukkes i cutscene
     public GameObject hand; //Så den kan slukkes i cutscene
     public GameObject CsKnife; //Så den kan tændes i cutscene
-    public GameObject GlitchKniv;
     public LineRenderer lineRenderer;
     public GameObject CountdownTimerText; //Så den kan slukkes i cutscene
     public CookZone CookZone;
@@ -65,7 +64,6 @@ public class CutScene : MonoBehaviour
         Player.LookAt(CutSceneDir);
 
         //objekterne skal slukkes (CS kniv tændes)
-        GlitchKniv.SetActive(false);
         hose.SetActive(false);
         hand.SetActive(false);
         CsKnife.SetActive(true);
@@ -105,7 +103,6 @@ public class CutScene : MonoBehaviour
         DropObjZone.ZoneScore = DropObjZone.AmountToMoveOn[DropObjZone.AmountToMoveOnIndex];
 
         CsKnife.SetActive(false); //Kniv slukkes
-        GlitchKniv.SetActive(true);
 
         //Reset spillerens position i køkkenet?
 
