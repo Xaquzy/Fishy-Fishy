@@ -10,9 +10,15 @@ public class CutScene : MonoBehaviour
     //Cutscene ting
     public Transform Player;
     public Transform CutScenePos;
+    public Transform CutSceneDir;
     public CinemachineFreeLook MainCam;
     public GameObject CutSceneCam;
     public GameObject CookCam;
+    public SwapObjects SwapObjects;
+    
+    //Animation
+    public Animator PlayerAnimator;
+
     //public GameObject WinCam;
     public GameObject CutSceneTestText;
     public float CutSceneTime = 5f;
@@ -20,6 +26,7 @@ public class CutScene : MonoBehaviour
     public GameObject knife; //Så den kan slukkes i cutscene
     public GameObject hose; //Så den kan slukkes i cutscene
     public GameObject hand; //Så den kan slukkes i cutscene
+    public GameObject CsKnife; //Så den kan tændes i cutscene
     public LineRenderer lineRenderer;
     public GameObject CountdownTimerText; //Så den kan slukkes i cutscene
     public CookZone CookZone;
@@ -53,13 +60,14 @@ public class CutScene : MonoBehaviour
         //Slukker for alle egenskaber
         CookZone.SlukEgenskaber();
 
-        //Placer spilleren i det rigtige sted 
+        //Placer spilleren i det rigtige sted og med korrekt rotation
         Player.position = CutScenePos.position;
+        Player.LookAt(CutSceneDir);
 
-        //objekterne skal slukkes
-        knife.SetActive(false);
+        //objekterne skal slukkes (CS kniv tændes)
         hose.SetActive(false);
         hand.SetActive(false);
+        CsKnife.SetActive(true);
 
         //gør linjerne gennemsigitg. Hvis linjerne bare slettes så er der ikke en position der kan bruges til at bestemme den rating man skal få senere i rating()
         Drawing.DisableAllLineRenderer();
@@ -73,6 +81,7 @@ public class CutScene : MonoBehaviour
         //Afspil animationer
         //Afspil Lyd
         CutSceneTestText.SetActive(true); //Det er bare en placeholder tester
+        PlayerAnimator.SetBool("Cutscene", true);
 
         yield return new WaitForSeconds(CutSceneTime); //kode til lidt pause så man kan se Cutscene før ratingen popper up
         RatingManager.Rating();
@@ -88,12 +97,14 @@ public class CutScene : MonoBehaviour
         CutSceneCam.SetActive(false);
 
         CutSceneTestText.SetActive(false); //Det er bare en placeholder tester
+        PlayerAnimator.SetBool("Cutscene", false);
+        SwapObjects.SwapObjectsInList();
 
         RatingManager.TheRating.SetActive(false); //Sletter ratingen på skærmen så man kan spille videre
         DropObjZone.AmountToMoveOnIndex = (DropObjZone.AmountToMoveOnIndex + 1) % DropObjZone.AmountToMoveOn.Count;  //Opdaterer ens index til zonescore ting til organdr                                                                                                          
         DropObjZone.ZoneScore = DropObjZone.AmountToMoveOn[DropObjZone.AmountToMoveOnIndex];
 
-        knife.SetActive(true); //Kniven skal findes igen
+        CsKnife.SetActive(false); //Kniv slukkes
 
         //Reset spillerens position i køkkenet?
 

@@ -7,7 +7,6 @@ public class CookZone : MonoBehaviour
 {
     public GameObject CookCam;
     public CinemachineFreeLook MainCam;
-    public Transform PlayerPos;
     public Transform CookPos;
     public GameObject toolTip;
     public GameObject Line;
@@ -24,6 +23,7 @@ public class CookZone : MonoBehaviour
     //kalde på alle egenskabsscripts og deres tilhørende objekter
     public Drawing Drawingscript;
     public GameObject knife;
+    public GameObject Modelkniv;
 
     public RemoveOrgans RemoveOrgansscript;
     public GameObject Hand;
@@ -65,7 +65,6 @@ public class CookZone : MonoBehaviour
         // Check if the player is in the trigger zone and pressed the "E" key
         if (playerInTrigger && Input.GetKeyDown(KeyCode.Space))
         {
-            PlayerPos.position = CookPos.position;
             InCookMode = true;
             Cursor.visible = true;
             toolTip.SetActive(false);
@@ -153,6 +152,9 @@ public class CookZone : MonoBehaviour
                 //Hosemodel
                 hoseModel.SetActive(true);
 
+                //kniv model
+                Modelkniv.SetActive(true);
+
 
             }
         }
@@ -166,6 +168,7 @@ public class CookZone : MonoBehaviour
                 //Tænd tegne script
                 Drawingscript.enabled = true;
                 knife.SetActive(true);
+                Modelkniv.SetActive(false);
 
                 //Hosemodel
                 hoseModel.SetActive(true);
@@ -182,6 +185,9 @@ public class CookZone : MonoBehaviour
                 WaterHosescript.enabled = true;
                 hose.SetActive(true);
                 hoseModel.SetActive(false);
+
+                //Kniv model
+                Modelkniv.SetActive(true);
             }
         }
     }
