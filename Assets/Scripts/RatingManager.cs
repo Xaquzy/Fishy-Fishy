@@ -13,12 +13,14 @@ public class RatingManager : MonoBehaviour
     public GameObject ratingParent;
     public GameObject FinalRating;
     [HideInInspector] public GameObject TheRating; // Et GameObject der starter tomt men senere sættes den til at være ratingen. Derefter kan ratingen kaldes i udenfor RatingManager og slukkes i CutScene 
+    public GameObject TomRatingPlaceholder;
     public Drawing Drawing;
     public DropObjZone DropObjZone;
     public Transform textParent;
     public float vertikaleMellemrum = 50f;
     public float horizontalMellemrum = 100f;
     private int TotalRatingScore = 0;
+    private bool finalRatingSet = false;
 
     void Update()
     {
@@ -113,8 +115,7 @@ public class RatingManager : MonoBehaviour
 
         if (rating == null)
         {
-            rating = ratingParent.transform.Find("S").gameObject;
-            TotalRatingScore += 13;
+            rating = TomRatingPlaceholder;
         }
 
 
@@ -166,36 +167,42 @@ public class RatingManager : MonoBehaviour
     //   }
 
         GameObject finalRating = null;
-        if (TotalRatingScore >= 108)
-        {
-            finalRating = FinalRating.transform.Find("Final S").gameObject;
-        }
 
-        if (TotalRatingScore < 108 && TotalRatingScore >= 92)
+        if (!finalRatingSet)
         {
-            finalRating = FinalRating.transform.Find("Final A").gameObject;
-        }
+            if (TotalRatingScore >= 108)
+            {
+                finalRating = FinalRating.transform.Find("Final S").gameObject;
+            }
 
-        if (TotalRatingScore < 92 && TotalRatingScore >= 66)
-        {
-            finalRating = FinalRating.transform.Find("Final B").gameObject;
-        }
+            if (TotalRatingScore < 108 && TotalRatingScore >= 92)
+            {
+                finalRating = FinalRating.transform.Find("Final A").gameObject;
+            }
 
-        if (TotalRatingScore < 66 && TotalRatingScore >= 39)
-        {
-            finalRating = FinalRating.transform.Find("Final C").gameObject;
-        }
+            if (TotalRatingScore < 92 && TotalRatingScore >= 66)
+            {
+                finalRating = FinalRating.transform.Find("Final B").gameObject;
+            }
 
-        if (TotalRatingScore < 39 && TotalRatingScore > 4)
-        {
-            finalRating = FinalRating.transform.Find("Final D").gameObject;
-        }
+            if (TotalRatingScore < 66 && TotalRatingScore >= 39)
+            {
+                finalRating = FinalRating.transform.Find("Final C").gameObject;
+            }
 
-        if (TotalRatingScore <=4)
-        {
-            finalRating = FinalRating.transform.Find("Final F").gameObject;
-        }
-        finalRating.SetActive(true);
+            if (TotalRatingScore < 39 && TotalRatingScore > 4)
+            {
+                finalRating = FinalRating.transform.Find("Final D").gameObject;
+            }
 
+            if (TotalRatingScore <= 4)
+            {
+                finalRating = FinalRating.transform.Find("Final F").gameObject;
+            }
+            finalRating.SetActive(true);
+
+            finalRatingSet = true;
+        }
     }
+        
 }

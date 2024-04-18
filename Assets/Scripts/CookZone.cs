@@ -15,6 +15,7 @@ public class CookZone : MonoBehaviour
     public GameObject ratingMessage;
     private bool playerInTrigger = false;
     private bool InCookMode = false;
+    public GameObject HoldETekst;
 
     //kalde på countdowntimer scriptet
     public CountDownTimer CountDownTimer;
@@ -49,6 +50,8 @@ public class CookZone : MonoBehaviour
 
         //CountdownText objektet slukkes (derved slukkes countdown scriptet på det også)
         countdownText.SetActive(false);
+
+        HoldETekst.SetActive(false);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -155,6 +158,9 @@ public class CookZone : MonoBehaviour
                 //kniv model
                 Modelkniv.SetActive(true);
 
+                //Hold E tekst
+                HoldETekst.SetActive(true);
+
 
             }
         }
@@ -172,6 +178,8 @@ public class CookZone : MonoBehaviour
 
                 //Hosemodel
                 hoseModel.SetActive(true);
+
+                HoldETekst.SetActive(false);
             }
         }
 
@@ -188,6 +196,7 @@ public class CookZone : MonoBehaviour
 
                 //Kniv model
                 Modelkniv.SetActive(true);
+                HoldETekst.SetActive(false);
             }
         }
     }
