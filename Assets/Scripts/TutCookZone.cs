@@ -18,6 +18,7 @@ public class TutCookZone : MonoBehaviour
 
     //kalde på countdowntimer scriptet
     public CountDownTimer CountDownTimer;
+    public SwapObjects SwapObjects;
 
 
     //kalde på alle egenskabsscripts og deres tilhørende objekter
@@ -32,6 +33,13 @@ public class TutCookZone : MonoBehaviour
     public GameObject hose;
     public GameObject hoseModel;
 
+    public AudioSource Part1;
+    public AudioSource Part2;
+    public AudioSource Part3;
+
+    public GameObject pressParent;
+
+    public Blood Blood;
 
 
     private void Start()
@@ -49,6 +57,11 @@ public class TutCookZone : MonoBehaviour
 
         //CountdownText objektet slukkes (derved slukkes countdown scriptet på det også)
         countdownText.SetActive(false);
+
+
+
+
+   
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -65,6 +78,7 @@ public class TutCookZone : MonoBehaviour
         // Check if the player is in the trigger zone and pressed the "E" key
         if (playerInTrigger && Input.GetKeyDown(KeyCode.Space))
         {
+
             InCookMode = true;
             Cursor.visible = true;
             toolTip.SetActive(false);
@@ -73,14 +87,32 @@ public class TutCookZone : MonoBehaviour
             CountDownTimer.enabled = true; //slå den til mens man er i gang med din handling
             Debug.Log("the countdown timer script is now turned on");
 
-
-
+            
         }
 
         if (InCookMode == true)
         {
             //Vælg egenskabsfunktion
             ChooseEgenskab();
+
+            if (SwapObjects.objectsToSwap[0])
+            {
+                pressParent.transform.Find("Press2").gameObject.SetActive(true);
+                Part1.Play();
+            }
+            if (SwapObjects.objectsToSwap[1])
+            {
+                pressParent.transform.Find("Press1").gameObject.SetActive(true);
+                Part2.Play();
+
+                if (Blood.BloodPool.GetFloat("_Opacity") == 0)
+                {
+                    pressParent.transform.Find("Press1").gameObject.SetActive(true);
+                    Part3.Play();
+
+                }
+
+            }
         }
         if (playerInTrigger == false)
         {
@@ -108,6 +140,11 @@ public class TutCookZone : MonoBehaviour
 
             //CountDownTimer countDown = Player.GetComponent<CountDownTimer>(); //hente countdowntimer scriptet fra spilleren
             CountDownTimer.enabled = false; ; //stoppe scriptet når man forlader skære mode
+            
+            pressParent.transform.Find("Press1").gameObject.SetActive(false);
+            pressParent.transform.Find("Press2").gameObject.SetActive(false);
+            pressParent.transform.Find("Press3").gameObject.SetActive(false);
+
             Debug.Log("the countdown timer script is now turned off");
         }
     }
