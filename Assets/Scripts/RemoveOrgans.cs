@@ -44,6 +44,7 @@ public class RemoveOrgans : MonoBehaviour
                 {
                     if (raycastHit.transform.TryGetComponent(out removableOrgan))
                     {
+                        Debug.Log("Hånd IND");
                         HandAnimator.SetBool("Ud", false);
                         HandAnimator.SetBool("Ind", true);
                         removableOrgan.Grab(Hand);
@@ -69,6 +70,7 @@ public class RemoveOrgans : MonoBehaviour
         {
             if (removableOrgan != null)
             {
+                Debug.Log("Hånd UD");
                 HandAnimator.SetBool("Ind", false);
                 HandAnimator.SetBool("Ud", true);
                 removableOrgan.Drop();
