@@ -30,21 +30,9 @@ public class Movement : MonoBehaviour
 
     //Conversation manager
 
-    //public AudioSource Convo1;
-    //public AudioSource Convo2;
-    //public AudioSource Convo3;
-    
+    public AudioSource Convo1;
+    public AudioSource Convo2;
 
-    //IEnumerator FinishCut()
-    //{
-    //    // Check if all followers are acquired
-    //    if (PlayerPrefs.GetInt("TurtleFollow") == 1 && PlayerPrefs.GetInt("SnakeFollow") == 1 && PlayerPrefs.GetInt("HorseFollow") == 1)
-    //    {
-    //        Debug.Log("All followers acquired!");
-    //        yield return new WaitForSeconds(3);
-    //        SceneManager.LoadScene(11);
-    //    }
-    //}
     void Start()
     {
         Animator animator;
@@ -61,7 +49,19 @@ public class Movement : MonoBehaviour
     {
         Cursor.visible = false;
 
-        //StartCoroutine(FinishCut());
+        if (Convo1.isPlaying || Convo2.isPlaying)
+        {
+            //if any of the convos are playing, stop the other convos
+            if (Convo1.isPlaying)
+            {
+                Convo2.Stop();
+            }
+
+            else if (Convo2.isPlaying)
+            {
+                Convo1.Stop();
+            }
+        }
 
         //Grounding
         isGrounded = controller.isGrounded;
@@ -104,53 +104,29 @@ public class Movement : MonoBehaviour
 
         //if (Input.GetKeyDown(KeyCode.Space) && counter > 0)
         //{
-         //   velocity.y = Mathf.Sqrt((jumpHeight * 10) * -2f * gravity);
-         //   counter = counter - 1;
-       // }
+        //   velocity.y = Mathf.Sqrt((jumpHeight * 10) * -2f * gravity);
+        //   counter = counter - 1;
+        // }
 
 
         if (velocity.y > -20)
         {
             velocity.y += (gravity * 30) * Time.deltaTime;
         }
-        
+
         controller.Move(velocity * Time.deltaTime);
 
         //        //Animation
-                if (direction.magnitude <= 0)
-                {
-                    PlayerAnimator.SetBool("isMoving", false);
-                }
-                else
-                {
-                    PlayerAnimator.SetBool("isMoving", true);
-                }
-
-            }
-
-
-
-        //if (Convo1.isPlaying || Convo2.isPlaying || Convo3.isPlaying)
-        //{
-            // If any of the convos  are playing, stop the other convos
-            //if (Convo1.isPlaying)
-            //{
-            //    Convo2.Stop();
-            //    Convo3.Stop();
-            //}
-            //else if (Convo2.isPlaying)
-            //{
-            //    Convo1.Stop();
-            //    Convo3.Stop();
-            //}
-            //else if (Convo3.isPlaying)
-            //{
-            //    Convo1.Stop();
-            //    Convo2.Stop();
-            //}
-
-          
-        //}
-
+        if (direction.magnitude <= 0)
+        {
+            PlayerAnimator.SetBool("isMoving", false);
+        }
+        else
+        {
+            PlayerAnimator.SetBool("isMoving", true);
+        }
+    }
 }
+
+
 

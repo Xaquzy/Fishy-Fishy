@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TriggerConvo : MonoBehaviour
 {
-    public GameObject Subtitles;
     public AudioSource dialog;
 
     // Start is called before the first frame update
@@ -27,11 +26,23 @@ public class TriggerConvo : MonoBehaviour
         {
             if (!dialog.isPlaying)
             {
-                Subtitles.SetActive(true);
                 dialog.Play();
             }
 
          
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (dialog.isPlaying)
+            {
+                dialog.Stop();
+            }
+
+
         }
     }
 }
