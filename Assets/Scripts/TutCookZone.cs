@@ -15,6 +15,7 @@ public class TutCookZone : MonoBehaviour
     public GameObject ratingMessage;
     private bool playerInTrigger = false;
     private bool InCookMode = false;
+    
 
     //kalde på countdowntimer scriptet
     public CountDownTimer CountDownTimer;
@@ -107,46 +108,18 @@ public class TutCookZone : MonoBehaviour
                 subParent.transform.Find("Sub7").gameObject.SetActive(true);
                 part1Played = true;
 
-                if (timeElapsed > 11.16f)
-                {
-                    subParent.transform.Find("Sub7").gameObject.SetActive(false);
-                }
-                    
-
+                            
             }
+
             if (SwapObjects.currentIndex == 1 && !part2Played)
             {
                 Part2.Play();
-                timeElapsed = 0;
                 Debug.Log("Det er nu tid til at vakse gutter");
                 pressParent.transform.Find("Press3").gameObject.SetActive(true);
                 subParent.transform.Find("Sub8").gameObject.SetActive(true);
                 part2Played = true;
-
-                if (timeElapsed > 4f)
-                {
-                    subParent.transform.Find("Sub7").gameObject.SetActive(false);
-                }
-
-                if (part2Played && Blood.BloodPool.GetFloat("_Opacity") == 0 && !part3Played)
-                {
-                    Part3.Play();
-                    timeElapsed = 0;
-                    Debug.Log("Det er nu tid til at grabbe gutter");
-                    pressParent.transform.Find("Press1").gameObject.SetActive(true);
-                    subParent.transform.Find("Sub8").gameObject.SetActive(true);
-                    part3Played = true;
-
-                    if (timeElapsed > 11.2f)
-                    {
-                        subParent.transform.Find("Sub7").gameObject.SetActive(false);
-                    }
-
-                }
-
+                timeElapsed = 0;
             }
-            Debug.Log("Opacity" + Blood.BloodPool.GetFloat("_Opacity"));
-
             // Check if Part2 has been played and BloodPool opacity is 0
             //if (part2Played && Blood.BloodPool.GetFloat("_Opacity") == 0 && !part3Played)
             //{
@@ -160,6 +133,34 @@ public class TutCookZone : MonoBehaviour
             //}
         }
 
+        if (timeElapsed > 11.16f)
+        {
+            subParent.transform.Find("Sub7").gameObject.SetActive(false);
+        }
+       
+
+        Debug.Log("Opacity" + Blood.BloodPool.GetFloat("_Opacity"));
+        if (InCookMode && part2Played && Blood.BloodPool.GetFloat("_Opacity") == 0)
+        {
+            subParent.transform.Find("Sub8").gameObject.SetActive(false);
+            
+            if (Blood.BloodPool.GetFloat("_Opacity") == 0 && !part3Played)
+            {
+                Part3.Play();
+                timeElapsed = 0;
+                Debug.Log("Det er nu tid til at grabbe gutter");
+                pressParent.transform.Find("Press1").gameObject.SetActive(true);
+                subParent.transform.Find("Sub9").gameObject.SetActive(true);
+                part3Played = true;
+            }
+        }
+
+        if (timeElapsed > 11.2f)
+        {
+            subParent.transform.Find("Sub9").gameObject.SetActive(false);
+        }
+
+
         if (InCookMode == true)
         {
             //Vælg egenskabsfunktion
@@ -171,6 +172,11 @@ public class TutCookZone : MonoBehaviour
             toolTip.SetActive(false);
             CookCam.SetActive(false);
             MainCam.enabled = true;
+           
+        }
+
+        if (!InCookMode)
+        {
             pressParent.transform.Find("Press1").gameObject.SetActive(false);
             pressParent.transform.Find("Press2").gameObject.SetActive(false);
             pressParent.transform.Find("Press3").gameObject.SetActive(false);
