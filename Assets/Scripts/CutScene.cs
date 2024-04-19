@@ -10,6 +10,7 @@ public class CutScene : MonoBehaviour
     //Cutscene ting
     public Transform Player;
     public Transform CutScenePos;
+    public Transform PosCutscenePos;
     public Transform CutSceneDir;
     public CinemachineFreeLook MainCam;
     public GameObject CutSceneCam;
@@ -103,7 +104,8 @@ public class CutScene : MonoBehaviour
 
         CsKnife.SetActive(false); //Kniv slukkes
 
-        //Reset spillerens position i køkkenet?
+        //Reset spillerens position i køkkenet
+        Player.position = PosCutscenePos.position;
 
         //Tænder for movement script og slukker for ratingen (og for Cutscenetext som er placeholder)
         movement.enabled = true; //.SetActive(false);
