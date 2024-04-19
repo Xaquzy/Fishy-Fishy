@@ -40,14 +40,18 @@ public class TutCookZone : MonoBehaviour
     public GameObject pressParent;
 
     public Blood Blood;
+    public GameObject subParent;
 
     private bool part1Played = false;
     private bool part2Played = false;
     private bool part3Played = false;
 
+    private float timeElapsed = 0;
 
     private void Start()
     {
+        
+
         //Sluk for musen
         Cursor.visible = false;
 
@@ -65,7 +69,7 @@ public class TutCookZone : MonoBehaviour
 
 
 
-   
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -79,6 +83,9 @@ public class TutCookZone : MonoBehaviour
 
     private void Update()
     {
+        timeElapsed = timeElapsed + Time.deltaTime;
+        Debug.Log("Time Elapsed: " + timeElapsed);
+
         // Check if the player is in the trigger zone and pressed the "E" key
         if (playerInTrigger && Input.GetKeyDown(KeyCode.Space))
         {
@@ -94,32 +101,63 @@ public class TutCookZone : MonoBehaviour
             if (SwapObjects.currentIndex == 0 && !part1Played)
             {
                 Part1.Play();
+                timeElapsed = 0;
                 Debug.Log("Det er nu tid til at skære gutter");
                 pressParent.transform.Find("Press2").gameObject.SetActive(true);
+                subParent.transform.Find("Sub7").gameObject.SetActive(true);
                 part1Played = true;
+
+                if (timeElapsed > 11.16f)
+                {
+                    subParent.transform.Find("Sub7").gameObject.SetActive(false);
+                }
+                    
 
             }
             if (SwapObjects.currentIndex == 1 && !part2Played)
             {
+                Part2.Play();
+                timeElapsed = 0;
                 Debug.Log("Det er nu tid til at vakse gutter");
                 pressParent.transform.Find("Press3").gameObject.SetActive(true);
-                Part2.Play();
+                subParent.transform.Find("Sub8").gameObject.SetActive(true);
                 part2Played = true;
+
+                if (timeElapsed > 4f)
+                {
+                    subParent.transform.Find("Sub7").gameObject.SetActive(false);
+                }
+
+                if (part2Played && Blood.BloodPool.GetFloat("_Opacity") == 0 && !part3Played)
+                {
+                    Part3.Play();
+                    timeElapsed = 0;
+                    Debug.Log("Det er nu tid til at grabbe gutter");
+                    pressParent.transform.Find("Press1").gameObject.SetActive(true);
+                    subParent.transform.Find("Sub8").gameObject.SetActive(true);
+                    part3Played = true;
+
+                    if (timeElapsed > 11.2f)
+                    {
+                        subParent.transform.Find("Sub7").gameObject.SetActive(false);
+                    }
+
+                }
 
             }
             Debug.Log("Opacity" + Blood.BloodPool.GetFloat("_Opacity"));
 
             // Check if Part2 has been played and BloodPool opacity is 0
-            if (part2Played && Blood.BloodPool.GetFloat("_Opacity") == 0 && !part3Played)
-            {
-                Debug.Log("Det er nu tid til at grabbe gutter");
-                pressParent.transform.Find("Press1").gameObject.SetActive(true);
-                Debug.Log("Before playing Part3");
-                Part3.Play();
-                Debug.Log("After playing Part3");
+            //if (part2Played && Blood.BloodPool.GetFloat("_Opacity") == 0 && !part3Played)
+            //{
+            //    Debug.Log("Det er nu tid til at grabbe gutter");
+            //    pressParent.transform.Find("Press1").gameObject.SetActive(true);
+            //    Debug.Log("Before playing Part3");
+            //    Part3.Play();
+            //    Debug.Log("After playing Part3");
 
-                part3Played = true;
-            }
+            //    part3Played = true;
+            //}
         }
 
         if (InCookMode == true)
@@ -157,8 +195,8 @@ public class TutCookZone : MonoBehaviour
 
             //CountDownTimer countDown = Player.GetComponent<CountDownTimer>(); //hente countdowntimer scriptet fra spilleren
             CountDownTimer.enabled = false; ; //stoppe scriptet når man forlader skære mode
-            
-            
+
+
 
             Debug.Log("the countdown timer script is now turned off");
         }
@@ -242,5 +280,12 @@ public class TutCookZone : MonoBehaviour
                 Modelkniv.SetActive(true);
             }
         }
+
+    }
+
+    IEnumerator WaitSecs()
+    {
+        yield return new WaitForSeconds(2);
     }
 }
+

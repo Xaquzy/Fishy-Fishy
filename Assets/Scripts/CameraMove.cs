@@ -92,7 +92,6 @@ public class CameraMove : MonoBehaviour
         }
         if (timeElapsed >= 33f)
         {
-            Debug.Log("JOJFNFE");
             isMoving = false; // Stop the camera movement
             StartCoroutine(SlukSidsteSub());
 
