@@ -16,11 +16,12 @@ public class CutScene : MonoBehaviour
     public GameObject CutSceneCam;
     public GameObject CookCam;
     public SwapObjects SwapObjects;
-    
+    public List<GameObject> NonFinalRatingCanvas = new List<GameObject>();
+
     //Animation
     public Animator PlayerAnimator;
 
-    //public GameObject WinCam;
+    public GameObject WinCam;
     public float CutSceneTime = 5f;
     public float RatingReadTime = 5f;
     public GameObject knife; //Så den kan slukkes i cutscene
@@ -34,16 +35,18 @@ public class CutScene : MonoBehaviour
     public Drawing Drawing;
     public RatingManager RatingManager;
     public DropObjZone DropObjZone;
-    private int AntalCutScenesSpillet = 0;
+    public CountDownTimer CountDownTimer;
     public int AntalCutScenesISpillet = 10;
+    private int AntalCutScenesSpillet = 0;
 
     // Update is called once per frame
     void Update()
     {
-        if (AntalCutScenesSpillet == AntalCutScenesISpillet)
+        if (AntalCutScenesSpillet == AntalCutScenesISpillet && CountDownTimer.remainingTime == 0)
         {
             Debug.Log("FINAL CUTSCENE");
             StartCoroutine(FinalCutscene());
+
         }
     }
 
@@ -59,7 +62,7 @@ public class CutScene : MonoBehaviour
         movement.enabled = false;
 
         //Slukker for alle egenskaber
-        if(CookZone==null)
+        if (CookZone == null)
         {
             TutCookZone.SlukEgenskaber();
         }
@@ -67,7 +70,7 @@ public class CutScene : MonoBehaviour
         {
             CookZone.SlukEgenskaber();
         }
-        
+
 
         //Placer spilleren i det rigtige sted og med korrekt rotation
         Player.position = CutScenePos.position;
@@ -121,16 +124,23 @@ public class CutScene : MonoBehaviour
         AntalCutScenesSpillet = AntalCutScenesSpillet + 1;
     }
 
-    public IEnumerator FinalCutscene()
+    IEnumerator FinalCutscene()
     {
-        //SKIFT TIL FINAL WIN CAM
-        //WinCam.SetActive(true);
-        //CookCam.SetActive(false);
-        //CutSceneCam.SetActive(false);
-        //MainCam.enabled = false;
+        //Skift til final cam og sluk alt
+        WinCam.SetActive(true);
+        CookCam.SetActive(false);
+        CutSceneCam.SetActive(false);
+        MainCam.enabled = false;
+        //Sluk alt i canvas ud over final rating
+        for (int i = 0; i < NonFinalRatingCanvas.Count; i++)
+        {
+            NonFinalRatingCanvas[i].SetActive(false);
+        }
 
-        yield return new WaitForSeconds(18f);
+        yield return new WaitForSeconds(3f);
 
         RatingManager.DisplayRatings();
+
+
     }
 }
