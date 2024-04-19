@@ -16,6 +16,7 @@ public class TutCookZone : MonoBehaviour
     public GameObject ratingMessage;
     private bool playerInTrigger = false;
     private bool InCookMode = false;
+    private bool finalTut = false;
     
 
     //kalde på countdowntimer scriptet
@@ -153,9 +154,16 @@ public class TutCookZone : MonoBehaviour
 
         if (SwapObjects.currentIndex == 2)
         {
-            timeElapsed = 0;
-            Part6.Play();
-            if(timeElapsed==6.67)
+            Debug.Log("The index is 2");
+            if (!finalTut)
+            {
+                timeElapsed = 0;
+                subParent.transform.Find("Sub12").gameObject.SetActive(true);
+                Part6.Play();
+                finalTut = true;
+            }
+
+            if(timeElapsed > 6.67)
             {
                 SceneManager.LoadScene("Anden brugertest");
             }

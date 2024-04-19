@@ -24,7 +24,7 @@ public class SceneTransition : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
-        SceneManager.LoadScene("MiniProto-ish");
+        SceneManager.LoadScene("Anden brugertest");
     }
 
 
