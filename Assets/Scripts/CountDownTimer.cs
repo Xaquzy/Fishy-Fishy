@@ -19,7 +19,6 @@ public class CountDownTimer : MonoBehaviour
     public UnityEvent OnCountDownFinished;
 
 
-    public bool SwapFish = false;
 
     //[SerializeField] private int NewSceneNumber = 1;
 
