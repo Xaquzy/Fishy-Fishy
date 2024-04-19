@@ -93,6 +93,7 @@ public class CookZone : MonoBehaviour
         if (InCookMode == false)
         {
             TrykTekst.SetActive(false);
+            HoldETekst.SetActive(false);
         }
         if (playerInTrigger == false)
         {
@@ -150,12 +151,12 @@ public class CookZone : MonoBehaviour
 
     void ChooseEgenskab()
     {
-        //Lav et tool tip der viser hvilket tal der svarer til hvilken egenskab
         if (Input.GetKeyDown(KeyCode.Alpha1)) //Hvis man trykker på tallet 1
         {
             if (RemoveOrgansscript != null)
             {
-                SlukEgenskaber(); //slukker alle og tænder en så man ikke har flere på samme tid
+                //slukker alle og tænder en så man ikke har flere på samme tid
+                SlukEgenskaber(); 
 
                 //Tænd GrabObject script
                 RemoveOrgansscript.enabled = true;
