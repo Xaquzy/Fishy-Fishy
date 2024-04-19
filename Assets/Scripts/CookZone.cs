@@ -14,7 +14,7 @@ public class CookZone : MonoBehaviour
     public GameObject Player;
     public GameObject ratingMessage;
     private bool playerInTrigger = false;
-    private bool InCookMode = false;
+    [HideInInspector] public bool InCookMode = false;
     public GameObject HoldETekst;
     public GameObject TrykTekst;
 

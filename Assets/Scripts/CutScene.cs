@@ -18,6 +18,7 @@ public class CutScene : MonoBehaviour
     public SwapObjects SwapObjects;
     public List<GameObject> NonFinalRatingCanvas = new List<GameObject>();
     public GameObject HoldETekst;
+    public GameObject TrykToolTip;
 
     //Animation
     public Animator PlayerAnimator;
@@ -43,12 +44,7 @@ public class CutScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (AntalCutScenesSpillet == AntalCutScenesISpillet && CountDownTimer.remainingTime == 0)
-        {
-            Debug.Log("FINAL CUTSCENE");
-            StartCoroutine(FinalCutscene());
 
-        }
     }
 
     public void StartCutScene()
@@ -58,6 +54,7 @@ public class CutScene : MonoBehaviour
 
     public IEnumerator CutSceneInScene()
     {
+        CookZone.InCookMode = false;
         //Slukker for movement script
         Movement movement = Player.GetComponent<Movement>();
         movement.enabled = false;
@@ -117,6 +114,7 @@ public class CutScene : MonoBehaviour
         DropObjZone.ZoneScore = DropObjZone.AmountToMoveOn[DropObjZone.AmountToMoveOnIndex];
 
         CsKnife.SetActive(false); //Kniv slukkes
+        TrykToolTip.SetActive(false);
 
         //Reset spillerens position i køkkenet
         Player.position = PosCutscenePos.position;
@@ -126,7 +124,7 @@ public class CutScene : MonoBehaviour
         AntalCutScenesSpillet = AntalCutScenesSpillet + 1;
     }
 
-    IEnumerator FinalCutscene()
+    public IEnumerator FinalCutscene()
     {
         //Skift til final cam og sluk alt
         if (WinCam != null)
@@ -141,11 +139,9 @@ public class CutScene : MonoBehaviour
         {
             NonFinalRatingCanvas[i].SetActive(false);
         }
-
-        yield return new WaitForSeconds(3f);
-
+        
         RatingManager.DisplayRatings();
-
+        yield return new WaitForSeconds(3f);
 
     }
 }
