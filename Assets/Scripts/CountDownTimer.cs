@@ -13,9 +13,9 @@ public class CountDownTimer : MonoBehaviour
     public float remainingTime;
     [SerializeField] TextMeshProUGUI countdownText;
     [HideInInspector] public bool timer_running = false;
-    public int AntalCutScenesISpillet = 11;
-    private int AntalCutScenesSpillet = 0;
-
+    public int TotalCutScenes = 12;
+    private int CutScenesPlayed = 0;
+    
     //Henter cutscene scriptet
     public CutScene Cutscene;
     public UnityEvent OnCountDownFinished;
@@ -32,6 +32,7 @@ public class CountDownTimer : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("CS spillet: " + CutScenesPlayed);
         if(!timer_running)
         {
             return;
@@ -49,7 +50,7 @@ public class CountDownTimer : MonoBehaviour
 
         if (remainingTime <= 1)
         {
-            AntalCutScenesSpillet = AntalCutScenesSpillet + 1;
+            CutScenesPlayed = CutScenesPlayed + 1;
             OnCountDownFinished.Invoke();
             remainingTime = 0; //Sætter tiden til 0 så timeren ikke kan blive negativ
             timer_running = false;
@@ -62,7 +63,7 @@ public class CountDownTimer : MonoBehaviour
         int seconds = Mathf.FloorToInt(remainingTime % 60); //Omregner mængden af tid til sekunder der er til rest efter minutterne
         countdownText.text = string.Format("{0:00}:{1:00}", minutes, seconds); //string format, gør så det ser pænt ud
 
-        if (AntalCutScenesSpillet == AntalCutScenesISpillet)
+        if (CutScenesPlayed == TotalCutScenes)
         {
             StartCoroutine(Cutscene.FinalCutscene());
  

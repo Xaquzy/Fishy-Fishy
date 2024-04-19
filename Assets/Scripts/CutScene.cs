@@ -38,8 +38,7 @@ public class CutScene : MonoBehaviour
     public RatingManager RatingManager;
     public DropObjZone DropObjZone;
     public CountDownTimer CountDownTimer;
-    public int AntalCutScenesISpillet = 10;
-    private int AntalCutScenesSpillet = 0;
+
 
     // Update is called once per frame
     void Update()
@@ -121,7 +120,7 @@ public class CutScene : MonoBehaviour
 
         //Tænder for movement script og slukker for ratingen (og for Cutscenetext som er placeholder)
         movement.enabled = true; //.SetActive(false);
-        AntalCutScenesSpillet = AntalCutScenesSpillet + 1;
+
     }
 
     public IEnumerator FinalCutscene()
