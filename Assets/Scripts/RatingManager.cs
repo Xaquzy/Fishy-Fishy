@@ -22,6 +22,9 @@ public class RatingManager : MonoBehaviour
     private int TotalRatingScore = 0;
     private bool finalRatingSet = false;
 
+    public AudioSource RatingAudioGood;
+    public AudioSource RatingAudioBad;
+
     void Update()
     {
 
@@ -54,6 +57,7 @@ public class RatingManager : MonoBehaviour
             {
                 rating = ratingParent.transform.Find("D").gameObject;
                 TotalRatingScore += 4;
+                
             }
             if (DropObjZone.ZoneScore == 3)
             {
@@ -75,6 +79,19 @@ public class RatingManager : MonoBehaviour
                 rating = ratingParent.transform.Find("S").gameObject;
                 TotalRatingScore += 13;
             }
+
+            if (RatingAudioGood!=null)
+            {
+                if (DropObjZone.ZoneScore > 2)
+                {
+                    RatingAudioBad.Play();
+                }
+                else
+                {
+                    RatingAudioGood.Play();
+                }
+            }
+           
         }
 
         //Ratings for tegne
@@ -110,6 +127,18 @@ public class RatingManager : MonoBehaviour
             {
                 rating = ratingParent.transform.Find("F").gameObject;
                 TotalRatingScore += 0;
+            }
+
+            if (RatingAudioGood != null)
+            {
+                if (accuracyDist > 0.15)
+                {
+                    RatingAudioBad.Play();
+                }
+                else
+                {
+                    RatingAudioGood.Play();
+                }
             }
         }
 

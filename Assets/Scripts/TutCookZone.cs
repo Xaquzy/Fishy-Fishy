@@ -2,6 +2,7 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutCookZone : MonoBehaviour
 {
@@ -37,11 +38,12 @@ public class TutCookZone : MonoBehaviour
     public AudioSource Part1;
     public AudioSource Part2;
     public AudioSource Part3;
+    public AudioSource Part6;
 
     public GameObject pressParent;
-
     public Blood Blood;
     public GameObject subParent;
+    public GameObject ratingParent;
 
     private bool part1Played = false;
     private bool part2Played = false;
@@ -120,17 +122,6 @@ public class TutCookZone : MonoBehaviour
                 part2Played = true;
                 timeElapsed = 0;
             }
-            // Check if Part2 has been played and BloodPool opacity is 0
-            //if (part2Played && Blood.BloodPool.GetFloat("_Opacity") == 0 && !part3Played)
-            //{
-            //    Debug.Log("Det er nu tid til at grabbe gutter");
-            //    pressParent.transform.Find("Press1").gameObject.SetActive(true);
-            //    Debug.Log("Before playing Part3");
-            //    Part3.Play();
-            //    Debug.Log("After playing Part3");
-
-            //    part3Played = true;
-            //}
         }
 
         if (timeElapsed > 11.16f)
@@ -155,10 +146,24 @@ public class TutCookZone : MonoBehaviour
             }
         }
 
-        if (timeElapsed > 11.2f)
+        if (timeElapsed > 11.97f)
         {
             subParent.transform.Find("Sub9").gameObject.SetActive(false);
         }
+
+        if (SwapObjects.currentIndex == 2)
+        {
+            timeElapsed = 0;
+            Part6.Play();
+            if(timeElapsed==6.67)
+            {
+                SceneManager.LoadScene("Anden brugertest");
+            }
+           
+
+        }
+
+
 
 
         if (InCookMode == true)
@@ -167,6 +172,7 @@ public class TutCookZone : MonoBehaviour
             ChooseEgenskab();
 
         }
+
         if (playerInTrigger == false)
         {
             toolTip.SetActive(false);
@@ -289,9 +295,5 @@ public class TutCookZone : MonoBehaviour
 
     }
 
-    IEnumerator WaitSecs()
-    {
-        yield return new WaitForSeconds(2);
-    }
 }
 
