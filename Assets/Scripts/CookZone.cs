@@ -16,6 +16,7 @@ public class CookZone : MonoBehaviour
     private bool playerInTrigger = false;
     private bool InCookMode = false;
     public GameObject HoldETekst;
+    public GameObject TrykTekst;
 
     //kalde på countdowntimer scriptet
     public CountDownTimer CountDownTimer;
@@ -84,6 +85,14 @@ public class CookZone : MonoBehaviour
         {
             //Vælg egenskabsfunktion
             ChooseEgenskab();
+
+            //Tooltip
+            TrykTekst.SetActive(true);
+        }
+
+        if (InCookMode == false)
+        {
+            TrykTekst.SetActive(false);
         }
         if (playerInTrigger == false)
         {
