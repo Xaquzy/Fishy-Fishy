@@ -17,6 +17,7 @@ public class CutScene : MonoBehaviour
     public GameObject CookCam;
     public SwapObjects SwapObjects;
     public List<GameObject> NonFinalRatingCanvas = new List<GameObject>();
+    public GameObject HoldETekst;
 
     //Animation
     public Animator PlayerAnimator;
@@ -76,10 +77,11 @@ public class CutScene : MonoBehaviour
         Player.position = CutScenePos.position;
         Player.LookAt(CutSceneDir);
 
-        //objekterne skal slukkes (CS kniv tændes)
+        //objekter og ui skal slukkes (CS kniv tændes)
         hose.SetActive(false);
         hand.SetActive(false);
         CsKnife.SetActive(true);
+        HoldETekst.SetActive(false);
 
         //gør linjerne gennemsigitg. Hvis linjerne bare slettes så er der ikke en position der kan bruges til at bestemme den rating man skal få senere i rating()
         Drawing.DisableAllLineRenderer();
