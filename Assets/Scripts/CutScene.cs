@@ -127,7 +127,10 @@ public class CutScene : MonoBehaviour
     IEnumerator FinalCutscene()
     {
         //Skift til final cam og sluk alt
-        WinCam.SetActive(true);
+        if (WinCam != null)
+        {
+            WinCam.SetActive(true);
+        }
         CookCam.SetActive(false);
         CutSceneCam.SetActive(false);
         MainCam.enabled = false;
