@@ -30,8 +30,8 @@ public class Movement : MonoBehaviour
 
     //Conversation manager
 
-    public AudioSource Convo1;
-    public AudioSource Convo2;
+    //public AudioSource Convo1;
+    //public AudioSource Convo2;
 
     void Start()
     {
@@ -49,19 +49,19 @@ public class Movement : MonoBehaviour
     {
         Cursor.visible = false;
 
-        if (Convo1.isPlaying || Convo2.isPlaying)
-        {
-            //if any of the convos are playing, stop the other convos
-            if (Convo1.isPlaying)
-            {
-                Convo2.Stop();
-            }
+        //if (Convo1.isPlaying || Convo2.isPlaying)
+        //{
+        //    //if any of the convos are playing, stop the other convos
+        //    if (Convo1.isPlaying)
+        //    {
+        //        Convo2.Stop();
+        //    }
 
-            else if (Convo2.isPlaying)
-            {
-                Convo1.Stop();
-            }
-        }
+        //    else if (Convo2.isPlaying)
+        //    {
+        //        Convo1.Stop();
+        //    }
+        //}
 
         //Grounding
         isGrounded = controller.isGrounded;
