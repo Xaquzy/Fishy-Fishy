@@ -24,6 +24,7 @@ public class CutScene : MonoBehaviour
     public Animator PlayerAnimator;
 
     public GameObject WinCam;
+    public GameObject WinPanel;
     public float CutSceneTime = 5f;
     public float RatingReadTime = 5f;
     public GameObject knife; //Så den kan slukkes i cutscene
@@ -48,23 +49,24 @@ public class CutScene : MonoBehaviour
 
     public void StartCutScene()
     {
+        Debug.Log("Almost chop chop");
         StartCoroutine(CutSceneInScene());
     }
 
     public IEnumerator CutSceneInScene()
     {
-        CookZone.InCookMode = false;
-        //Slukker for movement script
+        Debug.Log("Chop chop");
         Movement movement = Player.GetComponent<Movement>();
         movement.enabled = false;
 
-        //Slukker for alle egenskaber
         if (CookZone == null)
         {
+            TutCookZone.InCookMode = false;
             TutCookZone.SlukEgenskaber();
         }
         else
         {
+            CookZone.InCookMode = false;
             CookZone.SlukEgenskaber();
         }
 
@@ -129,6 +131,8 @@ public class CutScene : MonoBehaviour
         if (WinCam != null)
         {
             WinCam.SetActive(true);
+            WinPanel.SetActive(true);
+
         }
         CookCam.SetActive(false);
         CutSceneCam.SetActive(false);

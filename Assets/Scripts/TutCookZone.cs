@@ -15,7 +15,7 @@ public class TutCookZone : MonoBehaviour
     public GameObject Player;
     public GameObject ratingMessage;
     private bool playerInTrigger = false;
-    private bool InCookMode = false;
+    [HideInInspector] public bool InCookMode = false;
     private bool finalTut = false;
     
 
@@ -51,6 +51,8 @@ public class TutCookZone : MonoBehaviour
     private bool part3Played = false;
 
     private float timeElapsed = 0;
+
+    private bool TutPart2 = false;
 
     private void Start()
     {
@@ -104,10 +106,12 @@ public class TutCookZone : MonoBehaviour
 
             if (SwapObjects.currentIndex == 0 && !part1Played)
             {
+                TutPart2 = true;
                 Part1.Play();
                 timeElapsed = 0;
                 Debug.Log("Det er nu tid til at skære gutter");
                 pressParent.transform.Find("Press2").gameObject.SetActive(true);
+                //subParent.transform.Find("SubPanel").gameObject.SetActive(true);
                 subParent.transform.Find("Sub7").gameObject.SetActive(true);
                 part1Played = true;
 
@@ -119,15 +123,17 @@ public class TutCookZone : MonoBehaviour
                 Part2.Play();
                 Debug.Log("Det er nu tid til at vakse gutter");
                 pressParent.transform.Find("Press3").gameObject.SetActive(true);
+                //subParent.transform.Find("SubPanel").gameObject.SetActive(true);
                 subParent.transform.Find("Sub8").gameObject.SetActive(true);
                 part2Played = true;
                 timeElapsed = 0;
             }
         }
 
-        if (timeElapsed > 11.16f)
+        if (timeElapsed > 11.16f && TutPart2)
         {
             subParent.transform.Find("Sub7").gameObject.SetActive(false);
+            //subParent.transform.Find("SubPanel").gameObject.SetActive(false);
         }
        
 
@@ -135,7 +141,7 @@ public class TutCookZone : MonoBehaviour
         if (InCookMode && part2Played && Blood.BloodPool.GetFloat("_Opacity") == 0)
         {
             subParent.transform.Find("Sub8").gameObject.SetActive(false);
-            
+
             if (Blood.BloodPool.GetFloat("_Opacity") == 0 && !part3Played)
             {
                 Part3.Play();
@@ -145,11 +151,15 @@ public class TutCookZone : MonoBehaviour
                 subParent.transform.Find("Sub9").gameObject.SetActive(true);
                 part3Played = true;
             }
+
+
         }
 
-        if (timeElapsed > 11.97f)
+        if (timeElapsed > 11.97f && TutPart2)
         {
             subParent.transform.Find("Sub9").gameObject.SetActive(false);
+
+
         }
 
         if (SwapObjects.currentIndex == 2)
