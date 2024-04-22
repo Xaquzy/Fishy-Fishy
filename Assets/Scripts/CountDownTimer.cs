@@ -56,9 +56,9 @@ public class CountDownTimer : MonoBehaviour
             countdownText.color = Color.red; //Gør teksten rød
         }
 
-        int minutes = Mathf.FloorToInt(remainingTime / 60); //Omregner mængden af sekunder til minuter
-        int seconds = Mathf.FloorToInt(remainingTime % 60); //Omregner mængden af tid til sekunder der er til rest efter minutterne
-        countdownText.text = string.Format("{0:00}:{1:00}", minutes, seconds); //string format, gør så det ser pænt ud
+        int minutter = Mathf.FloorToInt(remainingTime / 60); //Omregner mængden af sekunder til minuter
+        int sekunder = Mathf.FloorToInt(remainingTime % 60); //Omregner mængden af tid til sekunder der er til rest efter minutterne
+        countdownText.text = string.Format("{0:00}:{1:00}", minutter, sekunder); //string format, gør så det ser pænt ud
 
         if (CutScenesPlayed == TotalCutScenes)
         {
