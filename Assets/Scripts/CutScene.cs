@@ -134,7 +134,7 @@ public class CutScene : MonoBehaviour
         if (WinCam != null)
         {
             WinCam.SetActive(true);
-            WinPanel.SetActive(true);
+            WinPanel.SetActive(true);   
             FinalAudio.Play();
 
         }
