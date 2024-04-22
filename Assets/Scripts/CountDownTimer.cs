@@ -32,7 +32,6 @@ public class CountDownTimer : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("CS spillet: " + CutScenesPlayed);
         if(!timer_running)
         {
             return;
@@ -43,7 +42,7 @@ public class CountDownTimer : MonoBehaviour
             remainingTime = remainingTime - Time.deltaTime; //trækker den tid der er gået fra den tid der er tilbage
         }
 
-        if (remainingTime <= 4)// && remainingTime > 1)
+        if (remainingTime <= 4)
         {
             countdownText.color = Color.yellow; //Gør teksten gul når der er under 4 (3) sekunder tilbage
         }
@@ -55,8 +54,6 @@ public class CountDownTimer : MonoBehaviour
             remainingTime = 0; //Sætter tiden til 0 så timeren ikke kan blive negativ
             timer_running = false;
             countdownText.color = Color.red; //Gør teksten rød
-            //Debug.Log("Go to cutscene");
-            //StartCoroutine(Cutscene.CutSceneInScene()); //kalder på sceneskift funktionen fra cutscene scriptet
         }
 
         int minutes = Mathf.FloorToInt(remainingTime / 60); //Omregner mængden af sekunder til minuter
@@ -69,7 +66,6 @@ public class CountDownTimer : MonoBehaviour
  
         }
     }
-
 
     public void StartTimer()
     {
