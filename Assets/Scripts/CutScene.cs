@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 using static UnityEngine.Rendering.DebugUI;
 
 public class CutScene : MonoBehaviour
@@ -38,6 +39,7 @@ public class CutScene : MonoBehaviour
     public RatingManager RatingManager;
     public DropObjZone DropObjZone;
     public CountDownTimer CountDownTimer;
+    public GameObject WinPanel;
 
     public AudioSource FinalAudio;
 
@@ -132,6 +134,7 @@ public class CutScene : MonoBehaviour
         if (WinCam != null)
         {
             WinCam.SetActive(true);
+            WinPanel.SetActive(true);
             FinalAudio.Play();
 
         }
