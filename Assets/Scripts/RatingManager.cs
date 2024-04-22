@@ -36,7 +36,7 @@ public class RatingManager : MonoBehaviour
         float accuracyDist = Drawing.GetAccuracyDist(); //Få adgang til accuracyDist
         ratingParent.SetActive(true);
 
-        //Deaktiver alle rating beskedeer
+        //Deaktiver alle rating beskeder
         for (int i = 0; i < ratingParent.transform.childCount; i++)
         {
             Transform t = ratingParent.transform.GetChild(i);

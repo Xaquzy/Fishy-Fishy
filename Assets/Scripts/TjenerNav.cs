@@ -24,12 +24,12 @@ public class TjenerNav : MonoBehaviour
         {
             if ((transform.position - Counter.position).magnitude <= agent.stoppingDistance)
             {
-                // If at home, go to the next location
+                //Hvis i køkkenet.. gå ud og server
                 GoToNextLocation();
             }
             else
             {
-                // If at a location, return home
+                //Ellers gå til køkkenet
                 ToCounter();
             }
         }
