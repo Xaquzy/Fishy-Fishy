@@ -27,7 +27,7 @@ Material:
     m_Floats:
     - _BUILTIN_QueueControl: 0
     - _BUILTIN_QueueOffset: 0
-    - _Opacity: 1
+    - _Opacity: 0.4240811
     - _Shape: -4.17
     - _Shape_Strength: 0.67
     - _Sharpness: 1
