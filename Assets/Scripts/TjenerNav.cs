@@ -20,7 +20,7 @@ public class TjenerNav : MonoBehaviour
     }
     void Update()
     {
-        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        if (agent.remainingDistance <= agent.stoppingDistance)
         {
             if ((transform.position - Counter.position).magnitude <= agent.stoppingDistance)
             {
