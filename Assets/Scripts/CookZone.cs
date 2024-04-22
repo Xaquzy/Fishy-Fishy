@@ -119,9 +119,10 @@ public class CookZone : MonoBehaviour
             hose.SetActive(false);
             Hand.SetActive(false);
 
-            //CountDownTimer countDown = Player.GetComponent<CountDownTimer>(); //hente countdowntimer scriptet fra spilleren
             CountDownTimer.enabled = false; ; //stoppe scriptet når man forlader skære mode
             Debug.Log("the countdown timer script is now turned off");
+            SlukEgenskaber();
+
         }
     }
 

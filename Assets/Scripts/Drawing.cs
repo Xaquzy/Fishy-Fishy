@@ -81,7 +81,7 @@ public class Drawing : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             Blood.StartCoroutine();
-            //ScreenToWorldPoint laver musens position på skærmen om til en position i "verden". Dog er positionen 2-dimensionel (x,y,?)
+                                                                                                 //ScreenToWorldPoint laver musens position på skærmen om til en position i "verden". Dog er positionen 2-dimensionel (x,y,?)
             DrawPosition();                                                                     //Tegner til ved positionen i verden (som var musens position der er blevet omdannet)
         }
 
@@ -122,10 +122,10 @@ public class Drawing : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit raycasthit, Mathf.Infinity, TegneFlade))
         {
             Vector3 DrawPos;
-            DrawPos = raycasthit.point; //tegner ved hvor raycast rammer
-            currentLinePoints.Add(DrawPos);                                    //Tilføjer musens position til listen med punkter
-            currentLine.positionCount = currentLinePoints.Count;                    //Antallet af punkter i linjen sættes lig med antallet af punkter som vi selv har defineret at linjen skal have
-            currentLine.SetPosition(currentLinePoints.Count - 1, DrawPos);     //Tager et indeks og en position. index er fra 0 men de naturlige tal (som bruges når man talle rantallet af punkter i linjen) er fra 1)
+            DrawPos = raycasthit.point; //Skal tegne ved hvor raycast rammer
+            currentLinePoints.Add(DrawPos);                                                 //Tilføjer musens position til listen med punkter
+            currentLine.positionCount = currentLinePoints.Count;                            //Antallet af punkter i linjen sættes lig med antallet af punkter som vi selv har defineret at linjen skal have
+            currentLine.SetPosition(currentLinePoints.Count - 1, DrawPos);                  //Tager et indeks og en position. index er fra 0 men de naturlige tal (som bruges når man talle rantallet af punkter i linjen) er fra 1)
         }
     }
 
