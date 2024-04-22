@@ -3271,13 +3271,8 @@ MonoBehaviour:
   CutSceneTime: 5
   RatingReadTime: 5
   knife: {fileID: 177929986}
-<<<<<<< Updated upstream
   hose: {fileID: 26377269}
   hand: {fileID: 231686694}
-=======
-  hose: {fileID: 0}
-  hand: {fileID: 0}
->>>>>>> Stashed changes
   lineRenderer: {fileID: 822386669}
   CountdownTimerText: {fileID: 761527658}
   CookZone: {fileID: 471306612}
@@ -11513,7 +11508,7 @@ MonoBehaviour:
   lineRenderer: {fileID: 822386669}
   CookCam: {fileID: 193042372}
   lineWidth: 0.08
-  AfstandTilKam: 3
+  AfstandTilKam: 9.4
   KnivDistFraKam: 1.5
   TidTilTegne: 5
   FishyTargetParent:
