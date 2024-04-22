@@ -24,7 +24,6 @@ public class CutScene : MonoBehaviour
     public Animator PlayerAnimator;
 
     public GameObject WinCam;
-    public GameObject WinPanel;
     public float CutSceneTime = 5f;
     public float RatingReadTime = 5f;
     public GameObject knife; //Så den kan slukkes i cutscene
@@ -39,6 +38,8 @@ public class CutScene : MonoBehaviour
     public RatingManager RatingManager;
     public DropObjZone DropObjZone;
     public CountDownTimer CountDownTimer;
+
+    public AudioSource FinalAudio;
 
 
     // Update is called once per frame
@@ -131,7 +132,7 @@ public class CutScene : MonoBehaviour
         if (WinCam != null)
         {
             WinCam.SetActive(true);
-            WinPanel.SetActive(true);
+            FinalAudio.Play();
 
         }
         CookCam.SetActive(false);

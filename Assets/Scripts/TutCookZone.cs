@@ -17,7 +17,8 @@ public class TutCookZone : MonoBehaviour
     private bool playerInTrigger = false;
     [HideInInspector] public bool InCookMode = false;
     private bool finalTut = false;
-    
+    public GameObject HoldETekst;
+
 
     //kalde på countdowntimer scriptet
     public CountDownTimer CountDownTimer;
@@ -72,6 +73,7 @@ public class TutCookZone : MonoBehaviour
         //CountdownText objektet slukkes (derved slukkes countdown scriptet på det også)
         countdownText.SetActive(false);
 
+        HoldETekst.SetActive(false);
 
 
 
@@ -204,6 +206,7 @@ public class TutCookZone : MonoBehaviour
             pressParent.transform.Find("Press1").gameObject.SetActive(false);
             pressParent.transform.Find("Press2").gameObject.SetActive(false);
             pressParent.transform.Find("Press3").gameObject.SetActive(false);
+            HoldETekst.SetActive(false);
         }
     }
 
@@ -275,6 +278,8 @@ public class TutCookZone : MonoBehaviour
                 //kniv model
                 Modelkniv.SetActive(true);
 
+                HoldETekst.SetActive(true);
+
 
             }
         }
@@ -292,6 +297,8 @@ public class TutCookZone : MonoBehaviour
 
                 //Hosemodel
                 hoseModel.SetActive(true);
+
+                HoldETekst.SetActive(false);
             }
         }
 
@@ -308,6 +315,8 @@ public class TutCookZone : MonoBehaviour
 
                 //Kniv model
                 Modelkniv.SetActive(true);
+
+                HoldETekst.SetActive(false);
             }
         }
 
