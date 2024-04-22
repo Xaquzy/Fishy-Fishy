@@ -36,7 +36,7 @@ public class RatingManager : MonoBehaviour
         float accuracyDist = Drawing.GetAccuracyDist(); //Få adgang til accuracyDist
         ratingParent.SetActive(true);
 
-        //Deaktiver alle rating beskedeer
+        //Deaktiver alle rating beskeder
         for (int i = 0; i < ratingParent.transform.childCount; i++)
         {
             Transform t = ratingParent.transform.GetChild(i);
@@ -47,7 +47,6 @@ public class RatingManager : MonoBehaviour
         //Ratings for drab/drop
         if (float.IsNaN(accuracyDist)) //Hvis accucacy ikke er et tal (NaN). Vi bestemte dette ved at debug.log for at finde ud af hvad vi skal hae i if-sætningen ud fra accacydist. vi startede med if accuracyDist = null
         {
-            Debug.Log("ACD: NaN");
             if (DropObjZone.ZoneScore >= 5)
             {
                 rating = ratingParent.transform.Find("F").gameObject;

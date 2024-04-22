@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;   
+using UnityEngine.UIElements;      
 
 public class RemoveOrgans : MonoBehaviour
 {
@@ -43,9 +43,9 @@ public class RemoveOrgans : MonoBehaviour
                 {
                     if (raycastHit.transform.TryGetComponent(out removableOrgan))
                     {
+                        removableOrgan.Grab(Hand);
                         HandAnimator.SetBool("Ud", false);
                         HandAnimator.SetBool("Ind", true);
-                        removableOrgan.Grab(Hand);
           
                         if (countDownTimer.timer_running == false)
                         {
@@ -68,10 +68,10 @@ public class RemoveOrgans : MonoBehaviour
         {
             if (removableOrgan != null)
             {
-                HandAnimator.SetBool("Ind", false);
-                HandAnimator.SetBool("Ud", true);
                 removableOrgan.Drop();
                 removableOrgan = null;
+                HandAnimator.SetBool("Ind", false);
+                HandAnimator.SetBool("Ud", true);
             }
         }
     }

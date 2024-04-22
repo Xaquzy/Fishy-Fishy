@@ -124,7 +124,7 @@ public class CutScene : MonoBehaviour
         Player.position = PosCutscenePos.position;
 
         //Tænder for movement script og slukker for ratingen (og for Cutscenetext som er placeholder)
-        movement.enabled = true; //.SetActive(false);
+        movement.enabled = true; 
 
     }
 
