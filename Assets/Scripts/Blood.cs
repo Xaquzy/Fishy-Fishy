@@ -10,6 +10,8 @@ public class Blood : MonoBehaviour
     public float fadeDuration = 5f;
     private float initialSize;
     private float initialOpacity;
+    float targetSize = 0.32f;
+    float targetOpacity = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,44 +25,30 @@ public class Blood : MonoBehaviour
     
     public IEnumerator Bleed()
     {
-        // Get the initial opacity value
-        float initialSize = BloodPool.GetFloat("_Size");
-
-        // Define the target opacity (0 in this case)
-        float targetSize = 0.32f;
-
-        // Calculate the rate at which opacity should change over time
         float fadeSpeed = 1f / fadeDuration;
 
-        // Keep fading until the opacity reaches the target value
+        // Fade indtil størrelsen når dens target value
         while (initialSize < targetSize)
         {
-            // Calculate the new opacity value based on the current time and fade speed
+            //Beregn den nye størrelse baseret på den nuværende tid og fadespeed
             float newSize = Mathf.MoveTowards(initialSize, targetSize, fadeSpeed * Time.deltaTime);
 
-            // Set the new opacity value to the material
+            //Den får den nye størrelse
             BloodPool.SetFloat("_Size", newSize);
 
-            // Wait for the next frame
+            //Wait for the next frame
             yield return null;
 
-            // Update the initial opacity value for the next iteration
+            //Opdatere the initial size value får næste iteration af while løkken
             initialSize = newSize;
         }
 
-        // Ensure the opacity is set to the exact target value when the loop ends
+        //Sikrer at størrelsen ender på targetsize
         BloodPool.SetFloat("_Size", targetSize);
     }
 
     public IEnumerator FadeBlood()
     {
-        Debug.Log("Blood is fading");
-        // Get the initial opacity value
-        float initialOpacity = BloodPool.GetFloat("_Opacity");
-
-        // Define the target opacity (0 in this case)
-        float targetOpacity = 0f;
-
         // Calculate the rate at which opacity should change over time
         float fadeSpeed = 1f / fadeDuration;
 
@@ -72,7 +60,7 @@ public class Blood : MonoBehaviour
 
             // Set the new opacity value to the material
             BloodPool.SetFloat("_Opacity", newOpacity);
-
+            
             // Wait for the next frame
             yield return null;
 
