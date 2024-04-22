@@ -131,7 +131,7 @@ public class RatingManager : MonoBehaviour
 
             if (RatingAudioGood != null)
             {
-                if (accuracyDist > 0.15)
+                if (accuracyDist > 0.2)
                 {
                     RatingAudioBad.Play();
                 }

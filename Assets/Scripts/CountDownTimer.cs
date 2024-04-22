@@ -13,7 +13,9 @@ public class CountDownTimer : MonoBehaviour
     public float remainingTime;
     [SerializeField] TextMeshProUGUI countdownText;
     [HideInInspector] public bool timer_running = false;
-
+    public int TotalCutScenes = 12;
+    private int CutScenesPlayed = 0;
+    
     //Henter cutscene scriptet
     public CutScene Cutscene;
     public UnityEvent OnCountDownFinished;
@@ -40,27 +42,30 @@ public class CountDownTimer : MonoBehaviour
             remainingTime = remainingTime - Time.deltaTime; //trækker den tid der er gået fra den tid der er tilbage
         }
 
-        if (remainingTime <= 4)// && remainingTime > 1)
+        if (remainingTime <= 4)
         {
             countdownText.color = Color.yellow; //Gør teksten gul når der er under 4 (3) sekunder tilbage
         }
 
         if (remainingTime <= 1)
         {
+            CutScenesPlayed = CutScenesPlayed + 1;
             OnCountDownFinished.Invoke();
             remainingTime = 0; //Sætter tiden til 0 så timeren ikke kan blive negativ
             timer_running = false;
             countdownText.color = Color.red; //Gør teksten rød
-            //Debug.Log("Go to cutscene");
-            //StartCoroutine(Cutscene.CutSceneInScene()); //kalder på sceneskift funktionen fra cutscene scriptet
         }
 
         int minutes = Mathf.FloorToInt(remainingTime / 60); //Omregner mængden af sekunder til minuter
         int seconds = Mathf.FloorToInt(remainingTime % 60); //Omregner mængden af tid til sekunder der er til rest efter minutterne
         countdownText.text = string.Format("{0:00}:{1:00}", minutes, seconds); //string format, gør så det ser pænt ud
 
+        if (CutScenesPlayed == TotalCutScenes)
+        {
+            StartCoroutine(Cutscene.FinalCutscene());
+ 
+        }
     }
-
 
     public void StartTimer()
     {

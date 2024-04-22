@@ -14,7 +14,7 @@ public class CookZone : MonoBehaviour
     public GameObject Player;
     public GameObject ratingMessage;
     private bool playerInTrigger = false;
-    private bool InCookMode = false;
+    [HideInInspector] public bool InCookMode = false;
     public GameObject HoldETekst;
     public GameObject TrykTekst;
 
@@ -122,6 +122,7 @@ public class CookZone : MonoBehaviour
             //CountDownTimer countDown = Player.GetComponent<CountDownTimer>(); //hente countdowntimer scriptet fra spilleren
             CountDownTimer.enabled = false; ; //stoppe scriptet når man forlader skære mode
             Debug.Log("the countdown timer script is now turned off");
+            SlukEgenskaber();
         }
     }
 

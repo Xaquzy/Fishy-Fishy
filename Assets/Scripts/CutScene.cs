@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 using static UnityEngine.Rendering.DebugUI;
 
 public class CutScene : MonoBehaviour
@@ -17,6 +18,8 @@ public class CutScene : MonoBehaviour
     public GameObject CookCam;
     public SwapObjects SwapObjects;
     public List<GameObject> NonFinalRatingCanvas = new List<GameObject>();
+    public GameObject HoldETekst;
+    public GameObject TrykToolTip;
 
     //Animation
     public Animator PlayerAnimator;
@@ -36,38 +39,37 @@ public class CutScene : MonoBehaviour
     public RatingManager RatingManager;
     public DropObjZone DropObjZone;
     public CountDownTimer CountDownTimer;
-    public int AntalCutScenesISpillet = 10;
-    private int AntalCutScenesSpillet = 0;
+    public GameObject WinPanel;
+
+    public AudioSource FinalAudio;
+
 
     // Update is called once per frame
     void Update()
     {
-        if (AntalCutScenesSpillet == AntalCutScenesISpillet && CountDownTimer.remainingTime == 0)
-        {
-            Debug.Log("FINAL CUTSCENE");
-            StartCoroutine(FinalCutscene());
 
-        }
     }
 
     public void StartCutScene()
     {
+        Debug.Log("Almost chop chop");
         StartCoroutine(CutSceneInScene());
     }
 
     public IEnumerator CutSceneInScene()
     {
-        //Slukker for movement script
+        Debug.Log("Chop chop");
         Movement movement = Player.GetComponent<Movement>();
         movement.enabled = false;
 
-        //Slukker for alle egenskaber
         if (CookZone == null)
         {
+            TutCookZone.InCookMode = false;
             TutCookZone.SlukEgenskaber();
         }
         else
         {
+            CookZone.InCookMode = false;
             CookZone.SlukEgenskaber();
         }
 
@@ -76,10 +78,11 @@ public class CutScene : MonoBehaviour
         Player.position = CutScenePos.position;
         Player.LookAt(CutSceneDir);
 
-        //objekterne skal slukkes (CS kniv tændes)
+        //objekter og ui skal slukkes (CS kniv tændes)
         hose.SetActive(false);
         hand.SetActive(false);
         CsKnife.SetActive(true);
+        HoldETekst.SetActive(false);
 
         //gør linjerne gennemsigitg. Hvis linjerne bare slettes så er der ikke en position der kan bruges til at bestemme den rating man skal få senere i rating()
         Drawing.DisableAllLineRenderer();
@@ -115,21 +118,25 @@ public class CutScene : MonoBehaviour
         DropObjZone.ZoneScore = DropObjZone.AmountToMoveOn[DropObjZone.AmountToMoveOnIndex];
 
         CsKnife.SetActive(false); //Kniv slukkes
+        TrykToolTip.SetActive(false);
 
         //Reset spillerens position i køkkenet
         Player.position = PosCutscenePos.position;
 
         //Tænder for movement script og slukker for ratingen (og for Cutscenetext som er placeholder)
         movement.enabled = true; //.SetActive(false);
-        AntalCutScenesSpillet = AntalCutScenesSpillet + 1;
+
     }
 
-    IEnumerator FinalCutscene()
+    public IEnumerator FinalCutscene()
     {
         //Skift til final cam og sluk alt
         if (WinCam != null)
         {
             WinCam.SetActive(true);
+            WinPanel.SetActive(true);
+            FinalAudio.Play();
+
         }
         CookCam.SetActive(false);
         CutSceneCam.SetActive(false);
@@ -139,11 +146,9 @@ public class CutScene : MonoBehaviour
         {
             NonFinalRatingCanvas[i].SetActive(false);
         }
-
-        yield return new WaitForSeconds(3f);
-
+        
         RatingManager.DisplayRatings();
-
+        yield return new WaitForSeconds(3f);
 
     }
 }
