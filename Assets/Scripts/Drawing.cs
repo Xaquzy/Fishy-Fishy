@@ -242,9 +242,9 @@ public class Drawing : MonoBehaviour
     {
         foreach (LineRenderer line in allLines)
         {
-            if (line != null) // tjek om line rendereren findes... da de tidligere linjer slettes fra spillet, men stadig er en del af denne liste, skal de alle ignores. De er "tomme/ikke-eksisterende" renderes
+            if (line != null)                           // tjek om line rendereren findes... da de tidligere linjer slettes fra spillet, men stadig er en del af denne liste, skal de alle ignores. De er "tomme/ikke-eksisterende" renderes
             {
-                line.enabled = false; //Slukker line renderer da en line renderer hedder line (tjek loopens argument)
+                line.enabled = false;                   //Slukker line renderer da en line renderer hedder line (tjek loopens argument)
             }
         }
     }
@@ -254,9 +254,9 @@ public class Drawing : MonoBehaviour
     {
         foreach (LineRenderer line in allLines)
         {
-            if (line != null) // tjek om line rendereren findes... da de tidligere linjer slettes fra spillet, men stadig er en del af denne liste, skal de alle ignores. De er "tomme/ikke-eksisterende" renderes
+            if (line != null)                           // tjek om line rendereren findes... da de tidligere linjer slettes fra spillet, men stadig er en del af denne liste, skal de alle ignores. De er "tomme/ikke-eksisterende" renderes
             {
-                line.enabled = true; //Tænder line renderer da en line renderer hedder line (tjek loopens argument)
+                line.enabled = true;                    //Tænder line renderer da en line renderer hedder line (tjek loopens argument)
             }
         }
     }
