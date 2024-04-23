@@ -56,7 +56,6 @@ public class CookZone : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the object that entered the trigger has a specific tag
         if (other.CompareTag("Player"))
         {
             toolTip.SetActive(true);
@@ -74,11 +73,8 @@ public class CookZone : MonoBehaviour
             toolTip.SetActive(false);
             CookCam.SetActive(true);
             MainCam.enabled = false;
-            CountDownTimer.enabled = true; //slå den til mens man er i gang med din handling
+            CountDownTimer.enabled = true; //slå den til så den er klar
             Debug.Log("the countdown timer script is now turned on");
-
-            
-
         }
 
         if (InCookMode == true)
