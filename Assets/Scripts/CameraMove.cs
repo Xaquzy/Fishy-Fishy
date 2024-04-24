@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    public Transform[] waypoints; // Array to hold the waypoints
+    public Transform[] waypoints; 
     public float moveSpeed = 5f;
 
     private int currentWaypointIndex = -1;
@@ -14,7 +14,6 @@ public class CameraMove : MonoBehaviour
     private Vector3 position;
 
     public GameObject subParent;
-    public float LastPointTime = 2f;
     public GameObject TutorialCam;
     public CinemachineFreeLook MainCam;
     private float timeElapsed = 0;
@@ -53,11 +52,9 @@ public class CameraMove : MonoBehaviour
         // Check if the camera has reached the current waypoint
         if (transform.position == currentWaypoint.position)
         {
-            // Move to the next waypoint
             NextPoint();
         }
 
-        //Debug.Log("Current position: " + transform.position);
 
         if (timeElapsed >= 7f)
         {
@@ -86,8 +83,8 @@ public class CameraMove : MonoBehaviour
         }
         if (timeElapsed >= 33f)
         {
-            isMoving = false; // Stop the camera movement
-            StartCoroutine(SlukSidsteSub());
+            isMoving = false; 
+            StartCoroutine(OffLastSub());
 
         }
 
@@ -104,12 +101,11 @@ public class CameraMove : MonoBehaviour
         position = transform.position;
     }
 
-    IEnumerator SlukSidsteSub()
+    IEnumerator OffLastSub()
     {
-        yield return new WaitForSeconds(LastPointTime);
+        yield return new WaitForSeconds(2);
         subParent.transform.Find("Sub6").gameObject.SetActive(false);
         yield return new WaitForSeconds(0.1f);
         TutorialCam.SetActive(false);
-        //subParent.transform.Find("SubPanel").gameObject.SetActive(false);
     }
 }
