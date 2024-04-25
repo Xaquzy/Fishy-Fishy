@@ -5,16 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Spillet/Main Menu.unity
-    guid: 3bdf348f4aec59f4db1aa37a0d1b3bb1
-  - enabled: 1
+    guid: d1d15bf51156b4041ba9d6d0396c85a9
+  - enabled: 0
     path: Assets/Scenes/Spillet/Tutorial.unity
     guid: 2014e31c8981dcc4bb622b42f5b7eaf1
   - enabled: 1
     path: Assets/Scenes/Spillet/Anden brugertest.unity
     guid: 0d6bbb3dae93245e9aaa15f8f63c5205
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Spillet/First Time.unity
     guid: 5f19180f44387074ea3a35ee9f8cdffc
   m_configObjects: {}
